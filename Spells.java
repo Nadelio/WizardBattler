@@ -12,7 +12,7 @@ public class Spells
 
     public void chooseSpell(Spell spell)
     {
-        currentSpell = spell;
+        currentSpell = spell; // update this to actually do choosing instead of a manual selection, think key:value, where Spell.name is the key, and the Spell instance is the value
     }
 
     public static int useSpell()
