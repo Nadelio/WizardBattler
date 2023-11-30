@@ -92,4 +92,6 @@ public class FightProcesses
     {
         return turnList.get(turnListIndex);
     }
+
+    public Turn getTurn(){return turn;}
 }
