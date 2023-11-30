@@ -28,7 +28,11 @@ public class Player extends Entity
         playerList.add(this);
     }
 
-    // Add player turn, player action, and player attack
+    // Add player action
+    public static void playerAttack()
+    {
+        int playerDamage = FightProcesses.getCurrentPlayer().getWeapon().getDamage();
+    }
 
     public static ArrayList<Player> getPlayerList()
     {

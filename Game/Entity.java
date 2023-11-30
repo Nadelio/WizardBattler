@@ -2,6 +2,7 @@ package Game;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Entity
 {
@@ -34,11 +35,25 @@ public class Entity
         entityList.add(this);
     }
 
-    public static ArrayList<Entity> getEntityList()
+    public void playTurn()
     {
-        return entityList;
+        if(entityType)
+        {
+            Scanner player = new Scanner(System.in);
+            if(player.nextLine().strip().toLowerCase().equals("action"))
+            {
+                actionMenu();
+            }
+            else if(player.nextLine().strip().toLowerCase().equals("attack"))
+            {
+                FightProcesses.getCurrentPlayer().playerAttack();
+            }
+        }
     }
 
+    public void actionMenu(){}
+
+    public static ArrayList<Entity> getEntityList(){return entityList;}
     public int getHealth(){return HP;}
     public int getArmor(){return AR;}
     public Weapon getWeapon(){return weapon;}

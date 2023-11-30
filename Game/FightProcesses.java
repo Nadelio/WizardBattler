@@ -37,13 +37,9 @@ public class FightProcesses
 
     public static void nextTurn()
     {
-        String lastActiveMember = getLastTurnMember();
-        if(lastActiveMember.equals("Enemy"))
-        {
-            Player currentPlayer = getCurrentPlayer();
-            currentPlayer.playTurn();
-            currentTurn = updateTurnData();
-        }
+        currentTurn = updateTurnData();
+        Entity currentEntity = getTurnData(turn).getMemberInPlay();
+        currentEntity.playTurn();
     }
 
     public static Player getCurrentPlayer()
