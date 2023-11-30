@@ -29,9 +29,28 @@ public class Player extends Entity
     }
 
     // Add player action
-    public static void playerAttack()
+    public int playerAttack()
     {
-        int playerDamage = FightProcesses.getCurrentPlayer().getWeapon().getDamage();
+        int playerDamage = weapon.getDamage();
+	Entity target = chooseTarget();
+	if(weapon.getWeaponName().equals("staff"))
+	{
+		doStaffAttacks();
+	}
+	else
+	{
+		int targetHealth = target.getHealth();
+		if(weapon.getHasEffect()){weapon.effectProcess();}
+		if(FightProcesses.attackRoll(roll) > target.getArmor())
+		{
+			targetHealth -= playerDamage;
+			if(target.getWeakType.equals(weapon.getDamageType())
+			{
+				targetHealth -= playerDamage;
+			}
+		}
+	}
+	return targetHealth;
     }
 
     public static ArrayList<Player> getPlayerList()
