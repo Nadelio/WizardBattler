@@ -8,5 +8,5 @@ public class EntityClass
         Wizard,
         Archer,
         Knight;
-    }
+    } // add more classes in the future?
 }
