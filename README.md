@@ -6,9 +6,10 @@ Current Features:
 - Player, Enemy, and Entity classes
 - FightProcesses class
 - Spell and Spells classes
+- Turn class
+- EntityClass class
 - Weapon class
 
 Current Bugs/Dependecy Errors:
-- No EntityClass class
 - Missing some methods for a few classes
 - No ability/class/action selection method/class
