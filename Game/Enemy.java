@@ -6,17 +6,17 @@ import java.util.*; // gives various utilites
 public class Enemy extends Entity
 {
     private int health;
-	private int armor;
-	private Weapon weapon;
-	private int roll;
+    private int armor;
+    private Weapon weapon;
+    private int roll;
     private int level;
-	private String weakType;
-	private String type;
+    private String weakType;
+    private String type;
     private EntityClass Class;
 
     private static ArrayList<Enemy> enemyList;
 
-	private Player target;
+    private Player target;
 
     public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass Class)
     {
