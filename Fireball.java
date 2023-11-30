@@ -13,8 +13,8 @@ public class Fireball extends Spell
     {
         int enemyHealth = enemy.getHealth();
         int burnDuration = 3;
-        Turn lastTurn = getTurnData(FightProcess.getTurn() - 1);
-        Turn currentTurn = getTurnData(FightProcess.getTurn());
+        Turn lastTurn = getTurnData(FightProcess.getTurn() - 2);
+        Turn currentTurn = getTurnData(FightProcess.getTurn() - 1);
         if(lastTurn != currentTurn && burnDuration > 0)
         {
             enemyHealth -= 1;
