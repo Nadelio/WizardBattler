@@ -6,6 +6,7 @@ Current Features:
 - Player, Enemy, and Entity classes
 - FightProcesses class
 - Spell and Spells classes
+- Fireball spell
 - Turn class
 - EntityClass class
 - Weapon class
