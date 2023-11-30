@@ -13,5 +13,12 @@ public class Weapon
         this.hasEffect = hasEffect;
         this.damageType = damageType;
         this.weaponName = weaponName;
-    }    
+    }
+
+    public int getDamage(){return damage;}
+    public boolean getHasEffect(){return hasEffect;}
+    public String getDamageType(){return damageType;}
+    public String getWeaponName(){return weaponName;}
+
+    public void effectProcess(Entity entity){}
 }

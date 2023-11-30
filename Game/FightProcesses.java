@@ -2,13 +2,13 @@ package Game;
 
 import Game.Player;
 import Game.Enemy;
-import Game.Process;
 import java.util.*;
 
 public class FightProcesses
 {    
     private static int turn;
     public static Turn currentTurn;
+    public static ArrayList<Turn> turnList;
 
     public FightProcesses()
     {
@@ -16,15 +16,16 @@ public class FightProcesses
         ArrayList<Player> playerList = Player.getPlayerList();
         Player firstPlayer = playerList.get(0);
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, "Player");
+        turnList.add(currentTurn);
     }
 
     public static Player getTarget()
     {
         ArrayList<Player> playerList = Player.getPlayerList();
         Random random = new Random();
-        int rand = random.nextInt(0, playerList.length + 1);
+        int rand = random.nextInt(0, playerList.size() + 1);
 
-        return playerList[rand];
+        return playerList.get(rand);
     }
 
     public static int attackRoll(int rollRange)
@@ -36,7 +37,7 @@ public class FightProcesses
 
     public static void nextTurn()
     {
-        String lastActiveMember = getLastTurn();
+        String lastActiveMember = getLastTurnMember();
         if(lastActiveMember.equals("Enemy"))
         {
             Player currentPlayer = getCurrentPlayer();
@@ -57,23 +58,42 @@ public class FightProcesses
         return enemyList.get((int)(turn/2));
     }
 
-    public static String getLastTurn()
+    public static String getLastTurnMember()
     {
         Turn lastTurnData = getTurnData(turn - 1);
-        String lastTurnMember = lastTurnData.getTurnMember();
+        String lastTurnMember = lastTurnData.getMember();
         return lastTurnMember;
     }
 
     public static Turn updateTurnData()
     {
-        FightProcesses.currentTurn.turnCount += 1;
-        FightProcesses.currentTurn.member = nextTurnMember(FightProcesses.currentTurn.member);
-        FightProcesses.currentTurn.memberInPLay = nextMemberInPlay(FightProcesses.currentTurn.memberInPlay);
+        int currentTurnCount = FightProcesses.currentTurn.getTurnCount(); 
+        currentTurnCount += 1;
+
+        String currentTurnMember = nextTurnMember();
+
+        Entity curerntTurnMemberInPlay = nextMemberInPlay();
+
+        Turn NEWTURN = new Turn(curerntTurnMemberInPlay, currentTurnCount, currentTurnMember);
+        turnList.add(NEWTURN);
+
+        return NEWTURN;
     }
 
-    public static String nextTurnMember(String member)
+    public static String nextTurnMember()
     {
         ArrayList<Entity> entityList = Entity.getEntityList();
         return entityList.get(turn + 1).toString();
+    }
+
+    public static Entity nextMemberInPlay()
+    {
+        ArrayList<Entity> entityList = Entity.getEntityList();
+        return entityList.get(turn + 1);
+    }
+
+    public static Turn getTurnData(int turnListIndex)
+    {
+        return turnList.get(turnListIndex);
     }
 }

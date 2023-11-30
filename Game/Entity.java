@@ -29,7 +29,7 @@ public class Entity
         this.entityType = entityType;
         this.Class = Class;
         
-        if(entityType){new Player(HP, AR, weapon, level, this.roll, weakType, strongType, Class);}
+        if(entityType){new Player(HP, AR, weapon, level, this.roll, weakType, Class);}
         else{new Enemy(HP, AR, weapon, level, this.roll, weakType, strongType, Class);}
         entityList.add(this);
     }
@@ -37,5 +37,21 @@ public class Entity
     public static ArrayList<Entity> getEntityList()
     {
         return entityList;
+    }
+
+    public int getHealth(){return HP;}
+    public int getArmor(){return AR;}
+    public Weapon getWeapon(){return weapon;}
+    public int getLevel(){return level;}
+    public int getRoll(){return roll;}
+    public String getWeakType(){return weakType;}
+    public String getStrongType(){return strongType;}
+    public boolean getEntityType(){return entityType;}
+    public EntityClass getEntityClass(){return Class;}
+
+    public String toString()
+    {
+        if(entityType){return "Player";}
+        return "Enemy";
     }
 }

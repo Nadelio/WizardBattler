@@ -5,11 +5,11 @@ import java.util.*; // gives various utilites
 
 public class Enemy extends Entity
 {
-    private int enemyHealth;
-	private int enemyArmor;
-	private Weapon enemyWeapon;
-	private int enemyRoll;
-    private int enemyLevel;
+    private int health;
+	private int armor;
+	private Weapon weapon;
+	private int roll;
+    private int level;
 	private String weakType;
 	private String type;
     private EntityClass Class;
@@ -20,24 +20,28 @@ public class Enemy extends Entity
 
     public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass Class)
     {
-        this.enemyHealth = HP;
-		this.enemyArmor = AR;
-		this.enemyWeapon = weapon;
-        this.enemyLevel = level;
-        this.enemyRoll = roll;
+        super(HP, AR, weapon, level, weakType, type, false, Class);
+        this.health = HP;
+		this.armor = AR;
+		this.weapon = weapon;
+        this.level = level;
+        this.roll = roll;
 		this.weakType = weakType;
 		this.type = type;
         this.Class = Class;
         enemyList.add(this);
     }
 
+    // Add enemy turn and enemy action
+
     public int enemyAttack()
     {
         target = FightProcesses.getTarget();
         int targetHP = target.getHealth();
-        if(FightProcesses.attackRoll(enemyRoll) > target.getArmor())
+        if(weapon.getHasEffect()){weapon.effectProcess(target);}
+        if(FightProcesses.attackRoll(roll) > target.getArmor())
         {
-            targetHP -= enemyWeapon.getDamage();
+            targetHP -= weapon.getDamage();
         }
 
         return targetHP;

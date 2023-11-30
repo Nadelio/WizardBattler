@@ -15,21 +15,24 @@ public class Spells
         currentSpell = spell; // update this to actually do choosing instead of a manual selection, think key:value, where Spell.name is the key, and the Spell instance is the value
     }
 
-    public static int useSpell()
+    public int useSpell()
     {
-        Enemy currentEnemy = Enemy.getCurrentEnemy();
-
-        if(FightProcesses.attackRoll(currentPlayer.playerRoll) > currentEnemy.getArmor())
+        Enemy currentEnemy = FightProcesses.getCurrentEnemy();
+        int enemyHealth = currentEnemy.getHealth();
+        
+        if(FightProcesses.attackRoll(FightProcesses.getCurrentPlayer().getRoll()) > currentEnemy.getArmor())
         {
             if(currentSpell.getHasEffect()){currentSpell.effectProcess(currentEnemy);}
-            currentEnemy.enemyHealth -= currentSpell.getSpellDamage();
+            enemyHealth -= currentSpell.getSpellDamage();
 
             String TYPE = currentSpell.getType();
 
-            if(TYPE == currentEnemy.weakType)
+            if(TYPE == currentEnemy.getWeakType())
             {
-                currentEnemy.enemyHealth -= currentSpell.getSpellDamage();
+                enemyHealth -= currentSpell.getSpellDamage();
             }
         }
+
+        return enemyHealth;
     }
 }

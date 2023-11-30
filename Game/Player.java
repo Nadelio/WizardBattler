@@ -17,6 +17,7 @@ public class Player extends Entity
 
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass Class)
     {
+        super(HP, AR, weapon, level, weakType, "isPlayer", true, Class);
         this.health = HP;
         this.armor = AR;
         this.weapon = weapon;
@@ -26,6 +27,8 @@ public class Player extends Entity
         this.Class = Class;
         playerList.add(this);
     }
+
+    // Add player turn, player action, and player attack
 
     public static ArrayList<Player> getPlayerList()
     {
