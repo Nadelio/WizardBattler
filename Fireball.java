@@ -11,6 +11,14 @@ public class Fireball extends Spell
     @Override
     public void effectProcess(Enemy enemy)
     {
-        // add 1 burn damage over turns
+        int enemyHealth = enemy.getHealth();
+        int burnDuration = 3;
+        Turn lastTurn = getTurnData(FightProcess.getTurn() - 1);
+        Turn currentTurn = getTurnData(FightProcess.getTurn());
+        if(lastTurn != currentTurn && burnDuration > 0)
+        {
+            enemyHealth -= 1;
+            burnDuration -= 1;
+        }
     } 
 }
