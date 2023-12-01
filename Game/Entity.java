@@ -16,6 +16,7 @@ public class Entity
     private String strongType;
     private boolean entityType;
     private EntityClass Class;
+    private Entity target;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass Class)
     {
@@ -67,6 +68,7 @@ public class Entity
     public String getStrongType(){return strongType;}
     public boolean getEntityType(){return entityType;}
     public EntityClass getEntityClass(){return Class;}
+    public Entity getCurrentTarget(){if(target == null;){return null;} return target;}
 
     public String toString()
     {
