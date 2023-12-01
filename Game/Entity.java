@@ -17,8 +17,9 @@ public class Entity
     private boolean entityType;
     private EntityClass.Classes Class;
     private Entity target;
+    private String entityName;
     
-    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class)
+    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
     {
         this.HP = HP;
         this.AR = AR;
@@ -30,9 +31,11 @@ public class Entity
         this.strongType = strongType;
         this.entityType = entityType;
         this.Class = Class;
+        this.entityName = entityName;
         
-        if(entityType){new Player(HP, AR, weapon, level, this.roll, weakType, Class);}
-        else{new Enemy(HP, AR, weapon, level, this.roll, weakType, strongType, Class);}
+        if(entityType){new Player(HP, AR, weapon, level, this.roll, weakType, Class, entityName);}
+        else{new Enemy(HP, AR, weapon, level, this.roll, weakType, strongType, Class, entityName);}
+
         entityList.add(this);
     }
 
@@ -40,7 +43,8 @@ public class Entity
     {
         if(entityType)
         {
-            try (Scanner player = new Scanner(System.in)) {
+            try (Scanner player = new Scanner(System.in))
+            {
                 if(player.nextLine().strip().toLowerCase().equals("action"))
                 {
                     FightProcesses.getCurrentPlayer().actionMenu();
@@ -70,6 +74,8 @@ public class Entity
     public boolean getEntityType(){return entityType;}
     public EntityClass.Classes getEntityClass(){return Class;}
     public Entity getCurrentTarget(){if(target == null){return null;} return target;}
+    public String getName(){return entityName;}
+
 
     public String toString()
     {

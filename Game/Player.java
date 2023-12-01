@@ -7,7 +7,6 @@ import java.util.Scanner;
 import Classes.Wizard;
 import Wizard.Spell;
 import Wizard.Spells;
-import Game.FightProcesses;
 
 public class Player extends Entity
 {
@@ -21,11 +20,12 @@ public class Player extends Entity
 	private String weakType;
 	private String type;
     private EntityClass.Classes Class;
+    private String entityName;
     private Spells currentSpells;
 
-    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class)
+    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName)
     {
-        super(HP, AR, weapon, level, weakType, "isPlayer", true, Class);
+        super(HP, AR, weapon, level, weakType, "isPlayer", true, Class, entityName);
         this.health = HP;
         this.armor = AR;
         this.weapon = weapon;
@@ -33,16 +33,24 @@ public class Player extends Entity
         this.roll = roll;
         this.weakType = weakType;
         this.Class = Class;
+        this.entityName = entityName;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
-	    // add Wizard class with getSpells() method that takes an int and returns a Spell[] for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
+
         playerList.add(this);
     }
 
     // Add player action and action menu
+    
     public int playerAttack()
     {
         int playerDamage = weapon.getDamage();
-	    Entity target = chooseTarget(); // add chooseTarget() method that allows the player to choose an enemy from enemyList
+	    Entity target = chooseTarget();
+        while(target == null)
+        {
+            System.out.println("Error, target does not exist");
+            target = chooseTarget();
+        }
+
 	    if(weapon.getWeaponName().equals("staff"))
 	    {
 	    	doStaffAttacks();
@@ -64,10 +72,22 @@ public class Player extends Entity
 	    }
     }
 
+    public Enemy chooseTarget()
+    {
+        System.out.println(Enemy.getEnemyList().toString());
+        try (Scanner playerInput = new Scanner(System.in))
+        {
+            String input = playerInput.nextLine();
+            for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input)){return enemy;}}
+            return null;
+        }
+    }
+
     public void doStaffAttacks()
     {
 	    System.out.println(currentSpells.getSpellInventory().toString());
-	    try (Scanner playerInput = new Scanner(System.in)) {
+	    try (Scanner playerInput = new Scanner(System.in))
+        {
             String choice = playerInput.nextLine();
             if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
         }
