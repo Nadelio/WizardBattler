@@ -40,14 +40,15 @@ public class Entity
     {
         if(entityType)
         {
-            Scanner player = new Scanner(System.in);
-            if(player.nextLine().strip().toLowerCase().equals("action"))
-            {
-                FightProcesses.getCurrentPlayer().actionMenu();
-            }
-            else if(player.nextLine().strip().toLowerCase().equals("attack"))
-            {
-                FightProcesses.getCurrentPlayer().playerAttack();
+            try (Scanner player = new Scanner(System.in)) {
+                if(player.nextLine().strip().toLowerCase().equals("action"))
+                {
+                    FightProcesses.getCurrentPlayer().actionMenu();
+                }
+                else if(player.nextLine().strip().toLowerCase().equals("attack"))
+                {
+                    FightProcesses.getCurrentPlayer().playerAttack();
+                }
             }
         }
         else
@@ -68,7 +69,7 @@ public class Entity
     public String getStrongType(){return strongType;}
     public boolean getEntityType(){return entityType;}
     public EntityClass getEntityClass(){return Class;}
-    public Entity getCurrentTarget(){if(target == null;){return null;} return target;}
+    public Entity getCurrentTarget(){if(target == null){return null;} return target;}
 
     public String toString()
     {

@@ -2,7 +2,7 @@ package Game;
 
 public class EntityClass
 {
-    enum Classes
+    public enum Classes
     {
         Fighter,
         Wizard,

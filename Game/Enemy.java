@@ -1,6 +1,5 @@
 package Game;
 
-import Game.FightProcesses; // gives attackRoll() and getTarget()
 import java.util.*; // gives various utilites
 
 public class Enemy extends Entity
@@ -33,6 +32,10 @@ public class Enemy extends Entity
     }
 
     // Add enemy turn and enemy action
+    public void enemyTurn()
+    {
+        // add enemy turn code here
+    }
 
     public int enemyAttack()
     {

@@ -1,9 +1,12 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 import Classes.Wizard;
-import Spell;
-import Spells;
+import Wizard.Spell;
+import Wizard.Spells;
 import Game.FightProcesses;
 
 public class Player extends Entity
@@ -30,8 +33,8 @@ public class Player extends Entity
         this.roll = roll;
         this.weakType = weakType;
         this.Class = Class;
-	if(Class.equals(Class.Wizard){this.currentSpells = Wizard.getSpells(level);}
-	// add Wizard class with getSpells() method that takes an int and returns a Spell[] for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
+	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
+	    // add Wizard class with getSpells() method that takes an int and returns a Spell[] for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
         playerList.add(this);
     }
 
@@ -39,34 +42,35 @@ public class Player extends Entity
     public int playerAttack()
     {
         int playerDamage = weapon.getDamage();
-	Entity target = chooseTarget(); // add chooseTarget() method that allows the player to choose an enemy from enemyList
-	if(weapon.getWeaponName().equals("staff"))
-	{
-		doStaffAttacks();
-		return target.getHealth();
-	}
-	else
-	{
-		int targetHealth = target.getHealth();
-		if(weapon.getHasEffect()){weapon.effectProcess();}
-		if(FightProcesses.attackRoll(roll) > target.getArmor())
-		{
-			targetHealth -= playerDamage;
-			if(target.getWeakType.equals(weapon.getDamageType())
-			{
-				targetHealth -= playerDamage;
-			}
-		}
-	}
-	return targetHealth;
+	    Entity target = chooseTarget(); // add chooseTarget() method that allows the player to choose an enemy from enemyList
+	    if(weapon.getWeaponName().equals("staff"))
+	    {
+	    	doStaffAttacks();
+	    	return target.getHealth();
+	    }
+	    else
+	    {
+	    	int targetHealth = target.getHealth();
+		    if(weapon.getHasEffect()){weapon.effectProcess(target);}
+		    if(FightProcesses.attackRoll(roll) > target.getArmor())
+		    {
+		    	targetHealth -= playerDamage;
+		    	if(target.getWeakType().equals(weapon.getDamageType()))
+		    	{
+		    		targetHealth -= playerDamage;
+		    	}
+		    }
+            return targetHealth;
+	    }
     }
 
     public void doStaffAttacks()
     {
-	System.out.println(currentSpells.SPELLINV.toString());
-	Scanner playerInput = new Scanner(System.in);
-	String choice = playerInput.nextLine();
-	if(SPELLINV.contains(choice)){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+	    System.out.println(currentSpells.getSpellInventory().toString());
+	    try (Scanner playerInput = new Scanner(System.in)) {
+            String choice = playerInput.nextLine();
+            if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+        }
     }
 
     public static ArrayList<Player> getPlayerList()

@@ -1,5 +1,6 @@
+package Wizard;
 import java.util.HashMap;
-import Game.Enemy;
+import Game.Entity;
 
 public class Spell
 {
@@ -25,7 +26,7 @@ public class Spell
     public String getType(){return type;}
     public String getName(){return name;}
     
-    public void effectProcess(Enemy enemy){}
+    public void effectProcess(Entity target){}
 
     public String toString(){return getName();}
 }

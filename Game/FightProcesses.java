@@ -1,7 +1,5 @@
 package Game;
 
-import Game.Player;
-import Game.Enemy;
 import java.util.*;
 
 public class FightProcesses
@@ -88,10 +86,6 @@ public class FightProcesses
         return entityList.get(turn + 1);
     }
 
-    public static Turn getTurnData(int turnListIndex)
-    {
-        return turnList.get(turnListIndex);
-    }
-
-    public Turn getTurn(){return turn;}
+    public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}
+    public static int getTurn(){return turn;}
 }
