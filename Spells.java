@@ -1,5 +1,5 @@
-import Game.Enemy; // gives Enemy data type
-import Game.FightProcesses; // gives attackRoll() and gives currentPlayer
+import Game.Entity; // gives Entity data type and various methods
+import Game.FightProcesses; // gives various methods
 
 public class Spells
 {
@@ -15,23 +15,23 @@ public class Spells
 
     public int useSpell(String spellName)
     {
-        Enemy currentEnemy = FightProcesses.getCurrentEnemy();
-        int enemyHealth = currentEnemy.getHealth();
+        Entity currentTarget = FightProcesses.getTurnData().getMember().getCurrentTarget();
+        int targetHealth = currentTarget.getHealth();
         Spell currentSpell = Spell.SPELLS.get(spellName);
         
-        if(FightProcesses.attackRoll(FightProcesses.getCurrentPlayer().getRoll()) > currentEnemy.getArmor())
+        if(FightProcesses.attackRoll(FightProcesses.getTurnData().getMember().getRoll()) > currentTarget.getArmor())
         {
-            if(currentSpell.getHasEffect()){currentSpell.effectProcess(currentEnemy);}
-            enemyHealth -= currentSpell.getSpellDamage();
+            if(currentSpell.getHasEffect()){currentSpell.effectProcess(currentTarget);}
+            targetHealth -= currentSpell.getSpellDamage();
 
             String TYPE = currentSpell.getType();
 
-            if(TYPE == currentEnemy.getWeakType())
+            if(TYPE == currentTarget.getWeakType())
             {
-                enemyHealth -= currentSpell.getSpellDamage();
+                targetHealth -= currentSpell.getSpellDamage();
             }
         }
 
-        return enemyHealth;
+        return targetHealth;
     }
 }
