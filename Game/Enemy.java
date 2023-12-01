@@ -11,13 +11,13 @@ public class Enemy extends Entity
     private int level;
     private String weakType;
     private String type;
-    private EntityClass Class;
+    private EntityClass.Classes Class;
 
     private static ArrayList<Enemy> enemyList;
 
     private Player target;
 
-    public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass Class)
+    public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass.Classes Class)
     {
         super(HP, AR, weapon, level, weakType, type, false, Class);
         this.health = HP;

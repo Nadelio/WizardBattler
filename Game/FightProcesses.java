@@ -36,20 +36,20 @@ public class FightProcesses
     public static void nextTurn()
     {
         currentTurn = updateTurnData();
-        Entity currentEntity = getTurnData(turn).getMemberInPlay();
+        Entity currentEntity = getTurnData(turn - 1).getMemberInPlay();
         currentEntity.playTurn();
     }
 
     public static Player getCurrentPlayer()
     {
         ArrayList<Player> playerList = Player.getPlayerList();
-        return playerList.get((int)(turn/2));
+        return playerList.get((int)(turn - 1/2));
     }
 
     public static Enemy getCurrentEnemy()
     {
         ArrayList<Enemy> enemyList = Enemy.getEnemyList();
-        return enemyList.get((int)(turn/2));
+        return enemyList.get((int)(turn - 1/2));
     }
 
     public static String getLastTurnMember()
@@ -77,13 +77,13 @@ public class FightProcesses
     public static String nextTurnMember()
     {
         ArrayList<Entity> entityList = Entity.getEntityList();
-        return entityList.get(turn + 1).toString();
+        return entityList.get(turn).toString();
     }
 
     public static Entity nextMemberInPlay()
     {
         ArrayList<Entity> entityList = Entity.getEntityList();
-        return entityList.get(turn + 1);
+        return entityList.get(turn);
     }
 
     public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}

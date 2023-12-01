@@ -20,10 +20,10 @@ public class Player extends Entity
     private int level;
 	private String weakType;
 	private String type;
-    private EntityClass Class;
+    private EntityClass.Classes Class;
     private Spells currentSpells;
 
-    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass Class)
+    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class)
     {
         super(HP, AR, weapon, level, weakType, "isPlayer", true, Class);
         this.health = HP;

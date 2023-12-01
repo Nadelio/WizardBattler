@@ -20,7 +20,7 @@ public class Fireball extends Spell
         Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurn() - 1);
         if(lastTurn != currentTurn && burnDuration > 0)
         {
-            targetHealth -= 1;
+            target.setHealth(targetHealth - 1);
             burnDuration -= 1;
         }
     } 

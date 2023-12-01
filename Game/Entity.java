@@ -15,10 +15,10 @@ public class Entity
     private String weakType;
     private String strongType;
     private boolean entityType;
-    private EntityClass Class;
+    private EntityClass.Classes Class;
     private Entity target;
     
-    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass Class)
+    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class)
     {
         this.HP = HP;
         this.AR = AR;
@@ -68,7 +68,7 @@ public class Entity
     public String getWeakType(){return weakType;}
     public String getStrongType(){return strongType;}
     public boolean getEntityType(){return entityType;}
-    public EntityClass getEntityClass(){return Class;}
+    public EntityClass.Classes getEntityClass(){return Class;}
     public Entity getCurrentTarget(){if(target == null){return null;} return target;}
 
     public String toString()
@@ -76,4 +76,8 @@ public class Entity
         if(entityType){return "Player";}
         return "Enemy";
     }
+
+    public void setHealth(int newHealth){this.HP = newHealth;}
+
+    public void setArmor(int newArmor){this.AR = newArmor;}
 }

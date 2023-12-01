@@ -1,4 +1,5 @@
 package Wizard;
+
 import java.util.HashMap;
 import Game.Entity;
 
