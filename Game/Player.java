@@ -31,7 +31,7 @@ public class Player extends Entity
         this.weakType = weakType;
         this.Class = Class;
 	if(Class.equals(Class.Wizard){this.currentSpells = Wizard.getSpells(level);}
-	// add Wizard class and getSpells() method that takes an int and returns a Spells for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
+	// add Wizard class with getSpells() method that takes an int and returns a Spell[] for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
         playerList.add(this);
     }
 
@@ -63,7 +63,7 @@ public class Player extends Entity
 
     public void doStaffAttacks()
     {
-	System.out.println(currentSpells.SPELLINV.toString()); // This will print out all the avaliable spells
+	System.out.println(currentSpells.SPELLINV.toString());
 	Scanner playerInput = new Scanner(System.in);
 	String choice = playerInput.nextLine();
 	if(SPELLINV.contains(choice)){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
