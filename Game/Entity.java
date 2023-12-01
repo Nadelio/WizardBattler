@@ -43,6 +43,7 @@ public class Entity
     {
         if(entityType)
         {
+            System.out.println(FightProcesses.getCurrentPlayer().getName() + "'s turn!\n Type 'action' to open the action menu, or do 'attack' to do your attack!");
             try (Scanner player = new Scanner(System.in))
             {
                 if(player.nextLine().strip().toLowerCase().equals("action"))
@@ -51,7 +52,7 @@ public class Entity
                 }
                 else if(player.nextLine().strip().toLowerCase().equals("attack"))
                 {
-                    FightProcesses.getCurrentPlayer().playerAttack();
+                    FightProcesses.getCurrentPlayer().getCurrentTarget().setHealth(FightProcesses.getCurrentPlayer().getCurrentTarget().getHealth() - FightProcesses.getCurrentPlayer().playerAttack());  // player attack returns an int, so remove player attack damage from target health
                 }
             }
         }
