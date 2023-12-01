@@ -1,6 +1,10 @@
 package Game;
 
 import java.util.ArrayList;
+import Classes.Wizard;
+import Spell;
+import Spells;
+import Game.FightProcesses;
 
 public class Player extends Entity
 {
@@ -14,6 +18,7 @@ public class Player extends Entity
 	private String weakType;
 	private String type;
     private EntityClass Class;
+    private Spells currentSpells;
 
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass Class)
     {
@@ -25,17 +30,20 @@ public class Player extends Entity
         this.roll = roll;
         this.weakType = weakType;
         this.Class = Class;
+	if(Class.equals(Class.Wizard){this.currentSpells = Wizard.getSpells(level);}
+	// add Wizard class and getSpells() method that takes an int and returns a Spells for that level (EX: level = 1, return Spell[] {Fireball};) // btw that isn't how it is done I am psuedocoding 
         playerList.add(this);
     }
 
-    // Add player action
+    // Add player action and action menu
     public int playerAttack()
     {
         int playerDamage = weapon.getDamage();
-	Entity target = chooseTarget();
+	Entity target = chooseTarget(); // add chooseTarget() method that allows the player to choose an enemy from enemyList
 	if(weapon.getWeaponName().equals("staff"))
 	{
 		doStaffAttacks();
+		return target.getHealth();
 	}
 	else
 	{
@@ -51,6 +59,14 @@ public class Player extends Entity
 		}
 	}
 	return targetHealth;
+    }
+
+    public void doStaffAttacks()
+    {
+	System.out.println(currentSpells.SPELLINV.toString()); // This will print out all the avaliable spells
+	Scanner playerInput = new Scanner(System.in);
+	String choice = playerInput.nextLine();
+	if(SPELLINV.contains(choice)){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
     }
 
     public static ArrayList<Player> getPlayerList()
