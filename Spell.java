@@ -26,4 +26,6 @@ public class Spell
     public String getName(){return name;}
     
     public void effectProcess(Enemy enemy){}
+
+    public String toString(){return getName();}
 }
