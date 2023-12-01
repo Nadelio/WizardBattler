@@ -42,12 +42,16 @@ public class Entity
             Scanner player = new Scanner(System.in);
             if(player.nextLine().strip().toLowerCase().equals("action"))
             {
-                actionMenu();
+                FightProcesses.getCurrentPlayer().actionMenu();
             }
             else if(player.nextLine().strip().toLowerCase().equals("attack"))
             {
                 FightProcesses.getCurrentPlayer().playerAttack();
             }
+        }
+        else
+        {
+            FightProcesses.getCurrentEnemy().enemyTurn();
         }
     }
 
