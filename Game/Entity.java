@@ -48,11 +48,11 @@ public class Entity
             {
                 if(player.nextLine().strip().toLowerCase().equals("action"))
                 {
-                    FightProcesses.getCurrentPlayer().actionMenu();
+                    this.actionMenu();
                 }
                 else if(player.nextLine().strip().toLowerCase().equals("attack"))
                 {
-                    FightProcesses.getCurrentPlayer().getCurrentTarget().setHealth(FightProcesses.getCurrentPlayer().getCurrentTarget().getHealth() - FightProcesses.getCurrentPlayer().playerAttack());  // player attack returns an int, so remove player attack damage from target health
+                    this.target.setHealth(this.target.getHealth() - FightProcesses.getCurrentPlayer().playerAttack());  // player attack returns an int, so remove player attack damage from target health
                 }
             }
         }
