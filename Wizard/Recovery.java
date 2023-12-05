@@ -7,7 +7,7 @@ public class Recovery extends Spell
 {
     public Recovery()
     {
-        super(true, 0, "LIGHT", "Recovery");
+        super(true, 0, "LIGHT", "Recovery", false);
     }
 
     @Override

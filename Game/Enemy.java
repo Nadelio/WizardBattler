@@ -2,6 +2,10 @@ package Game;
 
 import java.util.*; // gives various utilites
 
+import Classes.Wizard;
+import Wizard.*;
+import math.*;
+
 public class Enemy extends Entity
 {
     private int health;
@@ -13,6 +17,7 @@ public class Enemy extends Entity
     private String type;
     private EntityClass.Classes Class;
     private String entityName;
+    private Spells currentSpells;
 
     private static ArrayList<Enemy> enemyList;
 
@@ -37,8 +42,18 @@ public class Enemy extends Entity
     // Add enemy turn and enemy action
     public void enemyTurn()
     {
-        // when enemyHealth < <some num>, do <action>
-        // if targetHealth < <some num> || (targetHealth > <some num> && enemyHealth > <some num>), do enemyAttack()
+        if(getHealth() < 25){enemyAction();}
+        else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){enemyAttack();}
+        else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+    }
+
+    public void enemyAction()
+    {
+        if(this.Class.equals(EntityClass.Classes.Wizard))
+        {
+            if(Math.random() > 0.5){doStaffAttacks();}
+            else{doStaffAbility();}
+        }
     }
 
     public int enemyAttack()
@@ -52,6 +67,18 @@ public class Enemy extends Entity
         }
 
         return targetHP;
+    }
+
+    public void doStaffAttacks()
+    {
+        Spells choices = Wizard.getSpells(getLevel());
+        Spell[] ENEMYSPELL = choices.getSpellInventory();
+        String choice = ENEMYSPELL[math.randInt(0, ENEMYSPELL.length)].getName();
+        if(Spell.SPELLS.get(choice).getIsHarmful())
+        {
+            getCurrentTarget().setHealth(currentSpells.chooseSpell(Spell.SPELLS.get(choice)));
+        }
+        else{doStaffAttacks();}
     }
 
     public static ArrayList<Enemy> getEnemyList()

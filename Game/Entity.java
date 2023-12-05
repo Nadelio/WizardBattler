@@ -52,7 +52,7 @@ public class Entity
                 }
                 else if(player.nextLine().strip().toLowerCase().equals("attack"))
                 {
-                    this.target.setHealth(this.target.getHealth() - FightProcesses.getCurrentPlayer().playerAttack());  // player attack returns an int, so remove player attack damage from target health
+                    this.target.setHealth(this.target.getHealth() - FightProcesses.getCurrentPlayer().playerAttack());
                 }
             }
         }

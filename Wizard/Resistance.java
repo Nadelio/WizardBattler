@@ -7,7 +7,7 @@ public class Resistance extends Spell
 {
     public Resistance()
     {
-        super(true, 0, "LIGHT", "Resistance");
+        super(true, 0, "LIGHT", "Resistance", false);
     }
 
     @Override

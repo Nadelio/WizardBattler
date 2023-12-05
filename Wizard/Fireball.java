@@ -8,7 +8,7 @@ public class Fireball extends Spell
 
     public Fireball()
     {
-        super(true, 3, "FIRE", "Fireball");
+        super(true, 3, "FIRE", "Fireball", true);
     }
 
     @Override

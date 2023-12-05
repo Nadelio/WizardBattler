@@ -10,9 +10,9 @@ public class Spells
     public Spell[] getSpellInventory(){return spellInventory;}
     public Spells(Spell[] SPELLINV){this.spellInventory = SPELLINV;}
 
-    public void chooseSpell(Spell spell)
+    public int chooseSpell(Spell spell)
     {
-        useSpell(spell.getName());    
+        return useSpell(spell.getName());
     }
 
     public int useSpell(String spellName)
@@ -23,7 +23,8 @@ public class Spells
         
         if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
         {
-            if(currentSpell.getHasEffect()){currentSpell.effectProcess(currentTarget);}
+            if(currentSpell.getHasEffect() && currentSpell.getIsHarmful()){currentSpell.effectProcess(currentTarget);}
+            else{currentSpell.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay());}
             targetHealth -= currentSpell.getSpellDamage();
 
             String TYPE = currentSpell.getType();
