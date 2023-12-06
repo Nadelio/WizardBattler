@@ -1,6 +1,6 @@
-package math;
+package WMath;
 
-public class math
+public class WMath
 {
     public static int randInt(int min, int max)
     {

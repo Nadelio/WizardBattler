@@ -3,8 +3,8 @@ package Game;
 import java.util.*; // gives various utilites
 
 import Classes.Wizard;
+import WMath.*;
 import Wizard.*;
-import math.*;
 
 public class Enemy extends Entity
 {
@@ -72,7 +72,7 @@ public class Enemy extends Entity
     {
         Spells choices = Wizard.getSpells(getLevel());
         Spell[] ENEMYSPELL = choices.getSpellInventory();
-        return ENEMYSPELL[math.randInt(0, ENEMYSPELL.length)].getName();
+        return ENEMYSPELL[WMath.randInt(0, ENEMYSPELL.length)].getName();
     }
 
     public void doStaffAttacks()
