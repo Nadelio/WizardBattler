@@ -39,7 +39,6 @@ public class Enemy extends Entity
         enemyList.add(this);
     }
 
-    // Add enemy turn and enemy action
     public void enemyTurn()
     {
         if(getHealth() < 25){enemyAction();}
@@ -69,16 +68,31 @@ public class Enemy extends Entity
         return targetHP;
     }
 
-    public void doStaffAttacks()
+    public String getSpellChoice()
     {
         Spells choices = Wizard.getSpells(getLevel());
         Spell[] ENEMYSPELL = choices.getSpellInventory();
-        String choice = ENEMYSPELL[math.randInt(0, ENEMYSPELL.length)].getName();
+        return ENEMYSPELL[math.randInt(0, ENEMYSPELL.length)].getName();
+    }
+
+    public void doStaffAttacks()
+    {
+        String choice = getSpellChoice();
         if(Spell.SPELLS.get(choice).getIsHarmful())
         {
             getCurrentTarget().setHealth(currentSpells.chooseSpell(Spell.SPELLS.get(choice)));
         }
         else{doStaffAttacks();}
+    }
+
+    public void doStaffAbility()
+    {
+        String choice = getSpellChoice();
+        if(!Spell.SPELLS.get(choice).getIsHarmful())
+        {
+            getCurrentTarget().setHealth((currentSpells.chooseSpell(Spell.SPELLS.get(choice))));
+        }
+        else{doStaffAbility();}
     }
 
     public static ArrayList<Enemy> getEnemyList()
