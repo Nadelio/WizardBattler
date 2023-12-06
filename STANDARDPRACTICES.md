@@ -21,3 +21,8 @@
 - Underscores_instead_of_spaces
 - EX: "sword", "staff_of_fire", etc.
 # 
+#### New entityName entry formatting
+- all lowercase letters
+- Underscores_instead_of_spaces
+- EX: "skeleton", "mayor_of_kansas", etc.
+#

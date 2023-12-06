@@ -41,7 +41,7 @@ public class Player extends Entity
 
     // Add player action and action menu
     
-    public int playerAttack()
+    public void playerAttack()
     {
         int playerDamage = weapon.getDamage();
 	    Entity target = chooseTarget();
@@ -53,8 +53,7 @@ public class Player extends Entity
 
 	    if(weapon.getWeaponName().equals("staff"))
 	    {
-	    	doStaffAttacks();
-	    	return target.getHealth();
+	    	target.setHealth(target.getHealth() - doStaffAttacks());
 	    }
 	    else
 	    {
@@ -68,7 +67,7 @@ public class Player extends Entity
 		    		targetHealth -= playerDamage;
 		    	}
 		    }
-            return targetHealth;
+            target.setHealth(targetHealth);
 	    }
     }
 
@@ -81,15 +80,21 @@ public class Player extends Entity
             for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input)){return enemy;}}
             return null;
         }
+        catch(Exception e)
+        {
+            System.out.println(e.getStackTrace());
+            return chooseTarget();
+        }
     }
 
-    public void doStaffAttacks()
+    public int doStaffAttacks()
     {
 	    System.out.println(currentSpells.getSpellInventory().toString());
 	    try (Scanner playerInput = new Scanner(System.in))
         {
             String choice = playerInput.nextLine();
-            if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+            if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){return currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+            return doStaffAttacks();
         }
     }
 
