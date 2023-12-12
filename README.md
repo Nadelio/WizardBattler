@@ -10,7 +10,12 @@ Current Features:
 - Turn class
 - EntityClass class
 - Weapon class
+- Events class
 
 Current Bugs/Dependecy Errors:
 - Missing some methods for a few classes
 - No ability/class/action selection method/class
+- Turn functionality is not finished for:
+    - Player.java
+    - FightProcesses.java
+    - Entity.java
