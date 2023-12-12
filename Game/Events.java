@@ -2,14 +2,20 @@ package Game;
 
 public class Events
 {
-    // add a bool for every event in the game, then we want to have a cycler that can do something depending on the event
-    // or we can have a data type called Event, that is a bool and a string
+    private boolean isActive;
+    private String eventName;
+    public static String[] EVENTS = {/*put all eventName's in here*/}
+
+    public Events(String eventName){this.eventName = eventName;}
     
-    
-    // Event data type:
-    // private boolean isActive;
-    // private String eventName;
-    // if(isActive){Events.doEvent(eventName);}
-    
-    // maybe??
+    public static void doEvent(String eventName)
+    {
+        this.isActive = true;
+        if(EVENTS.contains(eventName)
+        {
+            // @Override, then
+            // do something
+        }
+        this.isActive = false;
+    }
 }
