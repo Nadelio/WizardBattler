@@ -18,6 +18,7 @@ public class Entity
     private EntityClass.Classes Class;
     private Entity target;
     private String entityName;
+    private int turnDamage;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
     {
@@ -76,6 +77,7 @@ public class Entity
     public EntityClass.Classes getEntityClass(){return Class;}
     public Entity getCurrentTarget(){if(target == null){return null;} return target;}
     public String getName(){return entityName;}
+    public int getTurnDamage(){return turnDamage;}
 
 
     public String toString()

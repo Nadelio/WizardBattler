@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import Classes.Wizard;
+import Events.*;
 import Wizard.Spell;
 import Wizard.Spells;
 
@@ -22,6 +23,7 @@ public class Player extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
+    private int turnDamage;
 
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName)
     {
@@ -45,6 +47,9 @@ public class Player extends Entity
     {
         int playerDamage = weapon.getDamage();
 	    Entity target = chooseTarget();
+        int targetHealth = target.getHealth();
+        int staffDamage = 0;
+
         while(target == null)
         {
             System.out.println("Error, target does not exist");
@@ -53,17 +58,20 @@ public class Player extends Entity
 
 	    if(weapon.getWeaponName().equals("staff"))
 	    {
-	    	target.setHealth(target.getHealth() - doStaffAttacks());
+            this.turnDamage += staffDamage;
+            staffDamage = doStaffAttacks();
+	    	target.setHealth(target.getHealth() - staffDamage);
 	    }
 	    else
 	    {
-	    	int targetHealth = target.getHealth();
 		    if(weapon.getHasEffect()){weapon.effectProcess(target);}
 		    if(FightProcesses.attackRoll(roll) > target.getArmor())
 		    {
+                this.turnDamage += playerDamage;
 		    	targetHealth -= playerDamage;
 		    	if(target.getWeakType().equals(weapon.getDamageType()))
 		    	{
+                    this.turnDamage += playerDamage;
 		    		targetHealth -= playerDamage;
 		    	}
 		    }

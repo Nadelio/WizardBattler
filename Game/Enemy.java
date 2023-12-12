@@ -18,6 +18,7 @@ public class Enemy extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
+    private int turnDamage;
 
     private static ArrayList<Enemy> enemyList;
 
@@ -64,7 +65,7 @@ public class Enemy extends Entity
         {
             targetHP -= weapon.getDamage();
         }
-
+        this.turnDamage = target.getHealth() - targetHP;
         return targetHP;
     }
 
@@ -100,9 +101,9 @@ public class Enemy extends Entity
         return enemyList;
     }
 
-    public static Enemy getEnemyFromList(String enemyST)
+    public static Enemy getEnemyFromList(String entityname)
     {
-        for(Enemy enemy : getEnemyList()){if(enemy.getStrongType().equals(enemyST)){return enemy;}}
+        for(Enemy enemy : getEnemyList()){if(enemy.getName().equals(entityname)){return enemy;}}
         return null;
     }
 

@@ -26,3 +26,9 @@
 - Underscores_instead_of_spaces
 - EX: "skeleton", "mayor_of_kansas", etc.
 #
+#### New events/eventNames
+- PascalCase
+- Nospaces
+- Ends with Event
+    - Do not apply to eventNames
+- EX: DamageTakenEvent, "DamageTaken", HealthChangeEvent, etc.
