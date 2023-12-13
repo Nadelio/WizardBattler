@@ -7,7 +7,7 @@ import Wizard.*;
 public class Wizard
 {
     
-    private static final HashMap<Integer, Spells> LEVELSPELLS = new HashMap<Integer, Spells>();
+    private static HashMap<Integer, Spells> LEVELSPELLS = new HashMap<Integer, Spells>();
 
     private Spell[] levelOneSpells = {new Fireball(), new Recovery(), new Resistance()};
 
