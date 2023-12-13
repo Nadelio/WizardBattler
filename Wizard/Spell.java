@@ -11,7 +11,7 @@ public class Spell
     private String type;
     private String name;
     private boolean isHarmful;
-    public static final HashMap<String, Spell> SPELLS = new HashMap<String, Spell>();
+    public static HashMap<String, Spell> SPELLS = new HashMap<String, Spell>();
     
     public Spell(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
