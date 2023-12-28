@@ -7,7 +7,7 @@ public class Events
     private boolean isActive;
     private String eventName;
     public static String[] EVENTS = {"DamageTaken","DamageGiven","HealthChanged","TurnPlayed","WeaponUsed","WeaponEffectUsed","SpellEffectUsed","SpellUsed","EntityDeath","ActionPlayed","AttackPlayed"};
-    public static final Events[] eventList = {new DamageTakenEvent(), new DamageGivenEvent(), new HealthChangedEvent()};
+    public static final Events[] eventList = {new DamageTakenEvent(), new DamageGivenEvent(), new HealthChangedEvent(), new TurnPlayedEvent(), new WeaponUsedEvent(), new WeaponEffectUsedEvent(), new SpellUsedEvent(), new SpellEffectUsedEvent(), new EntityDeathEvent(), new ActionPlayedEvent(), new AttackPlayedEvent()};
 
     public void event()
     {
@@ -41,4 +41,6 @@ public class Events
     }
 
     public String getEventName(){return eventName;}
+
+    public String toString(){return eventName;}
 }

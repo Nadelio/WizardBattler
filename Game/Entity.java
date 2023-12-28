@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import Wizard.Spells;
+
 public class Entity
 {
     private static ArrayList<Entity> entityList;
@@ -18,6 +20,7 @@ public class Entity
     private EntityClass.Classes Class;
     private Entity target;
     private String entityName;
+    private Spells currentSpells;
     private int turnDamage;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
@@ -78,6 +81,7 @@ public class Entity
     public Entity getCurrentTarget(){if(target == null){return null;} return target;}
     public String getName(){return entityName;}
     public int getTurnDamage(){return turnDamage;}
+    public Spells getCurrentSpells(){return currentSpells;}
 
 
     public String toString()

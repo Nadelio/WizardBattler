@@ -10,8 +10,11 @@ public class Spells
     public Spell[] getSpellInventory(){return spellInventory;}
     public Spells(Spell[] SPELLINV){this.spellInventory = SPELLINV;}
 
+    private Spell currentSpell;
+
     public int chooseSpell(Spell spell)
     {
+        currentSpell = spell;
         return useSpell(spell.getName());
     }
 
@@ -19,7 +22,6 @@ public class Spells
     {
         Entity currentTarget = FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getCurrentTarget();
         int targetHealth = currentTarget.getHealth();
-        Spell currentSpell = Spell.SPELLS.get(spellName);
         
         if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
         {
@@ -37,4 +39,6 @@ public class Spells
 
         return targetHealth;
     }
+
+    public Spell getCurrentSpell(){return currentSpell;}
 }
