@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.HashMap;
+
 public class Weapon
 {
     private int damage;
@@ -7,12 +9,15 @@ public class Weapon
     private String damageType;
     private String weaponName;
 
+    public static HashMap<String, Weapon> WEAPONS = new HashMap<String, Weapon>();
+
     public Weapon(int damage, boolean hasEffect, String damageType, String weaponName)
     {
         this.damage = damage;
         this.hasEffect = hasEffect;
         this.damageType = damageType;
         this.weaponName = weaponName;
+        WEAPONS.put(weaponName, this);
     }
 
     public int getDamage(){return damage;}

@@ -34,6 +34,7 @@ public class Player extends Entity
         this.level = level;
         this.roll = roll;
         this.weakType = weakType;
+        this.type = "isPlayer";
         this.Class = Class;
         this.entityName = entityName;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
@@ -56,7 +57,7 @@ public class Player extends Entity
             target = chooseTarget();
         }
 
-	    if(weapon.getWeaponName().equals("staff"))
+	    if(weapon.getWeaponName().equals("staff")) // rewrite line 59 to work with any staff
 	    {
             this.turnDamage += staffDamage;
             staffDamage = doStaffAttacks();
