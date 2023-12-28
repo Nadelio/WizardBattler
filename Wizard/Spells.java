@@ -24,7 +24,7 @@ public class Spells
         if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
         {
             if(currentSpell.getHasEffect() && currentSpell.getIsHarmful()){currentSpell.effectProcess(currentTarget);}
-            else{currentSpell.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay());}
+            else if(currentSpell.getHasEffect() && (currentSpell.getIsHarmful() == false)){currentSpell.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay());}
             targetHealth -= currentSpell.getSpellDamage();
 
             String TYPE = currentSpell.getType();
