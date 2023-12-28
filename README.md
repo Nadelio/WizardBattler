@@ -19,3 +19,11 @@ Current Bugs/Dependecy Errors:
     - Player.java
     - FightProcesses.java
     - Entity.java
+- Finish adding all events
+- Finish adding all spells
+- Finish implementing all events
+- Finish adding all the classes and their abilities
+- Finish enemy generation
+- Add leveling system
+- Add NPC class
+- Add shops, items, etc.
