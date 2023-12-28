@@ -110,4 +110,7 @@ public class Player extends Entity
     {
         return playerList;
     }
+
+    @Override
+    public String toString(){return entityName;}
 }

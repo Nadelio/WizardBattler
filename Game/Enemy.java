@@ -107,8 +107,6 @@ public class Enemy extends Entity
         return null;
     }
 
-    public String toString()
-    {
-        return getStrongType();
-    }
+    @Override
+    public String toString(){return entityName;}
 }

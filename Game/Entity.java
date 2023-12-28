@@ -83,12 +83,8 @@ public class Entity
     public int getTurnDamage(){return turnDamage;}
     public Spells getCurrentSpells(){return currentSpells;}
 
-
-    public String toString()
-    {
-        if(entityType){return "Player";}
-        return "Enemy";
-    }
+    @Override
+    public String toString(){if(entityType){return "Player";}return "Enemy";}
 
     public void setHealth(int newHealth){this.HP = newHealth;}
 
