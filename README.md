@@ -26,3 +26,8 @@ Current Bugs/Dependecy Errors:
 - Add leveling system
 - Add NPC class
 - Add shops, items, etc.
+- Add encounters (aka NPC encounter, fight encounter, discover item, etc)
+- JButtons, JFrame, JLabel, Menu system, etc.
+- Dev/Debug console
+<!-- * Added the basic set of weapons>
+<!-- * Added all the events I current think I need>
