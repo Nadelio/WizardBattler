@@ -45,6 +45,11 @@ public class Player extends Entity
     }
 
     // Add player action and action menu
+    public void playerAction()
+    {
+        // do stuff
+        FightProcesses.nextTurn();
+    }
     
     public void playerAttack()
     {
@@ -82,6 +87,7 @@ public class Player extends Entity
                 target.setHealth(targetHealth);
 	        }
         }
+        FightProcesses.nextTurn();
     }
 
     public Enemy chooseTarget()

@@ -46,9 +46,10 @@ public class Enemy extends Entity
         if(frozen == false)
         {
             if(getHealth() < 25){enemyAction();}
-            else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){enemyAttack();}
+            else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
             else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
         }
+        FightProcesses.nextTurn();
     }
 
     public void enemyAction()
@@ -58,6 +59,7 @@ public class Enemy extends Entity
             if(Math.random() > 0.5){doStaffAttacks();}
             else{doStaffAbility();}
         }
+        FightProcesses.nextTurn();
     }
 
     public int enemyAttack()
@@ -100,11 +102,7 @@ public class Enemy extends Entity
         else{doStaffAbility();}
     }
 
-    public static ArrayList<Enemy> getEnemyList()
-    {
-        return enemyList;
-    }
-
+    public static ArrayList<Enemy> getEnemyList(){return enemyList;}
     public static Enemy getEnemyFromList(String entityname)
     {
         for(Enemy enemy : getEnemyList()){if(enemy.getName().equals(entityname)){return enemy;}}

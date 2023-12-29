@@ -15,6 +15,7 @@ public class FightProcesses
         Player firstPlayer = playerList.get(0);
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, "Player");
         turnList.add(currentTurn);
+        firstPlayer.playTurn();
     }
 
     public static Player getTarget()

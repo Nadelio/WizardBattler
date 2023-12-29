@@ -53,7 +53,7 @@ public class Entity
             {
                 if(player.nextLine().strip().toLowerCase().equals("action"))
                 {
-                    this.actionMenu();
+                    FightProcesses.getCurrentPlayer().playerAction();
                 }
                 else if(player.nextLine().strip().toLowerCase().equals("attack"))
                 {
@@ -66,8 +66,6 @@ public class Entity
             FightProcesses.getCurrentEnemy().enemyTurn();
         }
     }
-
-    public void actionMenu(){}
 
     public static ArrayList<Entity> getEntityList(){return entityList;}
     public int getHealth(){return HP;}
@@ -90,4 +88,5 @@ public class Entity
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}
     public void setFrozen(){this.frozen = true;}
+    public void setUnfrozen(){this.frozen = false;}
 }
