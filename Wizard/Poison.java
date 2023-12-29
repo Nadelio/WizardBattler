@@ -1,30 +1,30 @@
 package Wizard;
+
+import Game.Entity;
 import Game.FightProcesses;
 import Game.Turn;
-import Game.Entity;
 
-public class Fireball extends Spell
+public class Poison extends Spell
 {
-
-    public Fireball()
+    public Poison()
     {
-        super(true, 3, "FIRE", "Fireball", true);
+        super(true, 2, "POISON", "Poison", true);
     }
 
     @Override
     public void effectProcess(Entity target)
     {
         int targetHealth = target.getHealth();
-        int burnDuration = 3;
+        int poisonDuration = 5;
         Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurn() - 1);
         Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurn());
-        while(burnDuration > 0)
+        while(poisonDuration > 0)
         {
             while(lastTurn.equals(currentTurn))
             {
                 target.setHealth(targetHealth - 1);
-                burnDuration--;
+                poisonDuration--;
             }
         }
-    } 
+    }
 }

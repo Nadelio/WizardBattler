@@ -19,6 +19,7 @@ public class Enemy extends Entity
     private String entityName;
     private Spells currentSpells;
     private int turnDamage;
+    private boolean frozen = false;
 
     private static ArrayList<Enemy> enemyList;
 
@@ -42,9 +43,12 @@ public class Enemy extends Entity
 
     public void enemyTurn()
     {
-        if(getHealth() < 25){enemyAction();}
-        else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){enemyAttack();}
-        else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+        if(frozen == false)
+        {
+            if(getHealth() < 25){enemyAction();}
+            else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){enemyAttack();}
+            else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+        }
     }
 
     public void enemyAction()

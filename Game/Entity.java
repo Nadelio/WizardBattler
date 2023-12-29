@@ -22,6 +22,7 @@ public class Entity
     private String entityName;
     private Spells currentSpells;
     private int turnDamage;
+    private boolean frozen = false;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
     {
@@ -87,6 +88,6 @@ public class Entity
     public String toString(){if(entityType){return "Player";}return "Enemy";}
 
     public void setHealth(int newHealth){this.HP = newHealth;}
-
     public void setArmor(int newArmor){this.AR = newArmor;}
+    public void setFrozen(){this.frozen = true;}
 }

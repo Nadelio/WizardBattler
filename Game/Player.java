@@ -25,6 +25,8 @@ public class Player extends Entity
     private Spells currentSpells;
     private int turnDamage;
 
+    private boolean frozen = false;
+
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName)
     {
         super(HP, AR, weapon, level, weakType, "isPlayer", true, Class, entityName);
@@ -56,28 +58,30 @@ public class Player extends Entity
             System.out.println("Error, target does not exist");
             target = chooseTarget();
         }
-
-	    if(weapon.getWeaponName().equals("staff")) // rewrite line 59 to work with any staff
-	    {
-            this.turnDamage += staffDamage;
-            staffDamage = doStaffAttacks();
-	    	target.setHealth(target.getHealth() - staffDamage);
-	    }
-	    else
-	    {
-		    if(weapon.getHasEffect()){weapon.effectProcess(target);}
-		    if(FightProcesses.attackRoll(roll) > target.getArmor())
-		    {
-                this.turnDamage += playerDamage;
-		    	targetHealth -= playerDamage;
-		    	if(target.getWeakType().equals(weapon.getDamageType()))
-		    	{
+        if(frozen == false)
+        {
+	        if(weapon.getWeaponName().equals("staff")) // rewrite line 59 to work with any staff
+	        {
+                this.turnDamage += staffDamage;
+                staffDamage = doStaffAttacks();
+	        	target.setHealth(target.getHealth() - staffDamage);
+	        }
+	        else
+	        {
+		        if(weapon.getHasEffect()){weapon.effectProcess(target);}
+		        if(FightProcesses.attackRoll(roll) > target.getArmor())
+		        {
                     this.turnDamage += playerDamage;
-		    		targetHealth -= playerDamage;
-		    	}
-		    }
-            target.setHealth(targetHealth);
-	    }
+		        	targetHealth -= playerDamage;
+		        	if(target.getWeakType().equals(weapon.getDamageType()))
+		        	{
+                        this.turnDamage += playerDamage;
+		        		targetHealth -= playerDamage;
+		        	}
+		        }
+                target.setHealth(targetHealth);
+	        }
+        }
     }
 
     public Enemy chooseTarget()

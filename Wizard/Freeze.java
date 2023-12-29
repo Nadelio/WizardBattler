@@ -1,30 +1,29 @@
 package Wizard;
+
+import Game.Entity;
 import Game.FightProcesses;
 import Game.Turn;
-import Game.Entity;
 
-public class Fireball extends Spell
+public class Freeze extends Spell
 {
-
-    public Fireball()
+    public Freeze()
     {
-        super(true, 3, "FIRE", "Fireball", true);
+        super(true, 0, "ICE", "Freeze", false);
     }
 
     @Override
     public void effectProcess(Entity target)
     {
-        int targetHealth = target.getHealth();
-        int burnDuration = 3;
+        int duration = 2;
         Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurn() - 1);
         Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurn());
-        while(burnDuration > 0)
+        while(duration > 0)
         {
             while(lastTurn.equals(currentTurn))
             {
-                target.setHealth(targetHealth - 1);
-                burnDuration--;
+                target.setFrozen();
             }
         }
-    } 
+        target.setUnfrozen();
+    }
 }
