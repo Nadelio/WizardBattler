@@ -32,3 +32,7 @@ Current Bugs/Dependecy Errors:
 <!-- * Added the basic set of weapons>
 <!-- * Added all the events I current think I need>
 <!-- * Level 2 spells added>
+# 
+Contributers:
+- Nadelio (Creator)
+- Sheriff_Nevarez
