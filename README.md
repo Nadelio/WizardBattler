@@ -29,10 +29,10 @@ Current Bugs/Dependecy Errors:
 - Add encounters (aka NPC encounter, fight encounter, discover item, etc)
 - JButtons, JFrame, JLabel, Menu system, etc.
 - Dev/Debug console
-<!-- * Added the basic set of weapons>
-<!-- * Added all the events I current think I need>
-<!-- * Level 2 spells added>
 # 
 Contributers:
 - Nadelio (Creator)
 - Sheriff_Nevarez
+<!-- * Added the basic set of weapons>
+<!-- * Added all the events I current think I need>
+<!-- * Level 2 spells added>
