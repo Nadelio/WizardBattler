@@ -30,5 +30,5 @@ Current Bugs/Dependecy Errors:
 - JButtons, JFrame, JLabel, Menu system, etc.
 - Dev/Debug console
 <!-- * Added the basic set of weapons>
-<!-- * Added all the events I current think I need>
+<!-- * Added all the events I currently think I need>
 <!-- * Level 2 spells added>
