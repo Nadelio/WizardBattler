@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Classes.Fighter;
 import Classes.Wizard;
 import Events.*;
+import Fighter.FighterActions;
 import Wizard.Spell;
 import Wizard.Spells;
 
@@ -23,6 +25,7 @@ public class Player extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
+    private FighterActions currentActions;
     private int turnDamage;
 
     private boolean frozen = false;
@@ -40,6 +43,7 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
+        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentActions = Fighter.getActions(level);}
 
         playerList.add(this);
     }
@@ -65,7 +69,7 @@ public class Player extends Entity
         }
         if(frozen == false)
         {
-	        if(weapon.getWeaponName().equals("staff")) // rewrite line 59 to work with any staff
+	        if(weapon.getWeaponType().equals("staff"))
 	        {
                 this.turnDamage += staffDamage;
                 staffDamage = doStaffAttacks();

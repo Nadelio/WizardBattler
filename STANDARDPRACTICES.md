@@ -20,6 +20,11 @@
 - all lowercase letters
 - Underscores_instead_of_spaces
 - EX: "sword", "staff_of_fire", etc.
+#
+### New weaponType entry formatting
+- all lowercase letters
+- Underscores_instead_of_spaces
+- EX: "spear", "staff", "bow"
 # 
 #### New entityName entry formatting
 - all lowercase letters
