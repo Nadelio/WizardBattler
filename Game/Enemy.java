@@ -59,6 +59,11 @@ public class Enemy extends Entity
             if(Math.random() > 0.5){doStaffAttacks();}
             else{doStaffAbility();}
         }
+        else if(this.Class.equals(EntityClass.Classes.Fighter))
+        {
+            if(Math.random() > 0.5){doAttack();}
+            else{doAction();}
+        }
         FightProcesses.nextTurn();
     }
 
@@ -80,6 +85,16 @@ public class Enemy extends Entity
         Spells choices = Wizard.getSpells(getLevel());
         Spell[] ENEMYSPELL = choices.getSpellInventory();
         return ENEMYSPELL[WMath.randInt(0, ENEMYSPELL.length)].getName();
+    }
+
+    public void doAttack()
+    {
+        // add AI logic here
+    }
+
+    public void doAction()
+    {
+        // add AI logic here
     }
 
     public void doStaffAttacks()
