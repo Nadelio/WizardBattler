@@ -21,7 +21,7 @@ Current Bugs/Dependecy Errors:
     - Entity.java
 - Finish adding all spells
 - Finish implementing all events
-- Finish adding all the classes and their abilities
+- Finish adding all the classes and their abilities (ADD FIGHTER ACTIONS TO Enemy.java)
 - Finish enemy generation
 - Add leveling system
 - Add NPC class
