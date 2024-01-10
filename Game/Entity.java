@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import Fighter.FighterActions;
 import Wizard.Spells;
 
 public class Entity
@@ -21,6 +22,7 @@ public class Entity
     private Entity target;
     private String entityName;
     private Spells currentSpells;
+    private FighterActions currentActions;
     private int turnDamage;
     private boolean frozen = false;
     
@@ -81,6 +83,7 @@ public class Entity
     public String getName(){return entityName;}
     public int getTurnDamage(){return turnDamage;}
     public Spells getCurrentSpells(){return currentSpells;}
+    public FighterActions getCurrentActions(){return currentActions;}
 
     @Override
     public String toString(){if(entityType){return "Player";}return "Enemy";}

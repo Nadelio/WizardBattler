@@ -3,6 +3,7 @@ package Game;
 import java.util.*; // gives various utilites
 
 import Classes.Wizard;
+import Fighter.FighterActions;
 import WMath.*;
 import Wizard.*;
 
@@ -18,6 +19,7 @@ public class Enemy extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
+    private FighterActions currentActions;
     private int turnDamage;
     private boolean frozen = false;
 

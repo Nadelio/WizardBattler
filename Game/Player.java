@@ -8,8 +8,7 @@ import Classes.Fighter;
 import Classes.Wizard;
 import Events.*;
 import Fighter.FighterActions;
-import Wizard.Spell;
-import Wizard.Spells;
+import Wizard.*;
 
 public class Player extends Entity
 {
