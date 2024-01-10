@@ -11,7 +11,7 @@ Current Features:
 - EntityClass class
 - Weapon class
 - Events class
-
+# 
 Current Bugs/Dependecy Errors:
 - Missing some methods for a few classes
 - No ability/class/action selection method/class
@@ -29,6 +29,10 @@ Current Bugs/Dependecy Errors:
 - Add encounters (aka NPC encounter, fight encounter, discover item, etc)
 - JButtons, JFrame, JLabel, Menu system, etc.
 - Dev/Debug console
+# 
+Contributers:
+- Nadelio (Creator)
+- Sheriff_Nevarez
 <!-- * Added the basic set of weapons>
 <!-- * Added all the events I currently think I need>
 <!-- * Level 2 spells added>
