@@ -68,27 +68,30 @@ public class Player extends Entity
         }
         if(frozen == false)
         {
-	        if(weapon.getWeaponType().equals("staff"))
-	        {
-                this.turnDamage += staffDamage;
-                staffDamage = doStaffAttacks();
-	        	target.setHealth(target.getHealth() - staffDamage);
-	        }
-	        else
-	        {
-		        if(weapon.getHasEffect()){weapon.effectProcess(target);}
-		        if(FightProcesses.attackRoll(roll) > target.getArmor())
-		        {
-                    this.turnDamage += playerDamage;
-		        	targetHealth -= playerDamage;
-		        	if(target.getWeakType().equals(weapon.getDamageType()))
-		        	{
+            if(!target.getDodged())
+            {
+	            if(weapon.getWeaponType().equals("staff"))
+	            {
+                    this.turnDamage += staffDamage;
+                    staffDamage = doStaffAttacks();
+	        	    target.setHealth(target.getHealth() - staffDamage);
+	            }
+	            else
+	            {
+		            if(weapon.getHasEffect()){weapon.effectProcess(target);}
+		            if(FightProcesses.attackRoll(roll) > target.getArmor())
+		            {
                         this.turnDamage += playerDamage;
-		        		targetHealth -= playerDamage;
-		        	}
-		        }
-                target.setHealth(targetHealth);
-	        }
+		        	    targetHealth -= playerDamage;
+		        	    if(target.getWeakType().equals(weapon.getDamageType()))
+		        	    {
+                            this.turnDamage += playerDamage;
+		        		    targetHealth -= playerDamage;
+		        	    }
+		            }
+                    target.setHealth(targetHealth);
+	            }
+            }
         }
         FightProcesses.nextTurn();
     }

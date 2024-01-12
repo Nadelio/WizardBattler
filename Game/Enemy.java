@@ -47,9 +47,12 @@ public class Enemy extends Entity
     {
         if(frozen == false)
         {
-            if(getHealth() < 25){enemyAction();}
-            else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
-            else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+            if(!target.getDodged())
+            {
+                if(getHealth() < 25){enemyAction();}
+                else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+                else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+            }
         }
         FightProcesses.nextTurn();
     }

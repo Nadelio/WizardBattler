@@ -25,6 +25,7 @@ public class Entity
     private FighterActions currentActions;
     private int turnDamage;
     private boolean frozen = false;
+    private boolean dodged = false;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
     {
@@ -84,6 +85,7 @@ public class Entity
     public int getTurnDamage(){return turnDamage;}
     public Spells getCurrentSpells(){return currentSpells;}
     public FighterActions getCurrentActions(){return currentActions;}
+    public boolean getDodged(){return dodged;}
 
     @Override
     public String toString(){if(entityType){return "Player";}return "Enemy";}
@@ -92,4 +94,5 @@ public class Entity
     public void setArmor(int newArmor){this.AR = newArmor;}
     public void setFrozen(){this.frozen = true;}
     public void setUnfrozen(){this.frozen = false;}
+    public void setDodged(){this.dodged = !dodged;}
 }

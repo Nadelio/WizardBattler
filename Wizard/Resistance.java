@@ -14,7 +14,7 @@ public class Resistance extends Spell
     public void effectProcess(Entity target)
     {
         int targetArmor = target.getArmor();
-        target.setArmor(targetArmor + FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getLevel());
+        target.setArmor(targetArmor + FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getLevel());
     }
 
 }

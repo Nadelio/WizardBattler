@@ -10,7 +10,7 @@ public class DamageTakenEvent extends Events
     @Override
     public void event()
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay().getCurrentTarget() + "took " + FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay().getTurnDamage() + " damage!");
+        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getCurrentTarget() + "took " + FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getTurnDamage() + " damage!");
     }
 }
 

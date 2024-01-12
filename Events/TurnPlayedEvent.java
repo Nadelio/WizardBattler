@@ -10,6 +10,6 @@ public class TurnPlayedEvent extends Events
     @Override
     public void event()
     {
-        System.out.println("It is turn: " + FightProcesses.getTurn());
+        System.out.println("It is turn: " + FightProcesses.getTurnCount());
     }
 }
