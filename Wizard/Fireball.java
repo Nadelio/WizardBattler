@@ -1,6 +1,5 @@
 package Wizard;
 import Game.FightProcesses;
-import Game.Turn;
 import Game.Entity;
 
 public class Fireball extends Spell
