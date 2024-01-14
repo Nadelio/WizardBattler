@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Classes.EntityClass;
 import Classes.Fighter;
 import Classes.Wizard;
 import Events.*;

@@ -15,13 +15,13 @@ Current Features:
 Current Bugs/Dependecy Errors:
 - Missing some methods for a few classes
 - No ability/class/action selection method/class
+- Finish fight mechanic (implement dying for both players and enemies)
 - Turn functionality is not finished for:
     - Player.java
     - FightProcesses.java
     - Entity.java
-- Finish adding all spells
 - Finish implementing all events
-- Finish adding all the classes and their abilities (ADD FIGHTER ACTIONS TO Enemy.java)
+- Finish adding all the classes and their abilities
 - Finish enemy generation
 - Add leveling system
 - Add NPC class
@@ -36,3 +36,5 @@ Contributers:
 <!-- * Added the basic set of weapons>
 <!-- * Added all the events I currently think I need>
 <!-- * Level 2 spells added>
+<!-- * Added Fighter entityClass and its abilities>
+<!-- * Added Archer entityClass>

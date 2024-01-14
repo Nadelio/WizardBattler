@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import Classes.EntityClass;
 import Fighter.FighterActions;
 import Wizard.Spells;
 

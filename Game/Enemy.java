@@ -2,6 +2,7 @@ package Game;
 
 import java.util.*; // gives various utilites
 
+import Classes.EntityClass;
 import Classes.Wizard;
 import Fighter.FighterActions;
 import WMath.*;
