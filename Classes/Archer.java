@@ -2,8 +2,7 @@ package Classes;
 
 import java.util.HashMap;
 
-import Archer.ArcherAction;
-import Archer.ArcherActions;
+import Archer.*;
 
 public class Archer
 {
