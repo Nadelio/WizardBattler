@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Archer.ArcherActions;
+import Classes.EntityClass;
 import Classes.Fighter;
 import Classes.Wizard;
+import Classes.Archer;
 import Events.*;
 import Fighter.FighterActions;
-import Wizard.Spell;
-import Wizard.Spells;
+import Wizard.*;
 
 public class Player extends Entity
 {
@@ -25,7 +27,8 @@ public class Player extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
-    private FighterActions currentActions;
+    private FighterActions currentFighterActions;
+    private ArcherActions currentArcherActions;
     private int turnDamage;
 
     private boolean frozen = false;
@@ -43,7 +46,8 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
-        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentActions = Fighter.getActions(level);}
+        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentFighterActions = Fighter.getActions(level);}
+        else if(Class.equals(EntityClass.Classes.Archer)){this.currentArcherActions = Archer.getActions(level);}
 
         playerList.add(this);
     }
@@ -69,27 +73,30 @@ public class Player extends Entity
         }
         if(frozen == false)
         {
-	        if(weapon.getWeaponType().equals("staff"))
-	        {
-                this.turnDamage += staffDamage;
-                staffDamage = doStaffAttacks();
-	        	target.setHealth(target.getHealth() - staffDamage);
-	        }
-	        else
-	        {
-		        if(weapon.getHasEffect()){weapon.effectProcess(target);}
-		        if(FightProcesses.attackRoll(roll) > target.getArmor())
-		        {
-                    this.turnDamage += playerDamage;
-		        	targetHealth -= playerDamage;
-		        	if(target.getWeakType().equals(weapon.getDamageType()))
-		        	{
+            if(!target.getDodged())
+            {
+	            if(weapon.getWeaponType().equals("staff"))
+	            {
+                    this.turnDamage += staffDamage;
+                    staffDamage = doStaffAttacks();
+	        	    target.setHealth(target.getHealth() - staffDamage);
+	            }
+	            else
+	            {
+		            if(weapon.getHasEffect()){weapon.effectProcess(target);}
+		            if(FightProcesses.attackRoll(roll) > target.getArmor())
+		            {
                         this.turnDamage += playerDamage;
-		        		targetHealth -= playerDamage;
-		        	}
-		        }
-                target.setHealth(targetHealth);
-	        }
+		        	    targetHealth -= playerDamage;
+		        	    if(target.getWeakType().equals(weapon.getDamageType()))
+		        	    {
+                            this.turnDamage += playerDamage;
+		        		    targetHealth -= playerDamage;
+		        	    }
+		            }
+                    target.setHealth(targetHealth);
+	            }
+            }
         }
         FightProcesses.nextTurn();
     }

@@ -15,11 +15,11 @@ public class Freeze extends Spell
     public void effectProcess(Entity target)
     {
         int duration = 2;
-        Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurn() - 1);
-        Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurn());
+        Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1);
+        Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount());
         while(duration > 0)
         {
-            while(lastTurn.equals(currentTurn))
+            while(FightProcesses.turnUpdate)
             {
                 target.setFrozen();
             }

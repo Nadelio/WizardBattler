@@ -6,6 +6,6 @@ public class BasicStaff extends Weapon
 {
     public BasicStaff()
     {
-        super(2, false, "none", "basic_staff");
+        super(2, false, "none", "basic_staff", "staff");
     }
 }

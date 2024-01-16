@@ -1,20 +1,20 @@
-package Wizard;
-import Game.FightProcesses;
+package Fighter;
+
 import Game.Entity;
+import Game.FightProcesses;
 
-public class Fireball extends Spell
+public class FirePunch extends FighterAction
 {
-
-    public Fireball()
+    public FirePunch()
     {
-        super(true, 3, "FIRE", "Fireball", true);
+        super(true, 3, "FIRE", "Fire_punch", true);
     }
 
     @Override
     public void effectProcess(Entity target)
     {
         int targetHealth = target.getHealth();
-        int burnDuration = 3;
+        int burnDuration = 1;
         while(burnDuration > 0)
         {
             if(FightProcesses.turnUpdate)
@@ -24,5 +24,5 @@ public class Fireball extends Spell
                 try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
-    } 
+    }
 }

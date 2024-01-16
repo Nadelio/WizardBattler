@@ -6,6 +6,6 @@ public class Fists extends Weapon
 {
     public Fists()
     {
-        super(2, false, "none", "fists");
+        super(2, false, "none", "fists", "fists");
     }    
 }

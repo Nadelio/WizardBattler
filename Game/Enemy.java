@@ -2,7 +2,9 @@ package Game;
 
 import java.util.*; // gives various utilites
 
+import Classes.EntityClass;
 import Classes.Wizard;
+import Fighter.FighterActions;
 import WMath.*;
 import Wizard.*;
 
@@ -18,6 +20,7 @@ public class Enemy extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
+    private FighterActions currentActions;
     private int turnDamage;
     private boolean frozen = false;
 
@@ -45,9 +48,12 @@ public class Enemy extends Entity
     {
         if(frozen == false)
         {
-            if(getHealth() < 25){enemyAction();}
-            else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
-            else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+            if(!target.getDodged())
+            {
+                if(getHealth() < 25){enemyAction();}
+                else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+                else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+            }
         }
         FightProcesses.nextTurn();
     }

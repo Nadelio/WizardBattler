@@ -11,6 +11,6 @@ public class SpellUsedEvent extends Events
     @Override
     public void event()
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay().getCurrentSpells().getCurrentSpell().getName() + "used!");
+        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getCurrentSpells().getCurrentSpell().getName() + "used!");
     }
 }

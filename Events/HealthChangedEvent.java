@@ -10,9 +10,9 @@ public class HealthChangedEvent extends Events
     @Override
     public void event()
     {
-        if(FightProcesses.getTurn() != 0)
+        if(FightProcesses.getTurnCount() != 0)
         {
-            System.out.println(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay().getHealth() - FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getHealth());
+            System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getHealth() - FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getHealth());
         }
         else
         {

@@ -1,13 +1,13 @@
-package Wizard;
-import Game.FightProcesses;
+package Archer;
+
 import Game.Entity;
+import Game.FightProcesses;
 
-public class Fireball extends Spell
+public class FireArrow extends ArcherAction
 {
-
-    public Fireball()
+    public FireArrow()
     {
-        super(true, 3, "FIRE", "Fireball", true);
+        super(true, 3, "FIRE", "Fire_arrow", true);
     }
 
     @Override
@@ -24,5 +24,5 @@ public class Fireball extends Spell
                 try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
-    } 
+    }
 }

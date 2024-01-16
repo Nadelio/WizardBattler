@@ -6,6 +6,6 @@ public class BasicBow extends Weapon
 {
     public BasicBow()
     {
-        super(2, false, "none", "basic_bow");
+        super(2, false, "none", "basic_bow", "bow");
     }    
 }

@@ -1,0 +1,43 @@
+package Archer;
+
+import Game.Entity;
+import Game.FightProcesses;
+
+public class ArcherActions
+{
+    private ArcherAction[] actionInventory;
+    private ArcherAction currentAction;
+    
+    public ArcherActions(ArcherAction[] ACTIONINV){this.actionInventory = ACTIONINV;}
+    
+    public int chooseAction(ArcherAction action)
+    {
+        currentAction = action;
+        return useAction(action.getName());
+    }
+    
+    public int useAction(String spellName)
+    {
+        Entity currentTarget = FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getCurrentTarget();
+        int targetHealth = currentTarget.getHealth();
+        
+        if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
+        {
+            if(currentAction.getHasEffect() && currentAction.getIsHarmful()){currentAction.effectProcess(currentTarget);}
+            else if(currentAction.getHasEffect() && (currentAction.getIsHarmful() == false)){currentAction.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
+            targetHealth -= currentAction.getActionDamage();
+            
+            String TYPE = currentAction.getType();
+            
+            if(TYPE == currentTarget.getWeakType())
+            {
+                targetHealth -= currentAction.getActionDamage();
+            }
+        }
+        
+        return targetHealth;
+    }
+    
+    public ArcherAction[] getActionInventory(){return actionInventory;}
+    public ArcherAction getCurreAction(){return currentAction;}
+}

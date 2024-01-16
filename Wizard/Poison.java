@@ -16,11 +16,11 @@ public class Poison extends Spell
     {
         int targetHealth = target.getHealth();
         int poisonDuration = 5;
-        Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurn() - 1);
-        Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurn());
+        Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1);
+        Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount());
         while(poisonDuration > 0)
         {
-            while(lastTurn.equals(currentTurn))
+            while(FightProcesses.turnUpdate)
             {
                 target.setHealth(targetHealth - 1);
                 poisonDuration--;
