@@ -18,13 +18,13 @@ public class FighterActions
     
     public int useAction(String spellName)
     {
-        Entity currentTarget = FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getCurrentTarget();
+        Entity currentTarget = FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getCurrentTarget();
         int targetHealth = currentTarget.getHealth();
         
-        if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurn() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
+        if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
         {
             if(currentAction.getHasEffect() && currentAction.getIsHarmful()){currentAction.effectProcess(currentTarget);}
-            else if(currentAction.getHasEffect() && (currentAction.getIsHarmful() == false)){currentAction.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurn()).getMemberInPlay());}
+            else if(currentAction.getHasEffect() && (currentAction.getIsHarmful() == false)){currentAction.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
             targetHealth -= currentAction.getActionDamage();
             
             String TYPE = currentAction.getType();
