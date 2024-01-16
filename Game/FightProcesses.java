@@ -48,6 +48,7 @@ public class FightProcesses
         turnCount++;
         turnIterateNumber++;
         currentEntity.playTurn();
+        
     }
 
     public static Player getCurrentPlayer()
@@ -100,4 +101,5 @@ public class FightProcesses
 
     public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}
     public static int getTurnCount(){return turnCount;}
+    public static int getTurnIterateNumber(){return turnIterateNumber;}
 }

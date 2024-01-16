@@ -1,14 +1,14 @@
-package Fighter;
+package Archer;
 
 import Game.Entity;
 import Game.FightProcesses;
 
-public class Dodge extends FighterAction
+public class SmokeArrow extends ArcherAction
 {
-    public Dodge()
+    public SmokeArrow()
     {
-        super(true, 0, "NONE", "Dodge", false);
-    }
+        super(true, 0, "NONE", "Smoke_arrow", false);
+    }    
 
     @Override
     public void effectProcess(Entity target)

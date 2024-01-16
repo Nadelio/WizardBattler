@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Archer.ArcherActions;
 import Classes.EntityClass;
 import Classes.Fighter;
 import Classes.Wizard;
+import Classes.Archer;
 import Events.*;
 import Fighter.FighterActions;
 import Wizard.*;
@@ -25,7 +27,8 @@ public class Player extends Entity
     private EntityClass.Classes Class;
     private String entityName;
     private Spells currentSpells;
-    private FighterActions currentActions;
+    private FighterActions currentFighterActions;
+    private ArcherActions currentArcherActions;
     private int turnDamage;
 
     private boolean frozen = false;
@@ -43,7 +46,8 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
-        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentActions = Fighter.getActions(level);}
+        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentFighterActions = Fighter.getActions(level);}
+        else if(Class.equals(EntityClass.Classes.Archer)){this.currentArcherActions = Archer.getActions(level);}
 
         playerList.add(this);
     }

@@ -37,4 +37,4 @@ Contributers:
 <!-- * Added all the events I currently think I need>
 <!-- * Level 2 spells added>
 <!-- * Added Fighter entityClass and its abilities>
-<!-- * Added Archer entityClass>
+<!-- * Added Archer entityClass and its abilities>
