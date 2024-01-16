@@ -7,6 +7,7 @@ Current Features:
 - FightProcesses class
 - Spell and Spells classes
 - Level 1 spells
+- Level 2 spells
 - Turn class
 - EntityClass class
 - Weapon class
