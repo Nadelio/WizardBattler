@@ -20,7 +20,7 @@ public class Poison extends Spell
         Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount());
         while(poisonDuration > 0)
         {
-            while(lastTurn.equals(currentTurn))
+            while(FightProcesses.turnUpdate)
             {
                 target.setHealth(targetHealth - 1);
                 poisonDuration--;

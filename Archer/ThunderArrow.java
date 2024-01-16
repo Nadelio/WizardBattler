@@ -15,13 +15,12 @@ public class ThunderArrow extends ArcherAction
     public void effectProcess(Entity target)
     {
         int duration = 2;
-        Turn lastTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1);
-        Turn currentTurn = FightProcesses.getTurnData(FightProcesses.getTurnCount());
         while(duration > 0)
         {
-            while(lastTurn.equals(currentTurn))
+            if(FightProcesses.turnUpdate)
             {
                 target.setFrozen();
+                duration--;
             }
         }
         target.setUnfrozen();

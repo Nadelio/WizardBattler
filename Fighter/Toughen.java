@@ -13,7 +13,17 @@ public class Toughen extends FighterAction
     @Override
     public void effectProcess(Entity target)
     {
+        boolean effectActive = true;
         Entity memberInPlay = FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay();
+        int memberArmor = memberInPlay.getArmor();
         memberInPlay.setArmor(memberInPlay.getArmor() + memberInPlay.getLevel());
+        while(effectActive)
+        {
+            if(FightProcesses.turnUpdate)
+            {
+                memberInPlay.setArmor(memberArmor);
+                effectActive = false;
+            }
+        }
     }
 }

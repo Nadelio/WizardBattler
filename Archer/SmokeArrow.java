@@ -15,5 +15,12 @@ public class SmokeArrow extends ArcherAction
     {
         Entity memberInPlay = FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay();
         memberInPlay.setDodged();
+        while(memberInPlay.getDodged())
+        {
+            if(FightProcesses.turnUpdate)
+            {
+                memberInPlay.setDodged();
+            }
+        }
     }
 }
