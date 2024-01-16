@@ -2,7 +2,6 @@ package Archer;
 
 import Game.Entity;
 import Game.FightProcesses;
-import Game.Turn;
 
 public class ThunderArrow extends ArcherAction
 {
