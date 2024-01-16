@@ -21,6 +21,7 @@ public class Poison extends Spell
             {
                 target.setHealth(targetHealth - 1);
                 poisonDuration--;
+                try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
     }

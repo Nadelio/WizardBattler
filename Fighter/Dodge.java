@@ -20,6 +20,7 @@ public class Dodge extends FighterAction
             if(FightProcesses.turnUpdate)
             {
                 memberInPlay.setDodged();
+                try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
     }

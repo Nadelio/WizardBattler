@@ -20,6 +20,7 @@ public class ThunderArrow extends ArcherAction
             {
                 target.setFrozen();
                 duration--;
+                try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
         target.setUnfrozen();

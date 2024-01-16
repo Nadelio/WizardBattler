@@ -13,15 +13,14 @@ public class BusterArrow extends ArcherAction
     @Override
     public void effectProcess(Entity target)
     {
-        boolean effectActive = true;
         int targetArmor = target.getArmor();
         target.setArmor(0);
-        while(effectActive)
+        while(true)
         {
             if(FightProcesses.turnUpdate)
             {
                 target.setArmor(targetArmor);
-                effectActive = false;
+                break;
             }
         }
     }
