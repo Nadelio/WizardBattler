@@ -7,10 +7,15 @@ public class EntityClass
         Fighter,
         Wizard,
         Archer,
-        Knight;
+        Paladin;
     } // add more classes in the future?
 }
 // Fighter: Done
 // Wizard: Done
 // Archer: Done
-// Knight: Not Started
+// Paladin: In Progress:
+//     Healing Prayer (Basic healing spell),
+//     Downward Slash,
+//     Shield Block (Dodge effect),
+//     Blessing (Immunity to an effect(?)/Better Healing Prayer),
+//     Smite (Holy and Lightning Damage, high damage);
