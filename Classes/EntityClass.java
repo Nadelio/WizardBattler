@@ -13,9 +13,4 @@ public class EntityClass
 // Fighter: Done
 // Wizard: Done
 // Archer: Done
-// Paladin: In Progress:
-//     Healing Prayer (Basic healing spell),
-//     Downward Slash,
-//     Shield Block (Dodge effect),
-//     Blessing (Immunity to an effect(?)/Better Healing Prayer),
-//     Smite (Holy and Lightning Damage, high damage);
+// Paladin: Done

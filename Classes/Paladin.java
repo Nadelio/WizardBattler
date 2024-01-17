@@ -2,9 +2,7 @@ package Classes;
 
 import java.util.HashMap;
 
-import Archer.ArcherActions;
-import Paladin.PaladinAction;
-import Paladin.PaladinActions;
+import Paladin.*;
 
 
 public class Paladin 

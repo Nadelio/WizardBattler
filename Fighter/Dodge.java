@@ -13,13 +13,12 @@ public class Dodge extends FighterAction
     @Override
     public void effectProcess(Entity target)
     {
-        Entity memberInPlay = FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay();
-        memberInPlay.setDodged();
-        while(memberInPlay.getDodged())
+        target.setDodged();
+        while(target.getDodged())
         {
             if(FightProcesses.turnUpdate)
             {
-                memberInPlay.setDodged();
+                target.setDodged();
                 try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }

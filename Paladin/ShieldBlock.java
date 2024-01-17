@@ -1,13 +1,13 @@
-package Archer;
+package Paladin;
 
 import Game.Entity;
 import Game.FightProcesses;
 
-public class SmokeArrow extends ArcherAction
+public class ShieldBlock extends PaladinAction
 {
-    public SmokeArrow()
+    public ShieldBlock()
     {
-        super(true, 0, "NONE", "Smoke_arrow", false);
+        super(true, 0, "NONE", "Shield_block", false);
     }    
 
     @Override
