@@ -22,7 +22,6 @@ Current Bugs/Dependecy Errors:
     - FightProcesses.java
     - Entity.java
 - Finish implementing all events
-- Finish adding all the classes and their abilities
 - Finish enemy generation
 - Add leveling system
 - Add NPC class
@@ -36,6 +35,4 @@ Contributers:
 - Sheriff_Nevarez
 <!-- * Added the basic set of weapons>
 <!-- * Added all the events I currently think I need>
-<!-- * Level 2 spells added>
-<!-- * Added Fighter entityClass and its abilities>
-<!-- * Added Archer entityClass and its abilities>
+<!-- * Added all classes and their abilities>

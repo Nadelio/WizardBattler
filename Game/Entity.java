@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import Classes.EntityClass;
 import Fighter.FighterActions;
+import Weapons.Weapon;
 import Wizard.Spells;
 
 public class Entity
@@ -27,6 +28,7 @@ public class Entity
     private int turnDamage;
     private boolean frozen = false;
     private boolean dodged = false;
+    private boolean dead = false;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
     {
@@ -96,4 +98,5 @@ public class Entity
     public void setFrozen(){this.frozen = true;}
     public void setUnfrozen(){this.frozen = false;}
     public void setDodged(){this.dodged = !dodged;}
+    public void setDead(){this.dead = true;}
 }

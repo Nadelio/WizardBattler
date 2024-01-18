@@ -6,6 +6,7 @@ import Classes.EntityClass;
 import Classes.Wizard;
 import Fighter.FighterActions;
 import WMath.*;
+import Weapons.Weapon;
 import Wizard.*;
 
 public class Enemy extends Entity
@@ -75,7 +76,7 @@ public class Enemy extends Entity
 
     public int enemyAttack()
     {
-        target = FightProcesses.getTarget();
+        target = FightProcesses.getPlayerTarget();
         int targetHP = target.getHealth();
         if(weapon.getHasEffect()){weapon.effectProcess(target);}
         if(FightProcesses.attackRoll(roll) > target.getArmor())

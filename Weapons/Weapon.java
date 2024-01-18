@@ -1,6 +1,8 @@
-package Game;
+package Weapons;
 
 import java.util.HashMap;
+
+import Game.Entity;
 
 public class Weapon
 {
@@ -27,6 +29,9 @@ public class Weapon
     public String getDamageType(){return damageType;}
     public String getWeaponName(){return weaponName;}
     public String getWeaponType(){return weaponType;}
+
+    public void setDamage(int newDamage){this.damage = newDamage;}
+    public void setLevel(int level){this.setDamage(this.getDamage() * level);}
 
     public void effectProcess(Entity entity){}
 }

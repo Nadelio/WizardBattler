@@ -11,6 +11,7 @@ import Classes.Wizard;
 import Classes.Archer;
 import Events.*;
 import Fighter.FighterActions;
+import Weapons.Weapon;
 import Wizard.*;
 
 public class Player extends Entity

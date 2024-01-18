@@ -23,7 +23,7 @@ public class FightProcesses
         firstPlayer.playTurn();
     }
 
-    public static Player getTarget()
+    public static Player getPlayerTarget()
     {
         ArrayList<Player> playerList = Player.getPlayerList();
         Random random = new Random();
@@ -41,6 +41,18 @@ public class FightProcesses
 
     public static void nextTurn()
     {
+        for(Entity entity : Entity.getEntityList())
+        {
+            if(entity.getHealth() <= 0)
+            {
+                entity.setDead();
+                if(entity instanceof Player)
+                {
+                    endFight();
+                }
+                Entity.getEntityList().remove(entity);
+            }
+        }
         if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
         if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
         currentTurn = updateTurnData();
@@ -97,6 +109,11 @@ public class FightProcesses
     public static Entity nextMemberInPlay()
     {
         return Entity.getEntityList().get(turnIterateNumber);
+    }
+
+    public static void endFight()
+    {
+        System.out.println(Entity.getEntityList().get(turnIterateNumber).getName() + " died! Ending fight...");
     }
 
     public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}
