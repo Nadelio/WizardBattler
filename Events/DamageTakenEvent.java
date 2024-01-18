@@ -1,15 +1,15 @@
 package Events;
 
-import Game.FightProcesses;
+import Game.Entity;
 
 public class DamageTakenEvent extends Events
 {
     private String eventName = "DamageTaken";
 
     @Override
-    public void event()
+    public void event(Entity target, int damageTaken)
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getCurrentTarget() + "took " + FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getTurnDamage() + " damage!");
+        System.out.println(target + " took " + damageTaken + " damage!");
     }
 }
 

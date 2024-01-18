@@ -27,4 +27,6 @@ public class Turn
     {
         return member;
     }
+
+    public String toString(){return turnCount + " : " + member + " : " + memberInPlay;}
 }

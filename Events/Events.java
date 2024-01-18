@@ -1,18 +1,18 @@
 package Events;
 
+import Game.Entity;
+
 public class Events
 {
-    private boolean isActive;
     private String eventName;
     public static String[] EVENTS = {"DamageTaken","DamageGiven","HealthChanged","TurnPlayed","WeaponUsed","WeaponEffectUsed","SpellEffectUsed","SpellUsed","EntityDeath","ActionPlayed","AttackPlayed"};
     public static final Events[] eventList = {new DamageTakenEvent(), new DamageGivenEvent(), new HealthChangedEvent(), new TurnPlayedEvent(), new WeaponUsedEvent(), new WeaponEffectUsedEvent(), new SpellUsedEvent(), new SpellEffectUsedEvent(), new EntityDeathEvent(), new ActionPlayedEvent(), new AttackPlayedEvent()};
 
-    public void event()
-    {
-        this.isActive = true;
-        // do event stuff here
-        this.isActive = false;
-    }
+    public void event(){}
+
+    public void event(int number){}
+
+    public void event(Entity target, int number){}
 
     public static void doEvent(String eventName)
     {

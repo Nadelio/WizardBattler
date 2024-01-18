@@ -2,6 +2,8 @@ package Game;
 
 import java.util.*;
 
+import Events.TurnPlayedEvent;
+
 public class FightProcesses
 {    
     private static int turnCount;
@@ -27,6 +29,7 @@ public class FightProcesses
         currentEntity = firstPlayer;
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, "Player");
         turnList.add(currentTurn);
+        new TurnPlayedEvent().event();
         firstPlayer.playTurn();
     }
 
@@ -48,26 +51,18 @@ public class FightProcesses
 
     public static void nextTurn()
     {
-        for(Entity entity : Entity.getEntityList())
-        {
-            if(entity.getHealth() <= 0)
-            {
-                entity.setDead();
-                if(entity instanceof Player)
-                {
-                    endFight();
-                }
-                Entity.getEntityList().remove(entity);
-            }
-        }
+        endFightCheck();
+
         if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
+        turnIterateNumber++;
         if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
         currentTurn = updateTurnData();
-        currentEntity = Entity.getEntityList().get(turnIterateNumber + 1);
         turnCount++;
-        turnIterateNumber++;
+        currentEntity = Entity.getEntityList().get(turnIterateNumber);
         if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Enemy.getEnemyList().size() - 1){enemyIndex = 0;}}
         else{playerIndex++; if(playerIndex > Player.getPlayerList().size() - 1){playerIndex = 0;}}
+        System.out.println("-----------------------------------------------------");
+        new TurnPlayedEvent().event();
         currentEntity.playTurn();
     }
 
@@ -122,6 +117,34 @@ public class FightProcesses
     public static Entity nextMemberInPlay()
     {
         return Entity.getEntityList().get(turnIterateNumber);
+    }
+
+    public static void endFightCheck()
+    {
+        for(Entity entity : Entity.getEntityList())
+        {
+            if(entity.getHealth() <= 0)
+            {
+                entity.setDead();
+                if(entity instanceof Player)
+                {
+                    endFight();
+                }
+                Entity.getEntityList().remove(entity);
+            }
+        }
+
+        boolean enemiesLeft = false;
+
+        for(Entity entity : Entity.getEntityList())
+        {
+            if(entity instanceof Enemy)
+            {
+                enemiesLeft = true;
+            }
+        }
+
+        if(enemiesLeft == false){endFight();}
     }
 
     public static void endFight()

@@ -10,7 +10,7 @@ public class GenerateFight
     {
         Player player = Main.getPlayer();
         int playerLevel = player.getLevel();
-        Entity.getEntityList().add(new Enemy(10 * playerLevel, playerLevel, generateWeapon(playerLevel, "NONE"), playerLevel, (int) playerLevel/2, "NONE", "NONE", EntityClass.Classes.Fighter, "test_enemy"));
+        Entity.getEntityList().add(new Enemy(10 * playerLevel, 0, generateWeapon(playerLevel, "NONE"), playerLevel, 1, "NONE", "NONE", EntityClass.Classes.Fighter, "test_enemy"));
         new FightProcesses();
     }
 

@@ -51,26 +51,26 @@ public class Entity
     {
         if(entityType)
         {
-            System.out.println(FightProcesses.getCurrentPlayer().getName() + "'s turn!\nType 'action' to open the action menu, or do 'attack' to do your attack!");
-            try (Scanner player = new Scanner(System.in))
+            System.out.println(FightProcesses.getCurrentPlayer() + "'s turn!\nType 'action' to open the action menu, or do 'attack' to do your attack!");
+            System.out.print("Input: ");
+            Scanner player = new Scanner(System.in);
+            String input = player.nextLine();
+            if(input.strip().toLowerCase().equals("action"))
             {
-                String input = player.nextLine();
-                if(input.strip().toLowerCase().equals("action"))
-                {
-                    FightProcesses.getCurrentPlayer().playerAction();
-                }
-                else if(input.strip().toLowerCase().equals("attack"))
-                {
-                    FightProcesses.getCurrentPlayer().playerAttack();
-                }
-                else
-                {
-                    playTurn();
-                }
+                FightProcesses.getCurrentPlayer().playerAction();
+            }
+            else if(input.strip().toLowerCase().equals("attack"))
+            {
+                FightProcesses.getCurrentPlayer().playerAttack();
+            }
+            else
+            {
+                playTurn();
             }
         }
         else
         {
+            System.out.println(FightProcesses.getCurrentEnemy() + "'s turn!");
             FightProcesses.getCurrentEnemy().enemyTurn();
         }
     }
@@ -91,9 +91,6 @@ public class Entity
     public Spells getCurrentSpells(){return currentSpells;}
     public FighterActions getCurrentActions(){return currentActions;}
     public boolean getDodged(){return dodged;}
-
-    @Override
-    public String toString(){if(entityType){return "Player";}return "Enemy";}
 
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}

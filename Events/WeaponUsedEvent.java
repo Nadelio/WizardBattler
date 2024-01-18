@@ -9,6 +9,6 @@ public class WeaponUsedEvent extends Events
     @Override
     public void event()
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getCurrentSpells().getCurrentSpell() + " used!");
+        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getWeapon() + " used!");
     }
 }

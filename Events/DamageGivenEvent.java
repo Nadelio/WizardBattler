@@ -7,8 +7,8 @@ public class DamageGivenEvent extends Events
     private String eventName = "DamageGiven";
 
     @Override
-    public void event()
+    public void event(int damageGiven)
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay() + "dealt" + FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getTurnDamage() + "damage!");
+        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay() + " dealt " + damageGiven + " damage!");
     }
 }

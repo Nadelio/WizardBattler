@@ -1,5 +1,6 @@
 package Events;
 
+import Game.Entity;
 import Game.FightProcesses;
 
 public class HealthChangedEvent extends Events
@@ -7,15 +8,8 @@ public class HealthChangedEvent extends Events
     private String eventName = "HealthChanged";
     
     @Override
-    public void event()
+    public void event(Entity target, int healthChangedAmount)
     {
-        if(FightProcesses.getTurnCount() != 0)
-        {
-            System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getHealth() - FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getHealth());
-        }
-        else
-        {
-            System.out.println("0");
-        }
+        System.out.println(target + "'s health changed by " + healthChangedAmount + " points!");
     }
 }

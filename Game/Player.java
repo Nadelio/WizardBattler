@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Events.*;
 import Classes.*;
 import Fighter.*;
 import Paladin.*;
@@ -29,6 +30,7 @@ public class Player extends Entity
     private ArcherActions currentArcherActions;
     private PaladinActions currentPaladinActions;
     private int turnDamage;
+    private Entity target;
 
     private boolean frozen = false;
 
@@ -64,15 +66,18 @@ public class Player extends Entity
         System.out.println(entityName + " chose to attack!");
         int staffDamage = 0;
         int playerDamage = weapon.getDamage();
-	    Entity target = chooseTarget();
-        int targetHealth = target.getHealth();
 
-        while(target.equals(null))
+	    target = chooseTarget();
+
+        while(target == null)
         {
             System.out.println("Error, target does not exist");
             target = chooseTarget();
             if(target != null){break;}
         }
+
+        int targetHealth = target.getHealth();
+
         if(!frozen)
         {
             if(!target.getDodged())
@@ -85,49 +90,49 @@ public class Player extends Entity
 	            }
 	            else
 	            {
-		            if(weapon.getHasEffect() && weapon.getEffectIsHarmful()){weapon.effectProcess(target);}else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){weapon.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
-		            if(FightProcesses.attackRoll(roll) > target.getArmor())
+		            if(weapon.getHasEffect() && weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(target);}
+                    else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
+		            
+                    if(FightProcesses.attackRoll(roll) >= target.getArmor())
 		            {
                         this.turnDamage += playerDamage;
 		        	    targetHealth -= playerDamage;
+                        new WeaponUsedEvent().event();
 		        	    if(target.getWeakType().equals(weapon.getDamageType()))
 		        	    {
                             this.turnDamage += playerDamage;
 		        		    targetHealth -= playerDamage;
+                            new WeaponUsedEvent().event();
 		        	    }
 		            }
                     target.setHealth(targetHealth);
 	            }
             }
         }
+        new DamageGivenEvent().event(turnDamage);
+        new DamageTakenEvent().event(target, turnDamage);
+        new HealthChangedEvent().event(target, turnDamage);
+        turnDamage = 0;
         FightProcesses.nextTurn();
     }
 
     public Enemy chooseTarget()
     {
         System.out.println(Enemy.getEnemyList().toString());
-        try (Scanner playerInput = new Scanner(System.in))
-        {
-            String input = playerInput.nextLine();
-            for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input)){return enemy;}}
-            return null;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getStackTrace());
-            return chooseTarget();
-        }
+        System.out.print("Input: ");
+        Scanner playerInput = new Scanner(System.in);
+        String input = playerInput.nextLine();
+        for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
+        return null;
     }
 
     public int doStaffAttacks()
     {
 	    System.out.println(currentSpells.getSpellInventory().toString());
-	    try (Scanner playerInput = new Scanner(System.in))
-        {
-            String choice = playerInput.nextLine();
-            if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){return currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
-            return doStaffAttacks();
-        }
+	    Scanner playerInput = new Scanner(System.in);
+        String choice = playerInput.nextLine();
+        if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){return currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+        return doStaffAttacks();
     }
 
     public static ArrayList<Player> getPlayerList()

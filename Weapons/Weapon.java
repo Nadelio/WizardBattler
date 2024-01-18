@@ -37,4 +37,6 @@ public class Weapon
     public void setLevel(int level){this.setDamage(this.getDamage() * level);}
 
     public void effectProcess(Entity entity){}
+
+    public String toString(){return weaponName;}
 }
