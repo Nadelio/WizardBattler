@@ -20,7 +20,6 @@ Current Bugs/Dependecy Errors:
 - Turn functionality is not finished for:
     - Player.java
     - FightProcesses.java
-    - Entity.java
 - Finish implementing all events
 - Finish enemy generation
 - Add leveling system
@@ -33,6 +32,3 @@ Current Bugs/Dependecy Errors:
 Contributers:
 - Nadelio (Creator)
 - Sheriff_Nevarez
-<!-- * Added the basic set of weapons>
-<!-- * Added all the events I currently think I need>
-<!-- * Added all classes and their abilities>

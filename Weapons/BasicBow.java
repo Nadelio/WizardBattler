@@ -4,11 +4,11 @@ public class BasicBow extends Weapon
 {
     public BasicBow(int level)
     {
-        super(2 * level, false, "NONE", "basic_bow", "bow");
+        super(2 * level, false, "NONE", "basic_bow", "bow", false);
     }
 
     public BasicBow()
     {
-        super(2, false, "NONE", "basic_bow", "bow");
+        super(2, false, "NONE", "basic_bow", "bow", false);
     }
 }

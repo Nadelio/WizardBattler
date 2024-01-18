@@ -1,6 +1,4 @@
-package Game;
-
-import Events.*;
+package Events;
 
 public class Events
 {

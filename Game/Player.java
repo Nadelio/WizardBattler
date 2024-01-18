@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import Archer.ArcherActions;
-import Classes.EntityClass;
-import Classes.Fighter;
-import Classes.Wizard;
-import Classes.Archer;
-import Events.*;
-import Fighter.FighterActions;
-import Weapons.Weapon;
+import Classes.*;
+import Fighter.*;
+import Paladin.*;
+import Archer.*;
 import Wizard.*;
+import Weapons.Weapon;
 
 public class Player extends Entity
 {
@@ -30,6 +27,7 @@ public class Player extends Entity
     private Spells currentSpells;
     private FighterActions currentFighterActions;
     private ArcherActions currentArcherActions;
+    private PaladinActions currentPaladinActions;
     private int turnDamage;
 
     private boolean frozen = false;
@@ -49,6 +47,7 @@ public class Player extends Entity
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
         else if(Class.equals(EntityClass.Classes.Fighter)){this.currentFighterActions = Fighter.getActions(level);}
         else if(Class.equals(EntityClass.Classes.Archer)){this.currentArcherActions = Archer.getActions(level);}
+        else if(Class.equals(EntityClass.Classes.Paladin)){this.currentPaladinActions = Paladin.getActions(level);}
 
         playerList.add(this);
     }
@@ -84,7 +83,7 @@ public class Player extends Entity
 	            }
 	            else
 	            {
-		            if(weapon.getHasEffect()){weapon.effectProcess(target);}
+		            if(weapon.getHasEffect() && weapon.getEffectIsHarmful()){weapon.effectProcess(target);}else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){weapon.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
 		            if(FightProcesses.attackRoll(roll) > target.getArmor())
 		            {
                         this.turnDamage += playerDamage;

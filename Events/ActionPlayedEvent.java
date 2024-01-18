@@ -1,7 +1,5 @@
 package Events;
 
-import Game.Events;
-
 public class ActionPlayedEvent extends Events
 {
     private String eventName = "ActionPlayed";

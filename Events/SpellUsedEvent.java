@@ -1,6 +1,5 @@
 package Events;
 
-import Game.Events;
 import Game.FightProcesses;
 
 public class SpellUsedEvent extends Events
