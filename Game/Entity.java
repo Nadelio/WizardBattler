@@ -11,7 +11,7 @@ import Wizard.Spells;
 
 public class Entity
 {
-    private static ArrayList<Entity> entityList;
+    private static ArrayList<Entity> entityList = new ArrayList<Entity>();
     private int HP;
     private int AR;
     private Weapon weapon;
@@ -43,9 +43,6 @@ public class Entity
         this.entityType = entityType;
         this.Class = Class;
         this.entityName = entityName;
-        
-        if(entityType){new Player(HP, AR, weapon, level, this.roll, weakType, Class, entityName);}
-        else{new Enemy(HP, AR, weapon, level, this.roll, weakType, strongType, Class, entityName);}
 
         entityList.add(this);
     }
@@ -54,16 +51,21 @@ public class Entity
     {
         if(entityType)
         {
-            System.out.println(FightProcesses.getCurrentPlayer().getName() + "'s turn!\n Type 'action' to open the action menu, or do 'attack' to do your attack!");
+            System.out.println(FightProcesses.getCurrentPlayer().getName() + "'s turn!\nType 'action' to open the action menu, or do 'attack' to do your attack!");
             try (Scanner player = new Scanner(System.in))
             {
-                if(player.nextLine().strip().toLowerCase().equals("action"))
+                String input = player.nextLine();
+                if(input.strip().toLowerCase().equals("action"))
                 {
                     FightProcesses.getCurrentPlayer().playerAction();
                 }
-                else if(player.nextLine().strip().toLowerCase().equals("attack"))
+                else if(input.strip().toLowerCase().equals("attack"))
                 {
                     FightProcesses.getCurrentPlayer().playerAttack();
+                }
+                else
+                {
+                    playTurn();
                 }
             }
         }

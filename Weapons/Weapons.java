@@ -19,17 +19,17 @@ public class Weapons
 
     public static Weapon getWeapon(int level)
     {
-        Weapon weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size()));
+        Weapon weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size() - 1));
         weapon.setLevel(level);
         return weapon;
     }
 
     public static Weapon getWeapon(int level, String type)
     {
-        Weapon weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size()));
+        Weapon weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size() - 1));
         while(!weapon.getDamageType().equals(type))
         {
-            weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size()));
+            weapon = weaponDatabase.get(WMath.randInt(0, weaponDatabase.size() - 1));
             if(weapon.getDamageType().equals(type))
             {
                 break;

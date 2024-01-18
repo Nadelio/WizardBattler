@@ -13,7 +13,7 @@ import Weapons.Weapon;
 
 public class Player extends Entity
 {
-    private static ArrayList<Player> playerList;
+    private static ArrayList<Player> playerList = new ArrayList<Player>();
 
     private int health;
 	private int armor;
@@ -61,25 +61,27 @@ public class Player extends Entity
     
     public void playerAttack()
     {
+        System.out.println(entityName + " chose to attack!");
+        int staffDamage = 0;
         int playerDamage = weapon.getDamage();
 	    Entity target = chooseTarget();
         int targetHealth = target.getHealth();
-        int staffDamage = 0;
 
-        while(target == null)
+        while(target.equals(null))
         {
             System.out.println("Error, target does not exist");
             target = chooseTarget();
+            if(target != null){break;}
         }
-        if(frozen == false)
+        if(!frozen)
         {
             if(!target.getDodged())
             {
 	            if(weapon.getWeaponType().equals("staff"))
 	            {
-                    this.turnDamage += staffDamage;
                     staffDamage = doStaffAttacks();
 	        	    target.setHealth(target.getHealth() - staffDamage);
+                    this.turnDamage += staffDamage;
 	            }
 	            else
 	            {

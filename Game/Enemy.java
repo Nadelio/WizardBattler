@@ -25,7 +25,7 @@ public class Enemy extends Entity
     private int turnDamage;
     private boolean frozen = false;
 
-    private static ArrayList<Enemy> enemyList;
+    private static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
     private Player target;
 
@@ -47,6 +47,7 @@ public class Enemy extends Entity
 
     public void enemyTurn()
     {
+        if(target == null){chooseTarget();}
         if(frozen == false)
         {
             if(!target.getDodged())
@@ -96,11 +97,13 @@ public class Enemy extends Entity
 
     public void doAttack()
     {
+        System.out.println("No Enemy AI implemented yet!");
         // add AI logic here
     }
 
     public void doAction()
     {
+        System.out.println("No Enemy AI implemented yet!");
         // add AI logic here
     }
 
@@ -123,6 +126,8 @@ public class Enemy extends Entity
         }
         else{doStaffAbility();}
     }
+
+    private void chooseTarget(){this.target = Player.getPlayerList().get(WMath.randInt(0, Player.getPlayerList().size() - 1));}
 
     public static ArrayList<Enemy> getEnemyList(){return enemyList;}
     public static Enemy getEnemyFromList(String entityname)

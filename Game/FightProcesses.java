@@ -7,17 +7,24 @@ public class FightProcesses
     private static int turnCount;
     private static int turnIterateNumber;
     private static int turnMaxIterateNumber;
+    private static int playerIndex;
+    private static int enemyIndex;
     public static Turn currentTurn;
-    public static ArrayList<Turn> turnList;
+    public static ArrayList<Turn> turnList = new ArrayList<Turn>();
     public static boolean turnUpdate;
+
+    private static Entity currentEntity;
 
     public FightProcesses()
     {
         turnIterateNumber = 0;
+        playerIndex = 0;
+        enemyIndex = 0;
         turnMaxIterateNumber = Entity.getEntityList().size() - 1;
         turnCount = 0;
         ArrayList<Player> playerList = Player.getPlayerList();
         Player firstPlayer = playerList.get(0);
+        currentEntity = firstPlayer;
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, "Player");
         turnList.add(currentTurn);
         firstPlayer.playTurn();
@@ -56,23 +63,29 @@ public class FightProcesses
         if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
         if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
         currentTurn = updateTurnData();
-        Entity currentEntity = Entity.getEntityList().get(turnIterateNumber + 1);
+        currentEntity = Entity.getEntityList().get(turnIterateNumber + 1);
         turnCount++;
         turnIterateNumber++;
+        if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Enemy.getEnemyList().size() - 1){enemyIndex = 0;}}
+        else{playerIndex++; if(playerIndex > Player.getPlayerList().size() - 1){playerIndex = 0;}}
         currentEntity.playTurn();
-        
+    }
+
+    public static Entity getCurrentMemberInPlay()
+    {
+        return currentEntity;
     }
 
     public static Player getCurrentPlayer()
     {
         ArrayList<Player> playerList = Player.getPlayerList();
-        return playerList.get((int) turnIterateNumber / 2);
+        return playerList.get(playerIndex);
     }
 
     public static Enemy getCurrentEnemy()
     {
         ArrayList<Enemy> enemyList = Enemy.getEnemyList();
-        return enemyList.get((int) turnIterateNumber / 2);
+        return enemyList.get(enemyIndex);
     }
 
     public static String getLastTurnMember()
