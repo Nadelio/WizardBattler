@@ -3,6 +3,7 @@ package Game;
 import java.util.*;
 
 import Events.TurnPlayedEvent;
+import WMath.WMath;
 
 public class FightProcesses
 {    
@@ -46,9 +47,7 @@ public class FightProcesses
 
     public static int attackRoll(int rollRange)
     {
-        Random random = new Random();
-        int attackRoll = random.nextInt(0, rollRange);
-        return attackRoll;
+        return WMath.randInt(rollRange);
     }
 
     public static void nextTurn()

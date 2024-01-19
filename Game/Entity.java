@@ -29,8 +29,9 @@ public class Entity
     private boolean frozen = false;
     private boolean dodged = false;
     private boolean dead = false;
+    private String currentEnvironment;
     
-    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName)
+    public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
         this.HP = HP;
         this.AR = AR;
@@ -43,6 +44,7 @@ public class Entity
         this.entityType = entityType;
         this.Class = Class;
         this.entityName = entityName;
+        this.currentEnvironment = currentEnvironment;
 
         entityList.add(this);
     }
@@ -91,6 +93,7 @@ public class Entity
     public Spells getCurrentSpells(){return currentSpells;}
     public FighterActions getCurrentActions(){return currentActions;}
     public boolean getDodged(){return dodged;}
+    public String getCurrentEnvironment(){return currentEnvironment;}
 
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}

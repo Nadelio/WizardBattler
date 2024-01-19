@@ -46,8 +46,8 @@ public class Main
         }
     }
 
-    public static Weapon getClassWeapon(EntityClass.Classes playerClass)
-    {
+    public static Weapon getClassWeapon(EntityClass.Classes playerClass) //Todo: make HashMap that stores <EntityClasses.Class, Weapon> // like how Environment HashMaps are set up
+    {//* iterate over HashMap that holds all the class weapons, checking if playerClass matches any class in the HashMap, then returning the associated HashMap value (aka the class weapon)
         if(playerClass.equals(EntityClass.Classes.Wizard)){return new BasicStaff();}
         else if(playerClass.equals(EntityClass.Classes.Fighter)){return new Fists();}
         else if(playerClass.equals(EntityClass.Classes.Archer)){return new BasicBow();}
@@ -65,6 +65,8 @@ public class Main
          
         // init weapons
         new Weapons();
+        // init Environments
+        new Environment();
 
         // set player's name and class
         System.out.println("Please type your name!");
@@ -77,10 +79,10 @@ public class Main
         System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
 
         // create the player
-        player = new Player(10, 0, classWeapon, 1, 1, "NONE", playerClass, playerName);
+        player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
         
         System.out.println("-----------------------------------------------------");
 
-        new GenerateFight();
+        new GenerateFight(); //! FOR TESTING ONLY REMOVE BEFORE FINAL VERSION !//
     }
 }

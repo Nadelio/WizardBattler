@@ -38,6 +38,11 @@
     - Do not apply to eventNames
 - EX: ``DamageTakenEvent``, ``"DamageTaken"``, ``HealthChangeEvent``, etc.
 #
+#### New Environements/Environment entries
+- First letter capitilized
+- Underscores_instead_of_spaces
+- EX: ``"Plains"``, ``"City_ruins"``, etc.
+#
 #### Additions to DATABASE.md
 - First the reader or wiki name for your addition
     - EX: ``Fireball``

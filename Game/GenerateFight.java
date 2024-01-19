@@ -1,6 +1,7 @@
 package Game;
 
 import Classes.EntityClass;
+import WMath.WMath;
 import Weapons.Weapon;
 import Weapons.Weapons;
 
@@ -10,7 +11,14 @@ public class GenerateFight
     {
         Player player = Main.getPlayer();
         int playerLevel = player.getLevel();
-        Entity.getEntityList().add(new Enemy(10 * playerLevel, 0, generateWeapon(playerLevel, "NONE"), playerLevel, 1, "NONE", "NONE", EntityClass.Classes.Fighter, "test_enemy"));
+        String playerEnvironment = Environment.getEnvironment(player);
+        String enemyName = Environment.getRandomEnemy(Environment.environmentMobList.get(playerEnvironment));
+        EntityClass.Classes enemyClass = EntityClass.Classes.getClass(Environment.enemyClassList.get(enemyName));
+        int enemyHealth = 1 + WMath.randInt(4) * playerLevel;
+        int enemyArmor = WMath.clamp(1 * WMath.randInt(2) * playerLevel, 0, 20);
+        String enemyType = Environment.getEnemyType(enemyName);
+        String weakType = Environment.getWeakType(enemyName);
+        Entity.getEntityList().add(new Enemy(enemyHealth, enemyArmor, generateWeapon(playerLevel, "NONE"), playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment));
         new FightProcesses();
     }
 

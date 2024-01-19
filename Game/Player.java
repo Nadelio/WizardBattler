@@ -25,18 +25,19 @@ public class Player extends Entity
 	private String type;
     private EntityClass.Classes Class;
     private String entityName;
-    private Spells currentSpells;
-    private FighterActions currentFighterActions;
-    private ArcherActions currentArcherActions;
-    private PaladinActions currentPaladinActions;
+    private Spells currentSpells = new Spells(null);
+    private FighterActions currentFighterActions = new FighterActions(null);
+    private ArcherActions currentArcherActions = new ArcherActions(null);
+    private PaladinActions currentPaladinActions = new PaladinActions(null);
     private int turnDamage;
     private Entity target;
+    private String currentEnvironment;
 
     private boolean frozen = false;
 
-    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName)
+    public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
-        super(HP, AR, weapon, level, weakType, "isPlayer", true, Class, entityName);
+        super(HP, AR, weapon, level, weakType, "isPlayer", true, Class, entityName, currentEnvironment);
         this.health = HP;
         this.armor = AR;
         this.weapon = weapon;
@@ -46,6 +47,7 @@ public class Player extends Entity
         this.type = "isPlayer";
         this.Class = Class;
         this.entityName = entityName;
+        this.currentEnvironment = currentEnvironment;
 	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
         else if(Class.equals(EntityClass.Classes.Fighter)){this.currentFighterActions = Fighter.getActions(level);}
         else if(Class.equals(EntityClass.Classes.Archer)){this.currentArcherActions = Archer.getActions(level);}

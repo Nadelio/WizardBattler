@@ -12,6 +12,7 @@
 - Holy: ``"HOLY"``
 - Cursed: ``"CURSED"``
 - None: ``"NONE"``
+- Magic: ``"MAGIC"``
 # 
 ### WEAPONS:
 - Basic Bow: ``"basic_bow"``

@@ -20,6 +20,7 @@ public class Enemy extends Entity
     private String type;
     private EntityClass.Classes Class;
     private String entityName;
+    private String currentEnvironment;
     private Spells currentSpells;
     private FighterActions currentActions;
     private int turnDamage;
@@ -29,9 +30,9 @@ public class Enemy extends Entity
 
     private Player target;
 
-    public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass.Classes Class, String entityName)
+    public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
-        super(HP, AR, weapon, level, weakType, type, false, Class, entityName);
+        super(HP, AR, weapon, level, weakType, type, false, Class, entityName, currentEnvironment);
         this.health = HP;
 		this.armor = AR;
 		this.weapon = weapon;
@@ -41,6 +42,7 @@ public class Enemy extends Entity
 		this.type = type;
         this.Class = Class;
         this.entityName = entityName;
+        this.currentEnvironment = currentEnvironment;
 
         enemyList.add(this);
     }
@@ -127,7 +129,7 @@ public class Enemy extends Entity
         else{doStaffAbility();}
     }
 
-    private void chooseTarget(){this.target = Player.getPlayerList().get(WMath.randInt(0, Player.getPlayerList().size() - 1));}
+    private void chooseTarget(){this.target = Player.getPlayerList().get(WMath.randInt(Player.getPlayerList().size()));}
 
     public static ArrayList<Enemy> getEnemyList(){return enemyList;}
     public static Enemy getEnemyFromList(String entityname)
