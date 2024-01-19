@@ -104,7 +104,7 @@ public class Player extends Entity
 		        	    {
                             this.turnDamage += playerDamage;
 		        		    targetHealth -= playerDamage;
-                            new WeaponUsedEvent().event();
+                            new CriticalHitEvent().event();
 		        	    }
 		            }
                     target.setHealth(targetHealth);

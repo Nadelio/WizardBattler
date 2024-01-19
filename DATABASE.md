@@ -28,4 +28,18 @@
 - Paladin
 #
 ### ENEMIES:
-No prebuilt enemies as of this moment.
+- Wolf: ``"wolf"``
+- Bandit: ``"bandit"``
+- Hog: ``"hog"``
+- Wizard: ``"wizard"``
+- Zombie: ``"zombie"``
+- Skeleton: ``"skeleton"``
+- Knight: ``"knight"``
+#
+### ENVIRONMENTS:
+- Plains: ``"Plains"``
+- Forest: ``"Forest"``
+- Ruins: ``"Ruins"``
+- Catacombs: ``"Catacombs"``
+- Town: ``"Town"``
+- City: ``"City"``

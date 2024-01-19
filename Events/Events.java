@@ -5,12 +5,14 @@ import Game.Entity;
 public class Events
 {
     private String eventName;
-    public static String[] EVENTS = {"DamageTaken","DamageGiven","HealthChanged","TurnPlayed","WeaponUsed","WeaponEffectUsed","SpellEffectUsed","SpellUsed","EntityDeath","ActionPlayed","AttackPlayed"};
-    public static final Events[] eventList = {new DamageTakenEvent(), new DamageGivenEvent(), new HealthChangedEvent(), new TurnPlayedEvent(), new WeaponUsedEvent(), new WeaponEffectUsedEvent(), new SpellUsedEvent(), new SpellEffectUsedEvent(), new EntityDeathEvent(), new ActionPlayedEvent(), new AttackPlayedEvent()};
+    public static String[] EVENTS = {"DamageTaken","DamageGiven","HealthChanged","TurnPlayed","WeaponUsed","WeaponEffectUsed","SpellEffectUsed","SpellUsed","EntityDeath","ActionPlayed","AttackPlayed", "CriticalHit"};
+    public static final Events[] eventList = {new DamageTakenEvent(), new DamageGivenEvent(), new HealthChangedEvent(), new TurnPlayedEvent(), new WeaponUsedEvent(), new WeaponEffectUsedEvent(), new SpellUsedEvent(), new SpellEffectUsedEvent(), new EntityDeathEvent(), new ActionPlayedEvent(), new AttackPlayedEvent(), new CriticalHitEvent()};
 
     public void event(){}
 
     public void event(int number){}
+
+    public void event(Entity target){}
 
     public void event(Entity target, int number){}
 
