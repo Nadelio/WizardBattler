@@ -55,7 +55,7 @@ public class FightProcesses
     {
         if(fightActive)
         {
-            fightActive = endFightCheck();
+            endFightCheck();
             if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
             turnIterateNumber++;
             if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
@@ -123,7 +123,7 @@ public class FightProcesses
         return Entity.getEntityList().get(turnIterateNumber);
     }
 
-    public static boolean endFightCheck()
+    public static void endFightCheck()
     {
         ArrayList<Entity> removalList = new ArrayList<Entity>();
         for(Entity entity : Entity.getEntityList())
@@ -133,7 +133,7 @@ public class FightProcesses
                 entity.setDead();
                 if(entity instanceof Player)
                 {
-                    return endFight(true);
+                    endFight(true);
                 }
                 else{removalList.add(entity);}
             }
@@ -157,16 +157,24 @@ public class FightProcesses
             }
         }
 
-        if(enemiesLeft == false){return endFight(false);}
-        return true;
+        if(enemiesLeft == false){endFight(false);}
     }
 
-    public static boolean endFight(boolean playerDied)
+    public static void endFight(boolean playerDied) // credit to PogMaster9001 for the bug fix for this!!
     {
-        if(!playerDied){System.out.println("All enemies eliminated! Ending fight...");}
-        else{System.out.println(Entity.getEntityList().get(turnIterateNumber) + " died! Ending fight...");}
-        turnMaxIterateNumber = Entity.getEntityList().size() - 1;
-        return false;
+        if(fightActive)
+        {
+            if(!playerDied)
+            {
+                System.out.println("All enemies eliminated! Ending fight...");
+            }
+            else
+            {
+                System.out.println(Entity.getEntityList().get(turnIterateNumber) + " died! Ending fight...");
+            }
+            turnMaxIterateNumber = Entity.getEntityList().size() - 1;
+            fightActive = false;
+        }
     }
 
     public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}
