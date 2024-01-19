@@ -48,7 +48,7 @@ public class Enemy extends Entity
     public void enemyTurn()
     {
         if(target == null){chooseTarget();}
-        if(frozen == false)
+        if(!frozen)
         {
             if(!target.getDodged())
             {

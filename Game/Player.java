@@ -107,11 +107,11 @@ public class Player extends Entity
 		            }
                     target.setHealth(targetHealth);
 	            }
+                new DamageGivenEvent().event(turnDamage);
+                new DamageTakenEvent().event(target, turnDamage);
+                new HealthChangedEvent().event(target, turnDamage);
             }
         }
-        new DamageGivenEvent().event(turnDamage);
-        new DamageTakenEvent().event(target, turnDamage);
-        new HealthChangedEvent().event(target, turnDamage);
         turnDamage = 0;
         FightProcesses.nextTurn();
     }
