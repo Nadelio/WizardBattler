@@ -14,11 +14,13 @@ public class FightProcesses
     public static Turn currentTurn;
     public static ArrayList<Turn> turnList = new ArrayList<Turn>();
     public static boolean turnUpdate;
+    public static boolean fightActive;
 
     private static Entity currentEntity;
 
     public FightProcesses()
     {
+        fightActive = true;
         turnIterateNumber = 0;
         playerIndex = 0;
         enemyIndex = 0;
@@ -52,18 +54,20 @@ public class FightProcesses
     public static void nextTurn()
     {
         endFightCheck();
-
-        if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
-        turnIterateNumber++;
-        if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
-        currentTurn = updateTurnData();
-        turnCount++;
-        currentEntity = Entity.getEntityList().get(turnIterateNumber);
-        if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Enemy.getEnemyList().size() - 1){enemyIndex = 0;}}
-        else{playerIndex++; if(playerIndex > Player.getPlayerList().size() - 1){playerIndex = 0;}}
-        System.out.println("-----------------------------------------------------");
-        new TurnPlayedEvent().event();
-        currentEntity.playTurn();
+        if(fightActive)
+        {
+            if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
+            turnIterateNumber++;
+            if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
+            currentTurn = updateTurnData();
+            turnCount++;
+            currentEntity = Entity.getEntityList().get(turnIterateNumber);
+            if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Enemy.getEnemyList().size() - 1){enemyIndex = 0;}}
+            else{playerIndex++; if(playerIndex > Player.getPlayerList().size() - 1){playerIndex = 0;}}
+            System.out.println("-----------------------------------------------------");
+            new TurnPlayedEvent().event();
+            currentEntity.playTurn();
+        }
     }
 
     public static Entity getCurrentMemberInPlay()
@@ -121,6 +125,7 @@ public class FightProcesses
 
     public static void endFightCheck()
     {
+        ArrayList<Entity> removalList = new ArrayList<Entity>();
         for(Entity entity : Entity.getEntityList())
         {
             if(entity.getHealth() <= 0)
@@ -128,9 +133,17 @@ public class FightProcesses
                 entity.setDead();
                 if(entity instanceof Player)
                 {
-                    endFight();
+                    endFight(true);
                 }
-                Entity.getEntityList().remove(entity);
+                else{removalList.add(entity);}
+            }
+        }
+
+        for(Entity e : removalList)
+        {
+            if(Entity.getEntityList().contains(e))
+            {
+                Entity.getEntityList().remove(e);
             }
         }
 
@@ -144,12 +157,15 @@ public class FightProcesses
             }
         }
 
-        if(enemiesLeft == false){endFight();}
+        if(enemiesLeft == false){endFight(false);}
     }
 
-    public static void endFight()
+    public static void endFight(boolean playerDied)
     {
-        System.out.println(Entity.getEntityList().get(turnIterateNumber).getName() + " died! Ending fight...");
+        if(!playerDied){System.out.println("All enemies eliminated! Ending fight...");}
+        else{System.out.println(Entity.getEntityList().get(turnIterateNumber) + " died! Ending fight...");}
+        turnMaxIterateNumber = Entity.getEntityList().size() - 1;
+        fightActive = false;
     }
 
     public static Turn getTurnData(int turnListIndex){return turnList.get(turnListIndex);}

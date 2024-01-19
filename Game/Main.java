@@ -2,9 +2,8 @@ package Game;
 
 import java.util.Scanner;
 
-import Classes.EntityClass;
-import Weapons.BasicSword;
-import Weapons.Weapons;
+import Classes.*;
+import Weapons.*;
 
 public class Main
 {
@@ -47,6 +46,19 @@ public class Main
         }
     }
 
+    public static Weapon getClassWeapon(EntityClass.Classes playerClass)
+    {
+        if(playerClass.equals(EntityClass.Classes.Wizard)){return new BasicStaff();}
+        else if(playerClass.equals(EntityClass.Classes.Fighter)){return new Fists();}
+        else if(playerClass.equals(EntityClass.Classes.Archer)){return new BasicBow();}
+        else if(playerClass.equals(EntityClass.Classes.Paladin)){return new BasicSword();}
+        else
+        {
+            System.out.println("No weapon associated with chosen class, assigning Basic Sword to player.");
+            return new BasicSword();
+        }
+    }
+
     public static void main(String[] args) 
     {
         gameStartAnim();
@@ -58,14 +70,14 @@ public class Main
         System.out.println("Please type your name!");
         Scanner playerInput = new Scanner(System.in);
         String playerName = playerInput.nextLine();
-
         EntityClass.Classes playerClass = chooseClass();
+        Weapon classWeapon = getClassWeapon(playerClass);
 
         //Welcome the player
         System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
 
         // create the player
-        player = new Player(10, 0, new BasicSword(), 1, 1, "NONE", playerClass, playerName);
+        player = new Player(10, 0, classWeapon, 1, 1, "NONE", playerClass, playerName);
         
         System.out.println("-----------------------------------------------------");
 

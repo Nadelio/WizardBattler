@@ -2,6 +2,7 @@ package Classes;
 
 import java.util.HashMap;
 
+import Weapons.*;
 import Wizard.*;
 
 public class Wizard
@@ -11,6 +12,8 @@ public class Wizard
 
     private static Spell[] levelOneSpells = {new Fireball(), new Recovery(), new Resistance()};
     private static Spell[] levelTwoSpells = {new Poison(), new Freeze()};
+
+    public static Weapon starterWeapon = new BasicStaff();
 
     public Wizard()
     {
