@@ -162,7 +162,7 @@ public class FightProcesses
 
     static int endFightRunCount = 0;
 
-    public static boolean endFight(boolean playerDied) // credit to PogMaster9001 for the bug fix for this!!
+    public static boolean endFight(boolean playerDied) // credit to PogMaster9001 for part of the bug fix for this!!
     {
         if(fightActive)
         {
