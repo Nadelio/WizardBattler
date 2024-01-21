@@ -1,5 +1,6 @@
 package Game;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 import Classes.*;
@@ -46,16 +47,26 @@ public class Main
         }
     }
 
-    public static Weapon getClassWeapon(EntityClass.Classes playerClass) //Todo: make HashMap that stores <EntityClasses.Class, Weapon> // like how Environment HashMaps are set up
-    {//* iterate over HashMap that holds all the class weapons, checking if playerClass matches any class in the HashMap, then returning the associated HashMap value (aka the class weapon)
-        if(playerClass.equals(EntityClass.Classes.Wizard)){return new BasicStaff();}
-        else if(playerClass.equals(EntityClass.Classes.Fighter)){return new Fists();}
-        else if(playerClass.equals(EntityClass.Classes.Archer)){return new BasicBow();}
-        else if(playerClass.equals(EntityClass.Classes.Paladin)){return new BasicSword();}
-        else
+    public static HashMap<EntityClass.Classes, Weapon> classWeapons = new HashMap<EntityClass.Classes, Weapon>();
+
+    public static void initClassWeapons()
+    {
+        classWeapons.put(EntityClass.Classes.Fighter, new Fists());
+        classWeapons.put(EntityClass.Classes.Wizard, new BasicStaff());
+        classWeapons.put(EntityClass.Classes.Archer, new BasicBow());
+        classWeapons.put(EntityClass.Classes.Paladin, new BasicSword());
+    }
+
+    public static Weapon getClassWeapon(EntityClass.Classes playerClass)
+    {
+        try
         {
-            System.out.println("No weapon associated with chosen class, assigning Basic Sword to player.");
-            return new BasicSword();
+            return classWeapons.get(playerClass);
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("Class does not exist or have associated weapon, please add an appropriate entry to classWeapons.");
+            return null;
         }
     }
 
@@ -67,6 +78,8 @@ public class Main
         new Weapons();
         // init Environments
         new Environment();
+        // init classWeapons
+        initClassWeapons();
 
         // set player's name and class
         System.out.println("Please type your name!");

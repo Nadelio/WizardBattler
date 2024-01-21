@@ -19,7 +19,7 @@ public class GenerateFight
         String enemyType = Environment.getEnemyType(enemyName);
         String weakType = Environment.getWeakType(enemyName);
         System.out.println(enemyName + " has " + enemyHealth + " health!");
-        Entity.getEntityList().add(new Enemy(enemyHealth, enemyArmor, generateWeapon(playerLevel, "NONE"), playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment));
+        Entity.getEntityList().add(new Enemy(enemyHealth, enemyArmor, generateWeapon(playerLevel, enemyType), playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment));
         new FightProcesses();
     }
 
