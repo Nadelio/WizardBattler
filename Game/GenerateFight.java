@@ -9,6 +9,7 @@ public class GenerateFight
 {
     public GenerateFight()
     {
+        System.out.println("Generating Fight...");
         Player player = Main.getPlayer();
         int playerLevel = player.getLevel();
         String playerEnvironment = Environment.getEnvironment(player);
@@ -20,6 +21,7 @@ public class GenerateFight
         String weakType = Environment.getWeakType(enemyName);
         System.out.println(enemyName + " has " + enemyHealth + " health!");
         Entity.getEntityList().add(new Enemy(enemyHealth, enemyArmor, generateWeapon(playerLevel, enemyType), playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment));
+        System.out.println("Fight Generation Complete!");
         new FightProcesses();
     }
 

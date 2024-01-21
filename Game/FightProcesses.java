@@ -21,6 +21,7 @@ public class FightProcesses
 
     public FightProcesses()
     {
+        System.out.println("Fight started!");
         fightActive = true;
         turnIterateNumber = 0;
         playerIndex = 0;
@@ -30,7 +31,7 @@ public class FightProcesses
         ArrayList<Player> playerList = Player.getPlayerList();
         Player firstPlayer = playerList.get(0);
         currentEntity = firstPlayer;
-        FightProcesses.currentTurn = new Turn(firstPlayer, 0, "Player");
+        FightProcesses.currentTurn = new Turn(firstPlayer, 0, firstPlayer.getName());
         turnList.add(currentTurn);
         new TurnPlayedEvent().event();
         firstPlayer.playTurn();

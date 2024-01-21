@@ -59,15 +59,15 @@ public class Main
 
     public static Weapon getClassWeapon(EntityClass.Classes playerClass)
     {
-        try
-        {
-            return classWeapons.get(playerClass);
-        }
-        catch(NullPointerException e)
-        {
-            System.out.println("Class does not exist or have associated weapon, please add an appropriate entry to classWeapons.");
-            return null;
-        }
+        return classWeapons.get(playerClass);
+    }
+
+    public static void printPlayer(Player player)
+    {
+        System.out.println("Player name: " + player.getName());
+        System.out.println("Player class: " + player.getEntityClass());
+        System.out.println("Player weapon: " + player.getWeapon());
+        System.out.println("Player's current environment: " + player.getCurrentEnvironment());
     }
 
     public static void main(String[] args) 
@@ -93,6 +93,8 @@ public class Main
 
         // create the player
         player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
+
+        printPlayer(player);
         
         System.out.println("-----------------------------------------------------");
 
