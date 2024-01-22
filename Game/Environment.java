@@ -3,6 +3,7 @@ package Game;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Classes.*;
 import WMath.WMath;
 
 public class Environment
@@ -10,6 +11,8 @@ public class Environment
     public static HashMap<String, ArrayList<String>> environmentMobList = new HashMap<String, ArrayList<String>>();
     public static HashMap<String, Integer> enemyClassList = new HashMap<String, Integer>();
     public static HashMap<String, String[]> enemyTypes = new HashMap<String, String[]>();
+    public static HashMap<EntityClass.Classes, Actions> classActions = new HashMap<EntityClass.Classes, Actions>();
+    public static HashMap<EntityClass.Classes, Classes.Class> classes = new HashMap<EntityClass.Classes, Classes.Class>();
 
     public Environment()
     {
@@ -36,6 +39,10 @@ public class Environment
         enemyTypes.put("skeleton", new String[]{"CURSED", "HOLY"});
         enemyTypes.put("knight", new String[]{"HOLY", "CURSED"});
 
+        classActions.put(EntityClass.Classes.Fighter, Fighter.getActions(1));
+        classActions.put(EntityClass.Classes.Wizard, Wizard.getActions(1));
+        classActions.put(EntityClass.Classes.Archer, Archer.getActions(1));
+        classActions.put(EntityClass.Classes.Paladin, Paladin.getActions(1));
     }
 
     public static String getEnvironment(Player player)
@@ -56,6 +63,11 @@ public class Environment
     public static String getWeakType(String enemyName)
     {
         return enemyTypes.get(enemyName)[1];
+    }
+
+    public static Actions getActions(EntityClass.Classes Class)
+    {
+        return classActions.get(Class);
     }
 }
 

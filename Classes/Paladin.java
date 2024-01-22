@@ -5,7 +5,7 @@ import java.util.HashMap;
 import Paladin.*;
 
 
-public class Paladin 
+public class Paladin extends Classes.Class
 {
     private static HashMap<Integer, PaladinActions> LEVELACTIONS = new HashMap<Integer, PaladinActions>();
 
@@ -17,6 +17,4 @@ public class Paladin
         LEVELACTIONS.put(1, new PaladinActions(levelOneActions));
         LEVELACTIONS.put(2, new PaladinActions(levelTwoActions));
     }
-
-    public static PaladinActions getActions(int level){return LEVELACTIONS.get(level);}
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import Weapons.*;
 import Wizard.*;
 
-public class Wizard
+public class Wizard extends Classes.Class
 {
     
     private static HashMap<Integer, Spells> LEVELSPELLS = new HashMap<Integer, Spells>();
@@ -20,6 +20,4 @@ public class Wizard
         LEVELSPELLS.put(1, new Spells(levelOneSpells));
         LEVELSPELLS.put(2, new Spells(levelTwoSpells));
     }
-    
-    public static Spells getSpells(int level){return LEVELSPELLS.get(level);}
 }

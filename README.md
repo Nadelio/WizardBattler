@@ -16,7 +16,6 @@ Current Features:
 Current Bugs/Dependecy Errors:
 - Missing some methods for a few classes
 - No ability/class/action selection method/class
-- Finish fight mechanic (implement dying for both players and enemies)
 - Turn functionality is not finished for:
     - Player.java
     - FightProcesses.java

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import Archer.*;
 
-public class Archer
+public class Archer extends Classes.Class
 {
     private static HashMap<Integer, ArcherActions> LEVELACTIONS = new HashMap<Integer, ArcherActions>();
 
@@ -16,6 +16,4 @@ public class Archer
         LEVELACTIONS.put(1, new ArcherActions(levelOneActions));
         LEVELACTIONS.put(2, new ArcherActions(levelTwoActions));
     }
-
-    public static ArcherActions getActions(int level){return LEVELACTIONS.get(level);}
 }

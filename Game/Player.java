@@ -6,9 +6,6 @@ import java.util.Scanner;
 
 import Events.*;
 import Classes.*;
-import Fighter.*;
-import Paladin.*;
-import Archer.*;
 import Wizard.*;
 import Weapons.Weapon;
 
@@ -25,10 +22,7 @@ public class Player extends Entity
 	private String type;
     private EntityClass.Classes Class;
     private String entityName;
-    private Spells currentSpells = new Spells(null);
-    private FighterActions currentFighterActions = new FighterActions(null);
-    private ArcherActions currentArcherActions = new ArcherActions(null);
-    private PaladinActions currentPaladinActions = new PaladinActions(null);
+    private Actions currentActions = new Actions();
     private int turnDamage;
     private Entity target;
     private String currentEnvironment;
@@ -48,10 +42,7 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
-	    if(Class.equals(EntityClass.Classes.Wizard)){this.currentSpells = Wizard.getSpells(level);}
-        else if(Class.equals(EntityClass.Classes.Fighter)){this.currentFighterActions = Fighter.getActions(level);}
-        else if(Class.equals(EntityClass.Classes.Archer)){this.currentArcherActions = Archer.getActions(level);}
-        else if(Class.equals(EntityClass.Classes.Paladin)){this.currentPaladinActions = Paladin.getActions(level);}
+	    this.currentActions = Actions.getClassActions(Class);
 
         playerList.add(this);
     }
@@ -130,10 +121,10 @@ public class Player extends Entity
 
     public int doStaffAttacks()
     {
-	    System.out.println(currentSpells.getSpellInventory().toString());
+	    System.out.println(currentActions.getActionInventory().toString());
 	    Scanner playerInput = new Scanner(System.in);
         String choice = playerInput.nextLine();
-        if(Arrays.asList(currentSpells.getSpellInventory()).contains(Spell.SPELLS.get(choice))){return currentSpells.chooseSpell(Spell.SPELLS.get(choice));}
+        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.SPELLS.get(choice))){return currentActions.chooseAction(Spell.SPELLS.get(choice));}
         return doStaffAttacks();
     }
 

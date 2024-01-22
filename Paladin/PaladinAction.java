@@ -2,9 +2,9 @@ package Paladin;
 
 import java.util.HashMap;
 
-import Game.Entity;
+import Game.Action;
 
-public class PaladinAction
+public class PaladinAction extends Action
 {
     private boolean hasEffect;
     private int damage;
@@ -15,22 +15,14 @@ public class PaladinAction
     
     public PaladinAction(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
+        super(hasEffect, damage, type, name, isHarmful);
         this.hasEffect = hasEffect;
         this.damage = damage;
         this.type = type;
         this.name = name;
         this.isHarmful = isHarmful;
         PALADINACTIONS.put(name, this);
-    }
+    }   
 
-
-    public boolean getHasEffect(){return hasEffect;}
-    public int getActionDamage(){return damage;}
-    public String getType(){return type;}
-    public String getName(){return name;}
-    public boolean getIsHarmful(){return isHarmful;}
-    
-    public void effectProcess(Entity target){}
-
-    public String toString(){return getName();}    
+    public static HashMap<String, PaladinAction> getACTIONS(){return PALADINACTIONS;}
 }

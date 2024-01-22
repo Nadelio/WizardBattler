@@ -2,9 +2,11 @@ package Archer;
 
 import java.util.HashMap;
 
+import Classes.Archer;
+import Game.Action;
 import Game.Entity;
 
-public class ArcherAction
+public class ArcherAction extends Action
 {
     private boolean hasEffect;
     private int damage;
@@ -16,6 +18,7 @@ public class ArcherAction
 
     public ArcherAction(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
+        super(hasEffect, damage, type, name, isHarmful);
         this.hasEffect = hasEffect;
         this.damage = damage;
         this.type = type;
@@ -24,13 +27,5 @@ public class ArcherAction
         ARCHERACTIONS.put(name, this);
     }
 
-    public boolean getHasEffect(){return hasEffect;}
-    public int getActionDamage(){return damage;}
-    public String getType(){return type;}
-    public String getName(){return name;}
-    public boolean getIsHarmful(){return isHarmful;}
-
-    public void effectProcess(Entity target){}
-
-    public String toString(){return getName();}
+    public static HashMap<String, ArcherAction> getACTIONS(){return ARCHERACTIONS;}
 }

@@ -2,9 +2,13 @@ package Game;
 
 import java.util.*; // gives various utilites
 
+import Archer.ArcherAction;
 import Classes.EntityClass;
+import Classes.Paladin;
 import Classes.Wizard;
+import Fighter.FighterAction;
 import Fighter.FighterActions;
+import Paladin.PaladinAction;
 import WMath.*;
 import Weapons.Weapon;
 import Wizard.*;
@@ -19,10 +23,10 @@ public class Enemy extends Entity
     private String weakType;
     private String type;
     private EntityClass.Classes Class;
+    private Classes.Class CLASS;
     private String entityName;
     private String currentEnvironment;
-    private Spells currentSpells;
-    private FighterActions currentActions;
+    private Actions currentActions = new Actions();
     private int turnDamage;
     private boolean frozen = false;
 
@@ -43,6 +47,7 @@ public class Enemy extends Entity
         this.Class = Class;
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
+        this.CLASS = Environment.classes.get(Class);
 
         enemyList.add(this);
     }
@@ -69,9 +74,9 @@ public class Enemy extends Entity
             if(Math.random() > 0.5){doStaffAttacks();}
             else{doStaffAbility();}
         }
-        else if(this.Class.equals(EntityClass.Classes.Fighter))
+        else
         {
-            if(Math.random() > 0.5){doAttack();}
+            if(Math.random() > 0.5){enemyAttack();}
             else{doAction();}
         }
         FightProcesses.nextTurn();
@@ -90,43 +95,41 @@ public class Enemy extends Entity
         return targetHP;
     }
 
-    public String getSpellChoice()
-    {
-        Spells choices = Wizard.getSpells(getLevel());
-        Spell[] ENEMYSPELL = choices.getSpellInventory();
-        return ENEMYSPELL[WMath.randInt(0, ENEMYSPELL.length)].getName();
-    }
-
-    public void doAttack()
-    {
-        System.out.println("No Enemy AI implemented yet!");
-        // add AI logic here
-    }
-
-    public void doAction()
-    {
-        System.out.println("No Enemy AI implemented yet!");
-        // add AI logic here
-    }
-
     public void doStaffAttacks()
     {
-        String choice = getSpellChoice();
+        String choice = getActionChoice();
         if(Spell.SPELLS.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth(currentSpells.chooseSpell(Spell.SPELLS.get(choice)));
+            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.SPELLS.get(choice)));
         }
         else{doStaffAttacks();}
     }
 
     public void doStaffAbility()
     {
-        String choice = getSpellChoice();
+        String choice = getActionChoice();
         if(!Spell.SPELLS.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth((currentSpells.chooseSpell(Spell.SPELLS.get(choice))));
+            getCurrentTarget().setHealth((currentActions.chooseAction(Spell.SPELLS.get(choice))));
         }
         else{doStaffAbility();}
+    }
+
+    public String getActionChoice()
+    {
+        Actions choices = Classes.Class.getActions(getLevel());
+        Action[] ENEMYACTION = choices.getActionInventory();
+        return ENEMYACTION[WMath.randInt(0, ENEMYACTION.length)].getName();
+    }
+
+    public void doAction()
+    {
+        String choice = getActionChoice();
+        if(!Action.getActionInventory().get(choice).getIsHarmful()) //! BUG HERE PLS FIX, CREATE DATABASE IN Environment.java THAT HOLDS ALL THE Action CHILDREN!
+        {
+            getCurrentTarget().setHealth((currentActions.chooseAction(FighterAction.FIGHTERACTIONS.get(choice))));
+        }
+        else{doAction();}
     }
 
     private void chooseTarget(){this.target = Player.getPlayerList().get(WMath.randInt(Player.getPlayerList().size()));}

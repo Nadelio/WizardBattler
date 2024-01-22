@@ -1,9 +1,10 @@
 package Wizard;
 
 import java.util.HashMap;
-import Game.Entity;
 
-public class Spell
+import Game.Action;
+
+public class Spell extends Action
 {
 
     private boolean hasEffect;
@@ -15,6 +16,7 @@ public class Spell
     
     public Spell(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
+        super(hasEffect, damage, type, name, isHarmful);
         this.hasEffect = hasEffect;
         this.damage = damage;
         this.type = type;
@@ -23,14 +25,5 @@ public class Spell
         SPELLS.put(name, this);
     }
 
-
-    public boolean getHasEffect(){return hasEffect;}
-    public int getSpellDamage(){return damage;}
-    public String getType(){return type;}
-    public String getName(){return name;}
-    public boolean getIsHarmful(){return isHarmful;}
-    
-    public void effectProcess(Entity target){}
-
-    public String toString(){return getName();}
+    public static HashMap<String, Spell> getACTIONS(){return SPELLS;}
 }
