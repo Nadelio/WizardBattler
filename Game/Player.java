@@ -124,7 +124,7 @@ public class Player extends Entity
 	    System.out.println(currentActions.getActionInventory().toString());
 	    Scanner playerInput = new Scanner(System.in);
         String choice = playerInput.nextLine();
-        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.SPELLS.get(choice))){return currentActions.chooseAction(Spell.SPELLS.get(choice));}
+        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
         return doStaffAttacks();
     }
 

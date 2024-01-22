@@ -11,8 +11,10 @@ public class PaladinAction extends Action
     private String type;
     private String name;
     private boolean isHarmful;
-    public static HashMap<String, PaladinAction> PALADINACTIONS = new HashMap<String, PaladinAction>();
+    public static HashMap<String, Action> ACTIONS = new HashMap<String, Action>();
     
+    public PaladinAction(){super();}
+
     public PaladinAction(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
         super(hasEffect, damage, type, name, isHarmful);
@@ -21,8 +23,6 @@ public class PaladinAction extends Action
         this.type = type;
         this.name = name;
         this.isHarmful = isHarmful;
-        PALADINACTIONS.put(name, this);
-    }   
-
-    public static HashMap<String, PaladinAction> getACTIONS(){return PALADINACTIONS;}
+        this.ACTIONS.put(name, this);
+    }
 }

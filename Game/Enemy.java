@@ -100,7 +100,7 @@ public class Enemy extends Entity
         String choice = getActionChoice();
         if(Spell.SPELLS.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.SPELLS.get(choice)));
+            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.SPELLS.get(choice), getCurrentTarget()));
         }
         else{doStaffAttacks();}
     }
@@ -110,7 +110,7 @@ public class Enemy extends Entity
         String choice = getActionChoice();
         if(!Spell.SPELLS.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth((currentActions.chooseAction(Spell.SPELLS.get(choice))));
+            this.setHealth((currentActions.chooseAction(Spell.SPELLS.get(choice), getCurrentTarget()))); // got to fix this so that it affects the caster, and not the target.
         }
         else{doStaffAbility();}
     }
@@ -122,12 +122,12 @@ public class Enemy extends Entity
         return ENEMYACTION[WMath.randInt(0, ENEMYACTION.length)].getName();
     }
 
-    public void doAction()
+    public void doAction() 
     {
         String choice = getActionChoice();
-        if(!Action.getActionInventory().get(choice).getIsHarmful()) //! BUG HERE PLS FIX, CREATE DATABASE IN Environment.java THAT HOLDS ALL THE Action CHILDREN!
+        if(!Action.ActionDatabase.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth((currentActions.chooseAction(FighterAction.FIGHTERACTIONS.get(choice))));
+            getCurrentTarget().setHealth((currentActions.chooseAction(Action.ActionDatabase.getACTIONS().get(choice), getCurrentTarget())));
         }
         else{doAction();}
     }

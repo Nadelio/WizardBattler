@@ -12,7 +12,9 @@ public class FighterAction extends Action
     private String name;
     private boolean isHarmful;
 
-    public static HashMap<String, FighterAction> FIGHTERACTIONS = new HashMap<String, FighterAction>();
+    public static HashMap<String, Action> ACTIONS = new HashMap<String, Action>();
+
+    public FighterAction(){super();}
 
     public FighterAction(boolean hasEffect, int damage, String type, String name, boolean isHarmful)
     {
@@ -22,8 +24,6 @@ public class FighterAction extends Action
         this.type = type;
         this.name = name;
         this.isHarmful = isHarmful;
-        FIGHTERACTIONS.put(name, this);
+        this.ACTIONS.put(name, this);
     }
-
-    public static HashMap<String, FighterAction> getACTIONS(){return FIGHTERACTIONS;}
 }
