@@ -2,13 +2,7 @@ package Game;
 
 import java.util.*; // gives various utilites
 
-import Archer.ArcherAction;
 import Classes.EntityClass;
-import Classes.Paladin;
-import Classes.Wizard;
-import Fighter.FighterAction;
-import Fighter.FighterActions;
-import Paladin.PaladinAction;
 import WMath.*;
 import Weapons.Weapon;
 import Wizard.*;
@@ -98,9 +92,9 @@ public class Enemy extends Entity
     public void doStaffAttacks()
     {
         String choice = getActionChoice();
-        if(Spell.SPELLS.get(choice).getIsHarmful())
+        if(Spell.ACTIONS.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.SPELLS.get(choice), getCurrentTarget()));
+            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.ACTIONS.get(choice), getCurrentTarget()));
         }
         else{doStaffAttacks();}
     }
@@ -108,9 +102,9 @@ public class Enemy extends Entity
     public void doStaffAbility()
     {
         String choice = getActionChoice();
-        if(!Spell.SPELLS.get(choice).getIsHarmful())
+        if(!Spell.ACTIONS.get(choice).getIsHarmful())
         {
-            this.setHealth((currentActions.chooseAction(Spell.SPELLS.get(choice), getCurrentTarget()))); // got to fix this so that it affects the caster, and not the target.
+            this.setHealth((currentActions.chooseAction(Spell.ACTIONS.get(choice), this))); // got to fix this so that it affects the caster, and not the target.
         }
         else{doStaffAbility();}
     }
@@ -127,7 +121,7 @@ public class Enemy extends Entity
         String choice = getActionChoice();
         if(!Action.ActionDatabase.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth((currentActions.chooseAction(Action.ActionDatabase.getACTIONS().get(choice), getCurrentTarget())));
+            getCurrentTarget().setHealth((currentActions.chooseAction(Action.ActionDatabase.get(choice), getCurrentTarget())));
         }
         else{doAction();}
     }
