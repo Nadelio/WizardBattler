@@ -3,8 +3,13 @@ package Game;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Classes.*;
 import WMath.WMath;
+
+import Classes.*;
+import Fighter.*;
+import Wizard.*;
+import Archer.*;
+import Paladin.*;
 
 public class Environment
 {
@@ -39,10 +44,10 @@ public class Environment
         enemyTypes.put("skeleton", new String[]{"CURSED", "HOLY"});
         enemyTypes.put("knight", new String[]{"HOLY", "CURSED"});
 
-        classActions.put(EntityClass.Classes.Fighter, Fighter.getActions(1));
-        classActions.put(EntityClass.Classes.Wizard, Wizard.getActions(1));
-        classActions.put(EntityClass.Classes.Archer, Archer.getActions(1));
-        classActions.put(EntityClass.Classes.Paladin, Paladin.getActions(1));
+        classActions.put(EntityClass.Classes.Fighter, new FighterActions(new FighterAction[]{new TriplePunch(), new Dodge(), new StrongPunch()}));
+        classActions.put(EntityClass.Classes.Wizard, new Spells(new Spell[]{new Fireball(), new Recovery(), new Resistance()}));
+        classActions.put(EntityClass.Classes.Archer, new ArcherActions(new ArcherAction[]{new FireArrow(), new SmokeArrow(), new StormArrow()}));
+        classActions.put(EntityClass.Classes.Paladin, new PaladinActions(new PaladinAction[]{new HealingPrayer(), new DownwardSlash(), new ShieldBlock()}));
     }
 
     public static String getEnvironment(Player player)
@@ -70,5 +75,3 @@ public class Environment
         return classActions.get(Class);
     }
 }
-
-// Plains, Forest, Ruins, Catacombs, Town, City

@@ -6,7 +6,7 @@ import Archer.*;
 
 public class Archer extends Classes.Class
 {
-    private static HashMap<Integer, ArcherActions> LEVELACTIONS = new HashMap<Integer, ArcherActions>();
+    private HashMap<Integer, ArcherActions> LEVELACTIONS = new HashMap<Integer, ArcherActions>();
 
     private static ArcherAction[] levelOneActions = {new FireArrow(), new SmokeArrow(), new StormArrow()};
     private static ArcherAction[] levelTwoActions = {new ThunderArrow(), new BusterArrow()};

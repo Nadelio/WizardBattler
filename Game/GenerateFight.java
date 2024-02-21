@@ -37,18 +37,18 @@ public class GenerateFight
     public Enemy generateEnemy()
     {
         System.out.println("Necessary Player Data Collected");
+        System.out.println("Generating Enemy...");
         String enemyName = Environment.getRandomEnemy(Environment.environmentMobList.get(playerEnvironment));
-        System.out.println("Enemy name generated");
+        try {Thread.sleep(1500);}catch(InterruptedException e){}
         EntityClass.Classes enemyClass = EntityClass.Classes.getClass(Environment.enemyClassList.get(enemyName));
-        System.out.println("Enemy class generated");
         int enemyHealth = (1 + WMath.randInt(4)) * playerLevel;
-        System.out.println("Enemy health generated");
+        try {Thread.sleep(1500);}catch(InterruptedException e){}
         int enemyArmor = WMath.clamp(1 * WMath.randInt(2) * playerLevel, 0, 20);
-        System.out.println("Enemy armor generated");
+        try {Thread.sleep(1500);}catch(InterruptedException e){}
         String enemyType = Environment.getEnemyType(enemyName);
-        System.out.println("Enemy type generated");
+        try {Thread.sleep(1500);}catch(InterruptedException e){}
         String weakType = Environment.getWeakType(enemyName);
-        System.out.println("Enemy weakness generated");
+        try {Thread.sleep(1500);}catch(InterruptedException e){}
         Enemy enemy = new Enemy(enemyHealth, enemyArmor, generateWeapon(playerLevel, enemyType), playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment);
         System.out.println("Enemy fully generated");
         return enemy;

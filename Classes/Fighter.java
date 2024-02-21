@@ -5,7 +5,7 @@ import Fighter.*;
 
 public class Fighter extends Classes.Class
 {
-    private static HashMap<Integer, FighterActions> LEVELACTIONS = new HashMap<Integer, FighterActions>();
+    private HashMap<Integer, FighterActions> LEVELACTIONS = new HashMap<Integer, FighterActions>();
 
     private static FighterAction[] levelOneActions = {new TriplePunch(), new Dodge(), new StrongPunch()};
     private static FighterAction[] levelTwoActions = {new Toughen(), new FirePunch()};

@@ -19,15 +19,15 @@ public class Actions
         Entity currentTarget = target;
         int targetHealth = currentTarget.getHealth();
         
-        if(FightProcesses.attackRoll(FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getRoll()) > currentTarget.getArmor())
+        if(FightProcesses.attackRoll(Entity.getEntityList().get(FightProcesses.getTurnIterateNumber()).getRoll()) > currentTarget.getArmor())
         {
             if(currentAction.getHasEffect() && currentAction.getIsHarmful()){currentAction.effectProcess(currentTarget);}
-            else if(currentAction.getHasEffect() && (currentAction.getIsHarmful() == false)){currentAction.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
+            else if(currentAction.getHasEffect() && (!currentAction.getIsHarmful())){currentAction.effectProcess(Entity.getEntityList().get(FightProcesses.getTurnIterateNumber()));}
             targetHealth -= currentAction.getActionDamage();
             
             String TYPE = currentAction.getType();
-            
-            if(TYPE == currentTarget.getWeakType())
+           
+               if(TYPE == currentTarget.getWeakType())
             {
                 targetHealth -= currentAction.getActionDamage();
             }

@@ -22,7 +22,7 @@ public class Player extends Entity
 	private String type;
     private EntityClass.Classes Class;
     private String entityName;
-    private Actions currentActions = new Actions();
+    private Actions currentActions;
     private int turnDamage;
     private Entity target;
     private String currentEnvironment;
@@ -42,7 +42,7 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
-	    this.currentActions = Actions.getClassActions(Class);
+        this.currentActions = Actions.getClassActions(Class);
 
         playerList.add(this);
     }
@@ -121,7 +121,7 @@ public class Player extends Entity
 
     public int doStaffAttacks()
     {
-	    System.out.println(currentActions.getActionInventory().toString());
+        System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
 	    Scanner playerInput = new Scanner(System.in);
         String choice = playerInput.nextLine();
         if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
