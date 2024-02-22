@@ -38,6 +38,7 @@ public class Main
         return EntityClass.Classes.getClass(classChoice);
     }
 
+    @SuppressWarnings("unused")
     public static void printClasses()
     {
         int classValue = 0;

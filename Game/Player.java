@@ -1,6 +1,5 @@
 package Game;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,8 +10,6 @@ import Weapons.Weapon;
 
 public class Player extends Entity
 {
-
-
     private int health;
 	private int armor;
 	private Weapon weapon;
@@ -26,7 +23,6 @@ public class Player extends Entity
     private int turnDamage;
     private Entity target;
     private String currentEnvironment;
-
     private boolean frozen = false;
 
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName, String currentEnvironment)

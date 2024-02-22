@@ -1,7 +1,5 @@
 package Game;
 
-import java.util.*; // gives various utilites
-
 import Classes.EntityClass;
 import WMath.*;
 import Weapons.Weapon;
@@ -23,9 +21,6 @@ public class Enemy extends Entity
     private Actions currentActions = new Actions();
     private int turnDamage;
     private boolean frozen = false;
-
-    
-
     private Player target;
 
     public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass.Classes Class, String entityName, String currentEnvironment)
