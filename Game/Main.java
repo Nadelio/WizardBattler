@@ -32,7 +32,6 @@ public class Main
         {
             System.out.println("Please choose a class by entering the corresponding number!");
             printClasses();
-            try{Thread.sleep(1000);}catch(Exception e){}
             classChoice = in.nextInt();
         }
         return EntityClass.Classes.getClass(classChoice);
