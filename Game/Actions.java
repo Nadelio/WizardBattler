@@ -19,7 +19,7 @@ public class Actions
         Entity currentTarget = target;
         int targetHealth = currentTarget.getHealth();
 
-        if(FightProcesses.attackRoll(Entity.getEntityList().get(FightProcesses.getTurnIterateNumber()).getRoll()) > currentTarget.getArmor())
+        if(FightProcesses.attackRoll(Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getRoll()) > currentTarget.getArmor())
         {
             if(currentAction.getHasEffect() && currentAction.getIsHarmful())
             {
@@ -27,7 +27,7 @@ public class Actions
             }
             else if(currentAction.getHasEffect() && (!currentAction.getIsHarmful()))
             {
-                currentAction.effectProcess(Entity.getEntityList().get(FightProcesses.getTurnIterateNumber()));
+                currentAction.effectProcess(Environment.entityList.get(FightProcesses.getTurnIterateNumber()));
             }
             //! ^ Currently not working, is not adding health to player, removing health from enemy
             targetHealth -= currentAction.getActionDamage();

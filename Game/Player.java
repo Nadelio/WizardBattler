@@ -11,7 +11,7 @@ import Weapons.Weapon;
 
 public class Player extends Entity
 {
-    private static ArrayList<Player> playerList = new ArrayList<Player>();
+
 
     private int health;
 	private int armor;
@@ -44,7 +44,7 @@ public class Player extends Entity
         this.currentEnvironment = currentEnvironment;
         this.currentActions = Actions.getClassActions(Class);
 
-        playerList.add(this);
+        Environment.playerList.add(this);
     }
 
     // Add player action and action menu
@@ -111,13 +111,11 @@ public class Player extends Entity
 
     public Enemy chooseTarget()
     {
-        System.out.println(Enemy.getEnemyList().toString());
+        System.out.println(Environment.enemyList.toString());
         System.out.print("Input: ");
-        try (Scanner playerInput = new Scanner(System.in))
-        {
-            String input = playerInput.nextLine();
-            for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
-        }
+        Scanner playerInput = new Scanner(System.in);
+        String input = playerInput.nextLine();
+        for(Enemy enemy : Environment.enemyList){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
         return null;
     }
 
@@ -132,10 +130,7 @@ public class Player extends Entity
         return doStaffAttacks();
     }
 
-    public static ArrayList<Player> getPlayerList()
-    {
-        return playerList;
-    }
+
 
     @Override
     public String toString(){return entityName;}

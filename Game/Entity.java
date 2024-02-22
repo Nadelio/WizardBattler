@@ -1,6 +1,5 @@
 package Game;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,7 +10,6 @@ import Wizard.Spells;
 
 public class Entity
 {
-    private static ArrayList<Entity> entityList = new ArrayList<Entity>();
     private int HP;
     private int AR;
     private Weapon weapon;
@@ -46,30 +44,30 @@ public class Entity
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
 
-        entityList.add(this);
+        Environment.entityList.add(this);
     }
 
     public void playTurn()
     {
+        Scanner player = new Scanner(System.in);
         if(entityType)
         {
             System.out.println(FightProcesses.getCurrentPlayer() + "'s turn!\nType 'action' to open the action menu, or do 'attack' to do your attack!");
             System.out.print("Input: ");
-            try (Scanner player = new Scanner(System.in))
+
+            String input = player.nextLine();
+
+            if(input.strip().toLowerCase().equals("action"))
             {
-                String input = player.nextLine();
-                if(input.strip().toLowerCase().equals("action"))
-                {
-                    FightProcesses.getCurrentPlayer().playerAction();
-                }
-                else if(input.strip().toLowerCase().equals("attack"))
-                {
-                    FightProcesses.getCurrentPlayer().playerAttack();
-                }
-                else
-                {
-                    playTurn();
-                }
+                FightProcesses.getCurrentPlayer().playerAction();
+            }
+            else if(input.strip().toLowerCase().equals("attack"))
+            {
+                FightProcesses.getCurrentPlayer().playerAttack();
+            }
+            else
+            {
+                playTurn();
             }
         }
         else
@@ -79,7 +77,7 @@ public class Entity
         }
     }
 
-    public static ArrayList<Entity> getEntityList(){return entityList;}
+    
     public int getHealth(){return HP;}
     public int getArmor(){return AR;}
     public Weapon getWeapon(){return weapon;}

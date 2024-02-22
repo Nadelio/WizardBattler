@@ -24,7 +24,7 @@ public class Enemy extends Entity
     private int turnDamage;
     private boolean frozen = false;
 
-    private static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    
 
     private Player target;
 
@@ -43,7 +43,7 @@ public class Enemy extends Entity
         this.currentEnvironment = currentEnvironment;
         this.CLASS = Environment.classes.get(Class);
 
-        enemyList.add(this);
+        Environment.enemyList.add(this);
     }
 
     public void enemyTurn()
@@ -126,14 +126,7 @@ public class Enemy extends Entity
         else{doAction();}
     }
 
-    private void chooseTarget(){this.target = Player.getPlayerList().get(WMath.randInt(Player.getPlayerList().size()));}
-
-    public static ArrayList<Enemy> getEnemyList(){return enemyList;}
-    public static Enemy getEnemyFromList(String entityname)
-    {
-        for(Enemy enemy : getEnemyList()){if(enemy.getName().equals(entityname)){return enemy;}}
-        return null;
-    }
+    private void chooseTarget(){this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size()));}
 
     @Override
     public String toString(){return entityName;}

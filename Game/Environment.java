@@ -18,6 +18,9 @@ public class Environment
     public static HashMap<String, String[]> enemyTypes = new HashMap<String, String[]>();
     public static HashMap<EntityClass.Classes, Actions> classActions = new HashMap<EntityClass.Classes, Actions>();
     public static HashMap<EntityClass.Classes, Classes.Class> classes = new HashMap<EntityClass.Classes, Classes.Class>();
+    public static ArrayList<Entity> entityList = new ArrayList<Entity>();
+    public static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    public static ArrayList<Player> playerList = new ArrayList<Player>();
 
     public Environment()
     {
@@ -73,5 +76,11 @@ public class Environment
     public static Actions getActions(EntityClass.Classes Class)
     {
         return classActions.get(Class);
+    }
+
+    public static Enemy getEnemyFromList(String entityname)
+    {
+        for(Enemy enemy : enemyList){if(enemy.getName().equals(entityname)){return enemy;}}
+        return null;
     }
 }

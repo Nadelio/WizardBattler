@@ -26,9 +26,9 @@ public class FightProcesses
         turnIterateNumber = 0;
         playerIndex = 0;
         enemyIndex = 0;
-        turnMaxIterateNumber = Entity.getEntityList().size() - 1;
+        turnMaxIterateNumber = Environment.entityList.size() - 1;
         turnCount = 0;
-        ArrayList<Player> playerList = Player.getPlayerList();
+        ArrayList<Player> playerList = Environment.playerList;
         Player firstPlayer = playerList.get(0);
         currentEntity = firstPlayer;
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, firstPlayer.getName());
@@ -39,7 +39,7 @@ public class FightProcesses
 
     public static Player getPlayerTarget()
     {
-        ArrayList<Player> playerList = Player.getPlayerList();
+        ArrayList<Player> playerList = Environment.playerList;
         Random random = new Random();
         int rand = random.nextInt(0, playerList.size() + 1);
 
@@ -60,9 +60,9 @@ public class FightProcesses
             if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
             currentTurn = updateTurnData();
             turnCount++;
-            currentEntity = Entity.getEntityList().get(turnIterateNumber);
-            if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Enemy.getEnemyList().size() - 1){enemyIndex = 0;}}
-            else{playerIndex++; if(playerIndex > Player.getPlayerList().size() - 1){playerIndex = 0;}}
+            currentEntity = Environment.entityList.get(turnIterateNumber);
+            if(currentEntity instanceof Player){enemyIndex++; if(enemyIndex > Environment.enemyList.size() - 1){enemyIndex = 0;}}
+            else{playerIndex++; if(playerIndex > Environment.playerList.size() - 1){playerIndex = 0;}}
             System.out.println("-----------------------------------------------------");
             new TurnPlayedEvent().event();
             currentEntity.playTurn();
@@ -76,13 +76,13 @@ public class FightProcesses
 
     public static Player getCurrentPlayer()
     {
-        ArrayList<Player> playerList = Player.getPlayerList();
+        ArrayList<Player> playerList = Environment.playerList;
         return playerList.get(playerIndex);
     }
 
     public static Enemy getCurrentEnemy()
     {
-        ArrayList<Enemy> enemyList = Enemy.getEnemyList();
+        ArrayList<Enemy> enemyList = Environment.enemyList;
         return enemyList.get(enemyIndex);
     }
 
@@ -114,18 +114,18 @@ public class FightProcesses
 
     public static String nextTurnMember()
     {
-        return Entity.getEntityList().get(turnIterateNumber).toString();
+        return Environment.entityList.get(turnIterateNumber).toString();
     }
 
     public static Entity nextMemberInPlay()
     {
-        return Entity.getEntityList().get(turnIterateNumber);
+        return Environment.entityList.get(turnIterateNumber);
     }
 
     public static boolean endFightCheck()
     {
         ArrayList<Entity> removalList = new ArrayList<Entity>();
-        for(Entity entity : Entity.getEntityList())
+        for(Entity entity : Environment.entityList)
         {
             if(entity.getHealth() <= 0)
             {
@@ -140,15 +140,15 @@ public class FightProcesses
 
         for(Entity e : removalList)
         {
-            if(Entity.getEntityList().contains(e))
+            if(Environment.entityList.contains(e))
             {
-                Entity.getEntityList().remove(e);
+                Environment.entityList.remove(e);
             }
         }
 
         boolean enemiesLeft = false;
 
-        for(Entity entity : Entity.getEntityList())
+        for(Entity entity : Environment.entityList)
         {
             if(entity instanceof Enemy)
             {
@@ -173,10 +173,10 @@ public class FightProcesses
             }
             else if(playerDied && endFightRunCount == 0)
             {
-                System.out.println(Entity.getEntityList().get(turnIterateNumber) + " died! Ending fight...");
+                System.out.println(Environment.entityList.get(turnIterateNumber) + " died! Ending fight...");
                 endFightRunCount++;
             }
-            turnMaxIterateNumber = Entity.getEntityList().size() - 1;
+            turnMaxIterateNumber = Environment.entityList.size() - 1;
             return false;
         }
         return true;
