@@ -84,8 +84,9 @@ public class Main
 
         // set player's name and class
         System.out.println("Please type your name!");
-        Scanner playerInput = new Scanner(System.in);
+        Scanner playerInput = new Scanner(System.in); //* maybe surround with try-with resources? // same with the rest of the scanner lines
         String playerName = playerInput.nextLine();
+        try{Thread.sleep(1000);}catch(Exception e){}
         EntityClass.Classes playerClass = chooseClass();
         Weapon classWeapon = getClassWeapon(playerClass);
 
@@ -96,7 +97,8 @@ public class Main
         player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
 
         printPlayer(player);
-        
+
+        try{Thread.sleep(1000);}catch(Exception e){}
         System.out.println("-----------------------------------------------------");
 
         new GenerateFight(); //! FOR TESTING ONLY REMOVE BEFORE FINAL VERSION !//
