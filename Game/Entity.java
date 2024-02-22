@@ -55,19 +55,21 @@ public class Entity
         {
             System.out.println(FightProcesses.getCurrentPlayer() + "'s turn!\nType 'action' to open the action menu, or do 'attack' to do your attack!");
             System.out.print("Input: ");
-            Scanner player = new Scanner(System.in);
-            String input = player.nextLine();
-            if(input.strip().toLowerCase().equals("action"))
+            try (Scanner player = new Scanner(System.in))
             {
-                FightProcesses.getCurrentPlayer().playerAction();
-            }
-            else if(input.strip().toLowerCase().equals("attack"))
-            {
-                FightProcesses.getCurrentPlayer().playerAttack();
-            }
-            else
-            {
-                playTurn();
+                String input = player.nextLine();
+                if(input.strip().toLowerCase().equals("action"))
+                {
+                    FightProcesses.getCurrentPlayer().playerAction();
+                }
+                else if(input.strip().toLowerCase().equals("attack"))
+                {
+                    FightProcesses.getCurrentPlayer().playerAttack();
+                }
+                else
+                {
+                    playTurn();
+                }
             }
         }
         else

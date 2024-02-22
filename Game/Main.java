@@ -1,6 +1,5 @@
 package Game;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -29,10 +28,12 @@ public class Main
 
     public static EntityClass.Classes chooseClass()
     {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Please choose a class by entering the corresponding number!");
-        printClasses();
-        classChoice = in.nextInt();
+        try (Scanner in = new Scanner(System.in))
+        {
+            System.out.println("Please choose a class by entering the corresponding number!");
+            printClasses();
+            classChoice = in.nextInt();
+        }
         return EntityClass.Classes.getClass(classChoice);
     }
 
@@ -84,17 +85,18 @@ public class Main
 
         // set player's name and class
         System.out.println("Please type your name!");
-        Scanner playerInput = new Scanner(System.in);
-        String playerName = playerInput.nextLine();
-        EntityClass.Classes playerClass = chooseClass();
-        Weapon classWeapon = getClassWeapon(playerClass);
+        try (Scanner playerInput = new Scanner(System.in))
+        {
+            String playerName = playerInput.nextLine();
+            EntityClass.Classes playerClass = chooseClass();
+            Weapon classWeapon = getClassWeapon(playerClass);
 
-        //Welcome the player
-        System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
+            //Welcome the player
+            System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
 
-        // create the player
-        player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
-
+            // create the player
+            player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
+        }
         printPlayer(player);
         
         System.out.println("-----------------------------------------------------");

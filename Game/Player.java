@@ -113,18 +113,22 @@ public class Player extends Entity
     {
         System.out.println(Enemy.getEnemyList().toString());
         System.out.print("Input: ");
-        Scanner playerInput = new Scanner(System.in);
-        String input = playerInput.nextLine();
-        for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
+        try (Scanner playerInput = new Scanner(System.in))
+        {
+            String input = playerInput.nextLine();
+            for(Enemy enemy : Enemy.getEnemyList()){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
+        }
         return null;
     }
 
     public int doStaffAttacks()
     {
         System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
-	    Scanner playerInput = new Scanner(System.in);
-        String choice = playerInput.nextLine();
-        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
+	    try (Scanner playerInput = new Scanner(System.in))
+        {
+            String choice = playerInput.nextLine();
+            if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
+        }
         return doStaffAttacks();
     }
 
