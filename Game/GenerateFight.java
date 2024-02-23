@@ -44,8 +44,8 @@ public class GenerateFight
         int enemyArmor = WMath.clamp(1 * WMath.randInt(2) * playerLevel, 0, 20);
         String enemyType = Environment.getEnemyType(enemyName);
         String weakType = Environment.getWeakType(enemyName);
-        Weapon enemyWeapon = generateWeapon(playerLevel, enemyType);
-        Enemy enemy = new Enemy(enemyHealth, enemyArmor, enemyWeapon, playerLevel, playerLevel, weakType, enemyType, enemyClass, enemyName, playerEnvironment);
+        Weapon enemyWeapon = generateWeapon(playerLevel, "NONE");
+        new Enemy(enemyHealth, enemyArmor, enemyWeapon, 1, 1, weakType, enemyType, enemyClass, enemyName, playerEnvironment);
         System.out.println("Enemy fully generated");
     }
 }
