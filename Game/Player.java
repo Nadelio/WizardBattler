@@ -1,7 +1,6 @@
 package Game;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import Events.*;
 import Classes.*;
@@ -109,8 +108,7 @@ public class Player extends Entity
     {
         System.out.println(Environment.enemyList.toString());
         System.out.print("Input: ");
-        Scanner playerInput = new Scanner(System.in);
-        String input = playerInput.nextLine();
+        String input = Main.playerScanner.nextLine();
         for(Enemy enemy : Environment.enemyList){if(enemy.getName().equals(input.toLowerCase())){return enemy;}}
         return null;
     }
@@ -118,11 +116,8 @@ public class Player extends Entity
     public int doStaffAttacks()
     {
         System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
-	    try (Scanner playerInput = new Scanner(System.in))
-        {
-            String choice = playerInput.nextLine();
-            if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
-        }
+        String choice = Main.playerScanner.nextLine();
+        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
         return doStaffAttacks();
     }
 

@@ -10,6 +10,8 @@ public class Main
 {
     private static Player player;
 
+    public static Scanner playerScanner = new Scanner(System.in);
+
     public static Player getPlayer(){return player;}
 
     public static void gameStartAnim()
@@ -28,12 +30,9 @@ public class Main
 
     public static EntityClass.Classes chooseClass()
     {
-        try (Scanner in = new Scanner(System.in))
-        {
-            System.out.println("Please choose a class by entering the corresponding number!");
-            printClasses();
-            classChoice = in.nextInt();
-        }
+        System.out.println("Please choose a class by entering the corresponding number!");
+        printClasses();
+        classChoice = playerScanner.nextInt();
         return EntityClass.Classes.getClass(classChoice);
     }
 
@@ -44,8 +43,7 @@ public class Main
 
         for(EntityClass.Classes c : EntityClass.Classes.values())
         {
-            System.out.print(classValue);
-            System.out.print(" : " + EntityClass.classList.get(classValue) + "\n");
+            System.out.println(classValue + " : " + EntityClass.classList.get(classValue));
             classValue++;
         }
     }
@@ -86,18 +84,16 @@ public class Main
 
         // set player's name and class
         System.out.println("Please type your name!");
-        try(Scanner playerInput = new Scanner(System.in))
-        {
-            String playerName = playerInput.nextLine();
-            EntityClass.Classes playerClass = chooseClass();
-            Weapon classWeapon = getClassWeapon(playerClass);
+        String playerName = playerScanner.nextLine();
+        EntityClass.Classes playerClass = chooseClass();
+        Weapon classWeapon = getClassWeapon(playerClass);
 
-            //Welcome the player
-            System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
+        //Welcome the player
+        System.out.println("Welcome " + playerName + "!\nYou have chosen the class " + EntityClass.classList.get(classChoice) + "!");
 
-            // create the player
-            player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
-        }
+        // create the player
+        player = new Player(10, 0, classWeapon, 1, 20, "NONE", playerClass, playerName, "Town");
+
         printPlayer(player);
         System.out.println("-----------------------------------------------------");
 
