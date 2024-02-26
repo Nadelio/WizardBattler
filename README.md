@@ -14,21 +14,16 @@ Current Features:
 - Events class
 # 
 Current Bugs/Dependecy Errors:
-- Missing some methods for a few classes
 - No ability/class/action selection method/class
 - Turn functionality is not finished for:
     - Player.java
-    - FightProcesses.java
 - Finish implementing all events
-- Finish enemy generation
 - Add leveling system
 - Add NPC class
 - Add shops, items, etc.
 - Add encounters (aka NPC encounter, fight encounter, discover item, etc)
 - JButtons, JFrame, JLabel, Menu system, etc.
-- Dev/Debug console
 # 
 Contributers:
 - Nadelio (Creator)
-- Sheriff_Nevarez
 - PogMaster9001
