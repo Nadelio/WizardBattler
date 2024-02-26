@@ -169,12 +169,33 @@ public class FightProcesses
             if(!playerDied && endFightRunCount == 0)
             {
                 System.out.println("All enemies eliminated! Ending fight...");
+                for(Player p : Environment.playerList){p.setFirstRun();}
                 endFightRunCount++;
             }
             else if(playerDied && endFightRunCount == 0)
             {
-                System.out.println(Environment.entityList.get(turnIterateNumber) + " died! Ending fight...");
-                endFightRunCount++;
+                if(Environment.playerList.size() > 1)
+                {
+                    int deadcount = 0;
+                    for(Player p : Environment.playerList)
+                    {
+                        if(p.getDead())
+                        {
+                            p.setFirstRun();
+                            deadcount++;
+                        }
+                    }
+                    if(deadcount == Environment.playerList.size())
+                    {
+                        System.out.println("All players are dead! Ending fight...");
+                        endFightRunCount++;
+                    }
+                }
+                else if(Environment.playerList.size() == 1)
+                {
+                    System.out.println(Environment.entityList.get(turnIterateNumber) + " died! Ending fight...");
+                    endFightRunCount++;
+                }
             }
             turnMaxIterateNumber = Environment.entityList.size() - 1;
             return false;

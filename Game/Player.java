@@ -48,11 +48,13 @@ public class Player extends Entity
         // do stuff
         FightProcesses.nextTurn();
     }
-    
+
+    public int staffDamage;
+
     public void playerAttack()
     {
         System.out.println(entityName + " chose to attack!");
-        int staffDamage = 0;
+        staffDamage = 0;
         int playerDamage = weapon.getDamage();
 
 	    target = chooseTarget();
@@ -72,14 +74,13 @@ public class Player extends Entity
             {
 	            if(weapon.getWeaponType().equals("staff"))
 	            {
-                    staffDamage = doStaffAttacks();
-	        	    target.setHealth(target.getHealth() - staffDamage);
+                    doStaffAttacks();
                     this.turnDamage += staffDamage;
 	            }
 	            else
 	            {
 		            if(weapon.getHasEffect() && weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(target);}
-                    else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay());}
+                    else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(this);}
 		            
                     if(FightProcesses.attackRoll(roll) >= target.getArmor())
 		            {
@@ -113,12 +114,26 @@ public class Player extends Entity
         return null;
     }
 
-    public int doStaffAttacks()
+    public void doStaffAttacks()
     {
         System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
         String choice = Main.playerScanner.nextLine();
-        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice))){return currentActions.chooseAction(Spell.ACTIONS.get(choice), target);}
-        return doStaffAttacks();
+        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice)))
+        {
+            if(Spell.ACTIONS.get(choice).getIsHarmful())
+            {
+                target.setHealth(target.getHealth() - currentActions.chooseAction(Spell.ACTIONS.get(choice), target));
+                staffDamage = Spell.ACTIONS.get(choice).getActionDamage();
+            }
+            else
+            {
+                this.setHealth(health + currentActions.chooseAction(Spell.ACTIONS.get(choice), this));
+            }
+        }
+        else
+        {
+            doStaffAttacks();
+        }
     }
 
 

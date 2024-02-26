@@ -14,6 +14,13 @@ public class Recovery extends Spell
     public void effectProcess(Entity target)
     {
         int targetHealth = target.getHealth();
-        target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getLevel());
+        if(FightProcesses.getTurnCount() <= 0)
+        {
+            target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getLevel());
+        }
+        else
+        {
+            target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getLevel());
+        }
     }
 }

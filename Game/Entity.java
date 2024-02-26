@@ -28,6 +28,7 @@ public class Entity
     private boolean dodged = false;
     private boolean dead = false;
     private String currentEnvironment;
+    private boolean firstRun = true;
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
@@ -54,6 +55,7 @@ public class Entity
             System.out.println(FightProcesses.getCurrentPlayer() + "'s turn!");
             System.out.println("Type 'action' to open the action menu, or do 'attack' to do your attack!");
             System.out.print("Input: ");
+            if(firstRun){Main.playerScanner.nextLine(); firstRun = false;}
             String input = Main.playerScanner.nextLine();
             if(input.strip().toLowerCase().equals("action"))
             {
@@ -92,6 +94,7 @@ public class Entity
     public FighterActions getCurrentActions(){return currentActions;}
     public boolean getDodged(){return dodged;}
     public String getCurrentEnvironment(){return currentEnvironment;}
+    public boolean getDead(){return dead;}
 
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}
@@ -99,4 +102,5 @@ public class Entity
     public void setUnfrozen(){this.frozen = false;}
     public void setDodged(){this.dodged = !dodged;}
     public void setDead(){this.dead = true;}
+    public void setFirstRun(){this.firstRun = true;}
 }
