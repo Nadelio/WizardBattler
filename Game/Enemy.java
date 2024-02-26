@@ -99,7 +99,7 @@ public class Enemy extends Entity
         String choice = getActionChoice();
         if(!Spell.ACTIONS.get(choice).getIsHarmful())
         {
-            this.setHealth((currentActions.chooseAction(Spell.ACTIONS.get(choice), this))); // got to fix this so that it affects the caster, and not the target.
+            this.setHealth((currentActions.chooseAction(Spell.ACTIONS.get(choice), this)));
         }
         else{doStaffAbility();}
     }
@@ -121,7 +121,7 @@ public class Enemy extends Entity
         else{doAction();}
     }
 
-    private void chooseTarget(){this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size()));}
+    private void chooseTarget(){this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size() - 1));}
 
     @Override
     public String toString(){return entityName;}
