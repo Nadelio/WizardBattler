@@ -5,13 +5,17 @@ Something stupid I am doing, not really any purpose to this other than to practi
 Current Features:
 - Player, Enemy, and Entity classes
 - FightProcesses class
-- Spell and Spells classes
-- Level 1 spells
-- Level 2 spells
+- Action and Actions classes
+- Level 1 Actions
+- Level 2 Actions
 - Turn class
 - EntityClass class
 - Weapon class
 - Events class
+- Misc Databases
+- Enemy Generation
+- Fight Processes
+- Attacking
 # 
 Current Bugs/Dependecy Errors:
 - No ability/class/action selection method/class
