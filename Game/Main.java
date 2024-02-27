@@ -63,6 +63,15 @@ public class Main
         return classWeapons.get(playerClass);
     }
 
+    public static void initClasses()
+    {
+        new Fighter();
+        new Wizard();
+        new Archer();
+        new Paladin();
+        System.out.println("Classes Generated!");
+    }
+
     public static void printPlayer(Player player)
     {
         System.out.println("Player name: " + player.getName());
@@ -75,10 +84,12 @@ public class Main
     {
         gameStartAnim();
          
+        // init Environment
+        new Environment();
         // init weapons
         new Weapons();
-        // init Environments
-        new Environment();
+        // init classes
+        initClasses();
         // init classWeapons
         initClassWeapons();
 

@@ -28,7 +28,3 @@ public class EntityClass
 
     } // add more classes in the future?
 }
-// Fighter: Done
-// Wizard: Done
-// Archer: Done
-// Paladin: Done

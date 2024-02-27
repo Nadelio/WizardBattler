@@ -17,6 +17,7 @@ public class Environment
     public static HashMap<String, Integer> enemyClassList = new HashMap<String, Integer>();
     public static HashMap<String, String[]> enemyTypes = new HashMap<String, String[]>();
     public static HashMap<EntityClass.Classes, Actions> classActions = new HashMap<EntityClass.Classes, Actions>();
+    public static HashMap<EntityClass.Classes, Action> classAction = new HashMap<EntityClass.Classes, Action>();
     public static HashMap<EntityClass.Classes, Classes.Class> classes = new HashMap<EntityClass.Classes, Classes.Class>();
     public static ArrayList<Entity> entityList = new ArrayList<Entity>();
     public static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
@@ -47,10 +48,15 @@ public class Environment
         enemyTypes.put("skeleton", new String[]{"CURSED", "HOLY"});
         enemyTypes.put("knight", new String[]{"HOLY", "CURSED"});
 
-        classActions.put(EntityClass.Classes.Fighter, new FighterActions(new FighterAction[]{new TriplePunch(), new Dodge(), new StrongPunch()}));
-        classActions.put(EntityClass.Classes.Wizard, new Spells(new Spell[]{new Fireball(), new Recovery(), new Resistance()}));
-        classActions.put(EntityClass.Classes.Archer, new ArcherActions(new ArcherAction[]{new FireArrow(), new SmokeArrow(), new StormArrow()}));
-        classActions.put(EntityClass.Classes.Paladin, new PaladinActions(new PaladinAction[]{new HealingPrayer(), new DownwardSlash(), new ShieldBlock()}));
+        classActions.put(EntityClass.Classes.Fighter, Environment.getActions(EntityClass.Classes.Fighter));
+        classActions.put(EntityClass.Classes.Wizard, Environment.getActions(EntityClass.Classes.Wizard));
+        classActions.put(EntityClass.Classes.Archer, Environment.getActions(EntityClass.Classes.Archer));
+        classActions.put(EntityClass.Classes.Paladin, Environment.getActions(EntityClass.Classes.Paladin));
+
+        classAction.put(EntityClass.Classes.Fighter, new FighterAction());
+        classAction.put(EntityClass.Classes.Wizard, new Spell());
+        classAction.put(EntityClass.Classes.Archer, new ArcherAction());
+        classAction.put(EntityClass.Classes.Paladin, new PaladinAction());
     }
 
     public static String getEnvironment(Player player)
@@ -76,6 +82,11 @@ public class Environment
     public static Actions getActions(EntityClass.Classes Class)
     {
         return classActions.get(Class);
+    }
+
+    public static Action getAction(EntityClass.Classes Class)
+    {
+        return classAction.get(Class);
     }
 
     public static Enemy getEnemyFromList(String entityname)

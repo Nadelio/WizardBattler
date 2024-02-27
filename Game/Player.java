@@ -37,16 +37,34 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
-        this.currentActions = Actions.getClassActions(Class);
+        this.currentActions = Environment.getActions(Class);
+        if(this.currentActions == null){throw new IllegalArgumentException("Variable 'currentActions' for " + this.entityName + " is null, please restart!");}
 
         Environment.playerList.add(this);
     }
 
-    // Add player action and action menu
-    public void playerAction()
+    @SuppressWarnings("static-access")
+    public void playerAction() // isn't fully fixed, main if clause not being satisfied // error started when I changed classActions database in Environment from manual additions to the already generated actions from the various actions
     {
-        // do stuff
-        FightProcesses.nextTurn();
+        System.out.println(entityName + " chose to use an action!");
+        System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
+        String choice = Main.playerScanner.nextLine();
+        if(Arrays.asList(currentActions.getActionInventory()).contains(Environment.getAction(Class).ACTIONS.get(choice)))
+        {
+            if(Environment.getAction(Class).ACTIONS.get(choice).getIsHarmful())
+            {
+                target.setHealth(target.getHealth() - currentActions.chooseAction(Environment.getAction(Class).ACTIONS.get(choice), target));
+            }
+            else
+            {
+                this.setHealth(health + currentActions.chooseAction(Environment.getAction(Class).ACTIONS.get(choice), this));
+            }
+            FightProcesses.nextTurn();
+        }
+        else
+        {
+            playerAction();
+        }
     }
 
     public int staffDamage;
