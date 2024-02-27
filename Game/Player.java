@@ -9,6 +9,7 @@ import Weapons.Weapon;
 
 public class Player extends Entity
 {
+    private int totalHealth;
     private int health;
 	private int armor;
 	private Weapon weapon;
@@ -27,6 +28,7 @@ public class Player extends Entity
     public Player(int HP, int AR, Weapon weapon, int level, int roll, String weakType, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
         super(HP, AR, weapon, level, weakType, "isPlayer", true, Class, entityName, currentEnvironment);
+        this.totalHealth = HP;
         this.health = HP;
         this.armor = AR;
         this.weapon = weapon;

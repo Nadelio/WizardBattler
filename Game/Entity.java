@@ -10,6 +10,7 @@ import Wizard.Spells;
 
 public class Entity
 {
+    private int THP;
     private int HP;
     private int AR;
     private Weapon weapon;
@@ -32,6 +33,7 @@ public class Entity
     
     public Entity(int HP, int AR, Weapon weapon, int level, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
+        this.THP = HP;
         this.HP = HP;
         this.AR = AR;
         this.weapon = weapon;
@@ -77,7 +79,7 @@ public class Entity
         }
     }
 
-    
+    public int getTotalHealth(){return THP;}
     public int getHealth(){return HP;}
     public int getArmor(){return AR;}
     public Weapon getWeapon(){return weapon;}
