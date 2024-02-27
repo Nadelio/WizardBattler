@@ -41,7 +41,7 @@ public class FightProcesses
     {
         ArrayList<Player> playerList = Environment.playerList;
         Random random = new Random();
-        int rand = random.nextInt(0, playerList.size() + 1);
+        int rand = random.nextInt(0, playerList.size());
 
         return playerList.get(rand);
     }

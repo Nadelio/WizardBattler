@@ -8,6 +8,7 @@ import Weapons.Weapon;
 
 public class Enemy extends Entity
 {
+    private int totalHealth;
     private int health;
     private int armor;
     private Weapon weapon;
@@ -27,6 +28,7 @@ public class Enemy extends Entity
     public Enemy(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String type, EntityClass.Classes Class, String entityName, String currentEnvironment)
     {
         super(HP, AR, weapon, level, weakType, type, false, Class, entityName, currentEnvironment);
+        this.totalHealth = HP;
         this.health = HP;
 		this.armor = AR;
 		this.weapon = weapon;
@@ -50,7 +52,7 @@ public class Enemy extends Entity
         {
             if(!target.getDodged())
             {
-                if(getHealth() < 25){enemyAction();}
+                if(getHealth() < (totalHealth/2)){enemyAction();}
                 else if(target.getHealth() < 25 || (target.getHealth() > 75 && getHealth() > 75)){target.setHealth(target.getHealth() - enemyAttack());}
                 else{target.setHealth(target.getHealth() - enemyAttack());}
             }
