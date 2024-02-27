@@ -1,9 +1,10 @@
 package Game;
 
 import Classes.EntityClass;
+import Events.ActionPlayedEvent;
+import Events.AttackPlayedEvent;
 import WMath.*;
 import Weapons.Weapon;
-import Wizard.*;
 
 public class Enemy extends Entity
 {
@@ -18,7 +19,7 @@ public class Enemy extends Entity
     private Classes.Class CLASS;
     private String entityName;
     private String currentEnvironment;
-    private Actions currentActions = new Actions();
+    private Actions currentActions;
     private int turnDamage;
     private boolean frozen = false;
     private Player target;
@@ -37,6 +38,7 @@ public class Enemy extends Entity
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
         this.CLASS = Environment.classes.get(Class);
+        this.currentActions = Actions.getClassActions(Class);
 
         Environment.enemyList.add(this);
     }
@@ -49,20 +51,24 @@ public class Enemy extends Entity
             if(!target.getDodged())
             {
                 if(getHealth() < 25){enemyAction();}
-                else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
-                else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
+                else if(target.getHealth() < 25 || (target.getHealth() > 75 && getHealth() > 75)){target.setHealth(target.getHealth() - enemyAttack());}
+                else{target.setHealth(target.getHealth() - enemyAttack());}
             }
             else
             {
                 System.out.println(target.getName() + " dodged!");
             }
         }
-        System.out.println(this.getName() + " is frozen!");
+        else
+        {
+            System.out.println(this.getName() + " is frozen!");
+        }
         FightProcesses.nextTurn();
     }
 
     public void enemyAction()
     {
+        new ActionPlayedEvent().event();
         if(this.Class.equals(EntityClass.Classes.Wizard))
         {
             if(Math.random() > 0.5){doStaffAttacks();}
@@ -78,6 +84,7 @@ public class Enemy extends Entity
 
     public int enemyAttack()
     {
+        new AttackPlayedEvent().event();
         target = FightProcesses.getPlayerTarget();
         int targetHP = target.getHealth();
         if(weapon.getHasEffect()){weapon.effectProcess(target);}
@@ -111,17 +118,16 @@ public class Enemy extends Entity
 
     public String getActionChoice()
     {
-        Actions choices = Classes.Class.getActions(getLevel());
-        Action[] ENEMYACTION = choices.getActionInventory();
+        Action[] ENEMYACTION = currentActions.getActionInventory();
         return ENEMYACTION[WMath.randInt(0, ENEMYACTION.length)].getName();
     }
 
     public void doAction() 
     {
         String choice = getActionChoice();
-        if(!Action.ActionDatabase.get(choice).getIsHarmful())
+        if(!Environment.classActionDatabase.get(Class).get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth((currentActions.chooseAction(Action.ActionDatabase.get(choice), getCurrentTarget())));
+            target.setHealth((currentActions.chooseAction(Environment.classActionDatabase.get(Class).get(choice), target)));
         }
         else{doAction();}
     }

@@ -43,7 +43,7 @@ public class Player extends Entity
         Environment.playerList.add(this);
     }
 
-    public void playerAction() // freezing issue again, checking if the thing is happening again...
+    public void playerAction()
     {
         String actionInventoryString = Arrays.toString(this.currentActions.getActionInventory());
         System.out.println(entityName + " chose to use an action!");
