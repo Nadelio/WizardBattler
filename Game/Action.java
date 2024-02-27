@@ -14,7 +14,6 @@ public class Action
     private String type;
     private String name;
     private boolean isHarmful;
-    public static HashMap<String, Action> ACTIONS = new HashMap<String, Action>();
     
     private static int databaseInitCount = 0;
     public static HashMap<String, Action> ActionDatabase = new HashMap<String, Action>();
@@ -49,8 +48,6 @@ public class Action
     public String getType(){return type;}
     public String getName(){return name;}
     public boolean getIsHarmful(){return isHarmful;}
-
-    public HashMap<String, Action> getACTIONS(){return ACTIONS;}
 
     public void effectProcess(Entity target){}
 

@@ -7,6 +7,6 @@ public class AttackPlayedEvent extends Events
     @Override
     public void event()
     {
-        System.out.println("Action chosen!");
+        System.out.println("Attack chosen!");
     }
 }

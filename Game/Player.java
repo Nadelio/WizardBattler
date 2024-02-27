@@ -37,27 +37,29 @@ public class Player extends Entity
         this.Class = Class;
         this.entityName = entityName;
         this.currentEnvironment = currentEnvironment;
-        this.currentActions = Environment.getActions(Class);
+        this.currentActions = Actions.getClassActions(Class);
         if(this.currentActions == null){throw new IllegalArgumentException("Variable 'currentActions' for " + this.entityName + " is null, please restart!");}
 
         Environment.playerList.add(this);
     }
 
-    @SuppressWarnings("static-access")
-    public void playerAction() // isn't fully fixed, main if clause not being satisfied // error started when I changed classActions database in Environment from manual additions to the already generated actions from the various actions
+    public void playerAction() // freezing issue again, checking if the thing is happening again...
     {
+        String actionInventoryString = Arrays.toString(this.currentActions.getActionInventory());
         System.out.println(entityName + " chose to use an action!");
-        System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
+        System.out.println(actionInventoryString);
         String choice = Main.playerScanner.nextLine();
-        if(Arrays.asList(currentActions.getActionInventory()).contains(Environment.getAction(Class).ACTIONS.get(choice)))
+        Action chosenAction = Environment.classActionDatabase.get(Class).get(choice);
+        if(actionInventoryString.contains(chosenAction.getName()))
         {
-            if(Environment.getAction(Class).ACTIONS.get(choice).getIsHarmful())
+            if(this.currentActions == null){throw new IllegalArgumentException("Variable 'currentActions' for " + this.entityName + " is null, please restart!");}
+            if(chosenAction.getIsHarmful())
             {
-                target.setHealth(target.getHealth() - currentActions.chooseAction(Environment.getAction(Class).ACTIONS.get(choice), target));
+                target.setHealth(target.getHealth() - currentActions.chooseAction(chosenAction, target));
             }
             else
             {
-                this.setHealth(health + currentActions.chooseAction(Environment.getAction(Class).ACTIONS.get(choice), this));
+                this.setHealth(health + currentActions.chooseAction(chosenAction, this));
             }
             FightProcesses.nextTurn();
         }
@@ -136,16 +138,16 @@ public class Player extends Entity
     {
         System.out.println(Arrays.toString(this.currentActions.getActionInventory()));
         String choice = Main.playerScanner.nextLine();
-        if(Arrays.asList(currentActions.getActionInventory()).contains(Spell.ACTIONS.get(choice)))
+        if(Arrays.toString(currentActions.getActionInventory()).contains(Environment.spellDatabase.get(choice).getName()))
         {
-            if(Spell.ACTIONS.get(choice).getIsHarmful())
+            if(Environment.spellDatabase.get(choice).getIsHarmful())
             {
-                target.setHealth(target.getHealth() - currentActions.chooseAction(Spell.ACTIONS.get(choice), target));
-                staffDamage = Spell.ACTIONS.get(choice).getActionDamage();
+                target.setHealth(target.getHealth() - currentActions.chooseAction(Environment.spellDatabase.get(choice), target));
+                staffDamage = Environment.spellDatabase.get(choice).getActionDamage();
             }
             else
             {
-                this.setHealth(health + currentActions.chooseAction(Spell.ACTIONS.get(choice), this));
+                this.setHealth(health + currentActions.chooseAction(Environment.spellDatabase.get(choice), this));
             }
         }
         else

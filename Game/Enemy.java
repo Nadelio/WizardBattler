@@ -52,7 +52,12 @@ public class Enemy extends Entity
                 else if(getCurrentTarget().getHealth() < 25 || (getCurrentTarget().getHealth() > 75 && getHealth() > 75)){getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
                 else{getCurrentTarget().setHealth(getCurrentTarget().getHealth() - enemyAttack());}
             }
+            else
+            {
+                System.out.println(target.getName() + " dodged!");
+            }
         }
+        System.out.println(this.getName() + " is frozen!");
         FightProcesses.nextTurn();
     }
 
@@ -87,9 +92,9 @@ public class Enemy extends Entity
     public void doStaffAttacks()
     {
         String choice = getActionChoice();
-        if(Spell.ACTIONS.get(choice).getIsHarmful())
+        if(Environment.spellDatabase.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth(currentActions.chooseAction(Spell.ACTIONS.get(choice), getCurrentTarget()));
+            getCurrentTarget().setHealth(currentActions.chooseAction(Environment.spellDatabase.get(choice), getCurrentTarget()));
         }
         else{doStaffAttacks();}
     }
@@ -97,9 +102,9 @@ public class Enemy extends Entity
     public void doStaffAbility()
     {
         String choice = getActionChoice();
-        if(!Spell.ACTIONS.get(choice).getIsHarmful())
+        if(!Environment.spellDatabase.get(choice).getIsHarmful())
         {
-            this.setHealth((currentActions.chooseAction(Spell.ACTIONS.get(choice), this)));
+            this.setHealth((currentActions.chooseAction(Environment.spellDatabase.get(choice), this)));
         }
         else{doStaffAbility();}
     }
@@ -121,7 +126,17 @@ public class Enemy extends Entity
         else{doAction();}
     }
 
-    private void chooseTarget(){this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size() - 1));}
+    private void chooseTarget()
+    {
+        if(Environment.playerList.size() > 1)
+        {
+            this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size() - 1));
+        }
+        else
+        {
+            this.target = Environment.playerList.get(WMath.randInt(Environment.playerList.size()));
+        }
+    }
 
     @Override
     public String toString(){return entityName;}

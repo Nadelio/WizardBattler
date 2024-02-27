@@ -69,7 +69,6 @@ public class Main
         new Wizard();
         new Archer();
         new Paladin();
-        System.out.println("Classes Generated!");
     }
 
     public static void printPlayer(Player player)

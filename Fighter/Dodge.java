@@ -1,7 +1,7 @@
 package Fighter;
 
+import Events.DodgeEvent;
 import Game.Entity;
-import Game.FightProcesses;
 
 public class Dodge extends FighterAction
 {
@@ -14,13 +14,6 @@ public class Dodge extends FighterAction
     public void effectProcess(Entity target)
     {
         target.setDodged();
-        while(target.getDodged())
-        {
-            if(FightProcesses.turnUpdate)
-            {
-                target.setDodged();
-                try {Thread.sleep(50);} catch(InterruptedException e){}
-            }
-        }
+        new DodgeEvent().event();
     }
 }

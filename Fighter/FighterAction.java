@@ -3,6 +3,7 @@ package Fighter;
 import java.util.HashMap;
 
 import Game.Action;
+import Game.Environment;
 
 public class FighterAction extends Action
 {
@@ -12,7 +13,7 @@ public class FighterAction extends Action
     private String name;
     private boolean isHarmful;
 
-    public static HashMap<String, Action> ACTIONS = new HashMap<String, Action>();
+
 
     public FighterAction(){super();}
 
@@ -24,6 +25,6 @@ public class FighterAction extends Action
         this.type = type;
         this.name = name;
         this.isHarmful = isHarmful;
-        this.ACTIONS.put(name, this);
+        Environment.fighterActionDatabase.put(name, this);
     }
 }

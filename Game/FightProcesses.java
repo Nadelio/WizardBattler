@@ -26,7 +26,7 @@ public class FightProcesses
         turnIterateNumber = 0;
         playerIndex = 0;
         enemyIndex = 0;
-        turnMaxIterateNumber = Environment.entityList.size() - 1;
+        turnMaxIterateNumber = Environment.entityList.size();
         turnCount = 0;
         ArrayList<Player> playerList = Environment.playerList;
         Player firstPlayer = playerList.get(0);

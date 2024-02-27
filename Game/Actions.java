@@ -1,6 +1,7 @@
 package Game;
 
 import Classes.EntityClass;
+import Events.*;
 
 public class Actions
 {
@@ -29,7 +30,6 @@ public class Actions
             {
                 currentAction.effectProcess(Environment.entityList.get(FightProcesses.getTurnIterateNumber()));
             }
-            //! ^ Currently not working, is not adding health to player, removing health from enemy
             targetHealth -= currentAction.getActionDamage();
             
             String TYPE = currentAction.getType();
@@ -39,7 +39,10 @@ public class Actions
                 targetHealth -= currentAction.getActionDamage();
             }
         }
-        
+        else
+        {
+            new RollFailedEvent().event();
+        }
         return targetHealth;
     }
 
