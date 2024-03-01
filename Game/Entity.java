@@ -98,6 +98,7 @@ public class Entity
     public String getCurrentEnvironment(){return currentEnvironment;}
     public boolean getDead(){return dead;}
 
+    public void setTotalHealth(int newTHP){this.THP = newTHP;}
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}
     public void setLevel(int newLevel){this.level = newLevel;}

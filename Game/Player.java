@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import Events.*;
 import Classes.*;
-import Wizard.*;
 import Weapons.Weapon;
 
 public class Player extends Entity

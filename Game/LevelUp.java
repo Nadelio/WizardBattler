@@ -1,5 +1,7 @@
 package Game;
 
+import WMath.WMath;
+
 public class LevelUp
 {
     public static void addXP(Player player)
@@ -16,10 +18,20 @@ public class LevelUp
         {
             player.setLevel(player.getLevel() + 1);
             player.setCurrentXP(0);
+            doLevelUp(player);
         }
         else
         {
             player.setCurrentXP(XP);
         }
+    }
+
+    private static void doLevelUp(Player player)
+    {
+        int level = player.getLevel();
+
+        player.setHealth(level * WMath.randInt(1, 4) + 2);
+        player.setArmor(WMath.clamp(level * WMath.randInt(1, 4), player.getArmor(), 20));
+        player.setTotalHealth(player.getHealth());
     }
 }
