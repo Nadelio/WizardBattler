@@ -100,6 +100,7 @@ public class Entity
 
     public void setHealth(int newHealth){this.HP = newHealth;}
     public void setArmor(int newArmor){this.AR = newArmor;}
+    public void setLevel(int newLevel){this.level = newLevel;}
     public void setFrozen(){this.frozen = true;}
     public void setUnfrozen(){this.frozen = false;}
     public void setDodged(){this.dodged = !dodged;}

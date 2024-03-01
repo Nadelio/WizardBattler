@@ -169,7 +169,7 @@ public class FightProcesses
             if(!playerDied && endFightRunCount == 0)
             {
                 System.out.println("All enemies eliminated! Ending fight...");
-                for(Player p : Environment.playerList){p.setFirstRun();}
+                for(Player p : Environment.playerList){p.setFirstRun(); LevelUp.addXP(p);}
                 endFightRunCount++;
             }
             else if(playerDied && endFightRunCount == 0)

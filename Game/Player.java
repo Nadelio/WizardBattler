@@ -15,6 +15,7 @@ public class Player extends Entity
 	private Weapon weapon;
 	private int roll;
     private int level;
+    private int currentXP = 0;
 	private String weakType;
 	private String type;
     private EntityClass.Classes Class;
@@ -158,8 +159,9 @@ public class Player extends Entity
         }
     }
 
-
-
+    public int getCurrentXP(){return this.currentXP;}
+    public void setCurrentXP(int newXP){this.currentXP = newXP;}
+    
     @Override
     public String toString(){return entityName;}
 }
