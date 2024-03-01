@@ -1,6 +1,6 @@
 package Events;
 
-import Game.FightProcesses;
+import Game.Entity;
 
 public class EntityDeathEvent extends Events
 {
@@ -8,8 +8,8 @@ public class EntityDeathEvent extends Events
     private String eventName = "EntityDeath";
     
     @Override
-    public void event()
+    public void event(Entity target)
     {
-        System.out.println(FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getCurrentTarget() + "died!");
+        System.out.println(target.getName() + "died!");
     }    
 }

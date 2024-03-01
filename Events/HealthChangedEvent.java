@@ -1,7 +1,6 @@
 package Events;
 
 import Game.Entity;
-import Game.FightProcesses;
 
 public class HealthChangedEvent extends Events
 {

@@ -1,5 +1,6 @@
 package Game;
 
+import Events.LevelUpEvent;
 import WMath.WMath;
 
 public class LevelUp
@@ -19,6 +20,7 @@ public class LevelUp
             player.setLevel(player.getLevel() + 1);
             player.setCurrentXP(0);
             doLevelUp(player);
+            new LevelUpEvent().event(player);
         }
         else
         {
