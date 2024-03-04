@@ -18,6 +18,7 @@ public class ThunderArrow extends ArcherAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setFrozen();
                 duration--;
                 try {Thread.sleep(50);} catch(InterruptedException e){}

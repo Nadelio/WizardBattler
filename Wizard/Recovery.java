@@ -16,11 +16,11 @@ public class Recovery extends Spell
         int targetHealth = target.getHealth();
         if(FightProcesses.getTurnCount() <= 0)
         {
-            target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getLevel());
+            target.setHealth(targetHealth + target.getLevel());
         }
         else
         {
-            target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getLevel());
+            target.setHealth(targetHealth + target.getLevel());
         }
     }
 }

@@ -55,7 +55,6 @@ public class FightProcesses
     {
         if(endFightCheck())
         {
-            if(currentTurn.getMemberInPlay().getDodged()){currentTurn.getMemberInPlay().setDodged();}
             turnIterateNumber++;
             if(turnIterateNumber >= turnMaxIterateNumber){turnIterateNumber = 0;}
             currentTurn = updateTurnData();
@@ -65,6 +64,7 @@ public class FightProcesses
             else{playerIndex++; if(playerIndex > Environment.playerList.size() - 1){playerIndex = 0;}}
             System.out.println("-----------------------------------------------------");
             new TurnPlayedEvent().event();
+            for(Entity e : Environment.entityList){System.out.println("| " + e.getName() + "'s health is: " + e.getHealth() + " |");}
             currentEntity.playTurn();
         }
     }
@@ -193,7 +193,7 @@ public class FightProcesses
                 }
                 else if(Environment.playerList.size() == 1)
                 {
-                    System.out.println(Environment.entityList.get(turnIterateNumber) + " died! Ending fight...");
+                    System.out.println(Environment.entityList.get(turnIterateNumber - 1) + " died! Ending fight...");
                     endFightRunCount++;
                 }
             }

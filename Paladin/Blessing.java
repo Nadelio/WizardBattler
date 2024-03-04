@@ -14,11 +14,12 @@ public class Blessing extends PaladinAction
     public void effectProcess(Entity target)
     {
         int targetHealth = target.getHealth();
-        target.setHealth(targetHealth + FightProcesses.getTurnData(FightProcesses.getTurnCount() - 1).getMemberInPlay().getLevel() + 4);
+        target.setHealth(targetHealth + target.getLevel() + 4);
         while(true)
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setHealth(target.getHealth() + 4);
                 break;
             }

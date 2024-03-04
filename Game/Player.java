@@ -3,6 +3,7 @@ package Game;
 import java.util.Arrays;
 
 import Events.*;
+import WMath.WMath;
 import Classes.*;
 import Weapons.Weapon;
 
@@ -61,7 +62,7 @@ public class Player extends Entity
             }
             else
             {
-                this.setHealth(health + currentActions.chooseAction(chosenAction, this));
+                this.setHealth(currentActions.chooseAction(chosenAction, this));
             }
             FightProcesses.nextTurn();
         }
@@ -116,12 +117,26 @@ public class Player extends Entity
                             new CriticalHitEvent().event();
 		        	    }
 		            }
+                    else
+                    {
+                        System.out.println("Attack roll failed!");
+                    }
                     target.setHealth(targetHealth);
 	            }
                 new DamageGivenEvent().event(turnDamage);
                 new DamageTakenEvent().event(target, turnDamage);
                 new HealthChangedEvent().event(target, turnDamage);
             }
+            else
+            {
+                System.out.println(target.getName() + " dodged!");
+                target.setDodged();
+            }
+        }
+        else
+        {
+            System.out.println(this.getName() + " is frozen!");
+            this.setUnfrozen();
         }
         turnDamage = 0;
         FightProcesses.nextTurn();

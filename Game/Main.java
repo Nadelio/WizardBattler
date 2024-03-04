@@ -77,6 +77,7 @@ public class Main
         System.out.println("Player class: " + player.getEntityClass());
         System.out.println("Player weapon: " + player.getWeapon());
         System.out.println("Player's current environment: " + player.getCurrentEnvironment());
+        System.out.println("Player's starting health: " + player.getTotalHealth());
     }
 
     public static void main(String[] args) 

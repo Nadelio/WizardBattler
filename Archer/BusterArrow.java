@@ -19,6 +19,7 @@ public class BusterArrow extends ArcherAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setArmor(targetArmor);
                 break;
             }

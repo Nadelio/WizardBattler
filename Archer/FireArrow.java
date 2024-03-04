@@ -19,6 +19,7 @@ public class FireArrow extends ArcherAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setHealth(targetHealth - 1);
                 burnDuration--;
                 try {Thread.sleep(50);} catch(InterruptedException e){}

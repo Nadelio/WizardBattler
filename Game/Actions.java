@@ -17,14 +17,13 @@ public class Actions
     
     public int useAction(String actionName, Entity target)
     {
-        Entity currentTarget = target;
-        int targetHealth = currentTarget.getHealth();
+        int targetHealth = target.getHealth();
 
-        if(FightProcesses.attackRoll(Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getRoll()) > currentTarget.getArmor())
+        if(FightProcesses.attackRoll(Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getRoll()) > target.getArmor())
         {
             if(currentAction.getHasEffect() && currentAction.getIsHarmful())
             {
-                currentAction.effectProcess(currentTarget);
+                currentAction.effectProcess(target);
             }
             else if(currentAction.getHasEffect() && (!currentAction.getIsHarmful()))
             {
@@ -34,7 +33,7 @@ public class Actions
             
             String TYPE = currentAction.getType();
            
-            if(TYPE == currentTarget.getWeakType())
+            if(TYPE == target.getWeakType())
             {
                 targetHealth -= currentAction.getActionDamage();
             }

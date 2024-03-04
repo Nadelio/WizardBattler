@@ -19,6 +19,7 @@ public class Toughen extends FighterAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setArmor(memberArmor);
                 break;
             }

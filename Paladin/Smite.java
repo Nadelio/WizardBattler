@@ -19,6 +19,7 @@ public class Smite extends PaladinAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 user.setDodged();
                 try {Thread.sleep(50);} catch(InterruptedException e){}
             }

@@ -18,9 +18,11 @@ public class Freeze extends Spell
         {
             while(FightProcesses.turnUpdate)
             {
-                target.setFrozen();
+                System.out.println("Detected turn update!");
+                target.getCurrentTarget().setFrozen();
+                duration--;
+                try {Thread.sleep(50);} catch(InterruptedException e){}
             }
         }
-        target.setUnfrozen();
     }
 }

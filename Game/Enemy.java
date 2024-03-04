@@ -52,17 +52,19 @@ public class Enemy extends Entity
             if(!target.getDodged())
             {
                 if(getHealth() < (totalHealth/2)){enemyAction();}
-                else if(target.getHealth() < 25 || (target.getHealth() > 75 && getHealth() > 75)){target.setHealth(target.getHealth() - enemyAttack());}
-                else{target.setHealth(target.getHealth() - enemyAttack());}
+                else if(target.getHealth() < 25 || (target.getHealth() > 75 && getHealth() > 75)){target.setHealth(enemyAttack());}
+                else{target.setHealth(enemyAttack());}
             }
             else
             {
                 System.out.println(target.getName() + " dodged!");
+                target.setDodged();
             }
         }
         else
         {
             System.out.println(this.getName() + " is frozen!");
+            this.setUnfrozen();
         }
         FightProcesses.nextTurn();
     }
@@ -76,7 +78,7 @@ public class Enemy extends Entity
         }
         else
         {
-            if(Math.random() > 0.5){enemyAttack();}
+            if(Math.random() > 0.5){target.setHealth(enemyAttack());}
             else{doAction();}
         }
         FightProcesses.nextTurn();
@@ -108,7 +110,7 @@ public class Enemy extends Entity
         if(Environment.spellDatabase.get(choice).getIsHarmful())
         {
             new AttackPlayedEvent().event();
-            target.setHealth(currentActions.chooseAction(Environment.spellDatabase.get(choice), getCurrentTarget()));
+            target.setHealth(currentActions.chooseAction(Environment.spellDatabase.get(choice), target));
             this.turnDamage = target.getHealth() - targetHP;
             new DamageGivenEvent().event(turnDamage);
             new DamageTakenEvent().event(target, turnDamage);

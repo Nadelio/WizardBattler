@@ -18,6 +18,7 @@ public class ShieldBlock extends PaladinAction
         {
             if(FightProcesses.turnUpdate)
             {
+                System.out.println("Detected turn update!");
                 target.setDodged();
                 try {Thread.sleep(50);} catch(InterruptedException e){}
             }
