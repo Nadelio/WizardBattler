@@ -1,18 +1,19 @@
 package Fighter;
 
 import Game.Entity;
+import Game.Environment;
 import Game.FightProcesses;
 
 public class StrongPunch extends FighterAction
 {
     public StrongPunch()
     {
-        super(true, 5, "NONE", "Strong_punch", true);
+        super(true, 0, "NONE", "Strong_punch", true);
     }
 
     @Override
     public void effectProcess(Entity target)
     {
-        target.setHealth(target.getHealth() - (int)((this.getActionDamage() * FightProcesses.getTurnData(FightProcesses.getTurnCount()).getMemberInPlay().getLevel()) / 2));
+        target.setHealth(target.getHealth() - Math.round((5 * Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getLevel()) / 2));
     }
 }

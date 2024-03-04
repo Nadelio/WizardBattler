@@ -58,11 +58,20 @@ public class Player extends Entity
             if(this.currentActions == null){throw new IllegalArgumentException("Variable 'currentActions' for " + this.entityName + " is null, please restart!");}
             if(chosenAction.getIsHarmful())
             {
-                target.setHealth(target.getHealth() - currentActions.chooseAction(chosenAction, target));
+                this.target = chooseTarget();
+
+                while(target == null)
+                {
+                    System.out.println("Error, target does not exist");
+                    this.target = chooseTarget();
+                    if(this.target != null){break;}
+                }
+
+                target.setHealth(target.getHealth() - currentActions.chooseAction(chosenAction, target)); // enemy just self-distructs sometimes???
             }
             else
             {
-                this.setHealth(currentActions.chooseAction(chosenAction, this));
+                this.setHealth(this.currentActions.chooseAction(chosenAction, this));
             }
             FightProcesses.nextTurn();
         }
@@ -138,7 +147,7 @@ public class Player extends Entity
             System.out.println(this.getName() + " is frozen!");
             this.setUnfrozen();
         }
-        turnDamage = 0;
+        this.turnDamage = 0;
         FightProcesses.nextTurn();
     }
 
