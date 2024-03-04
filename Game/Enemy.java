@@ -1,8 +1,7 @@
 package Game;
 
 import Classes.EntityClass;
-import Events.ActionPlayedEvent;
-import Events.AttackPlayedEvent;
+import Events.*;
 import WMath.*;
 import Weapons.Weapon;
 
@@ -70,8 +69,7 @@ public class Enemy extends Entity
 
     public void enemyAction()
     {
-        new ActionPlayedEvent().event();
-        if(this.Class.equals(EntityClass.Classes.Wizard))
+        if(this.weapon.getWeaponType().equals("staff"))
         {
             if(Math.random() > 0.5){doStaffAttacks();}
             else{doStaffAbility();}
@@ -89,30 +87,43 @@ public class Enemy extends Entity
         new AttackPlayedEvent().event();
         target = FightProcesses.getPlayerTarget();
         int targetHP = target.getHealth();
-        if(weapon.getHasEffect()){weapon.effectProcess(target);}
+        if(weapon.getHasEffect() && weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(target);}
+        else if(weapon.getHasEffect() && !weapon.getEffectIsHarmful()){new WeaponEffectUsedEvent().event(); weapon.effectProcess(this);}
         if(FightProcesses.attackRoll(roll) > target.getArmor())
         {
+            new WeaponUsedEvent().event();
             targetHP -= weapon.getDamage();
         }
         this.turnDamage = target.getHealth() - targetHP;
+        new DamageGivenEvent().event(turnDamage);
+        new DamageTakenEvent().event(target, turnDamage);
+        new HealthChangedEvent().event(target, turnDamage);
         return targetHP;
     }
 
     public void doStaffAttacks()
     {
         String choice = getActionChoice();
+        int targetHP = target.getHealth();
         if(Environment.spellDatabase.get(choice).getIsHarmful())
         {
-            getCurrentTarget().setHealth(currentActions.chooseAction(Environment.spellDatabase.get(choice), getCurrentTarget()));
+            new AttackPlayedEvent().event();
+            target.setHealth(currentActions.chooseAction(Environment.spellDatabase.get(choice), getCurrentTarget()));
+            this.turnDamage = target.getHealth() - targetHP;
+            new DamageGivenEvent().event(turnDamage);
+            new DamageTakenEvent().event(target, turnDamage);
+            new HealthChangedEvent().event(target, turnDamage);
         }
         else{doStaffAttacks();}
     }
 
     public void doStaffAbility()
     {
+
         String choice = getActionChoice();
         if(!Environment.spellDatabase.get(choice).getIsHarmful())
         {
+            new ActionPlayedEvent().event();
             this.setHealth((currentActions.chooseAction(Environment.spellDatabase.get(choice), this)));
         }
         else{doStaffAbility();}
@@ -126,9 +137,11 @@ public class Enemy extends Entity
 
     public void doAction() 
     {
+
         String choice = getActionChoice();
         if(!Environment.classActionDatabase.get(Class).get(choice).getIsHarmful())
         {
+            new ActionPlayedEvent().event();
             target.setHealth((currentActions.chooseAction(Environment.classActionDatabase.get(Class).get(choice), target)));
         }
         else{doAction();}
