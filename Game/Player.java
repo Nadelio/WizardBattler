@@ -71,7 +71,7 @@ public class Player extends Entity
             }
             else
             {
-                this.setHealth(this.currentActions.chooseAction(chosenAction, this));
+                this.setHealth(this.getHealth() + this.currentActions.chooseAction(chosenAction, this));
             }
             FightProcesses.nextTurn();
         }

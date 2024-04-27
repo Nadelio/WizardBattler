@@ -49,6 +49,24 @@ public class Entity
         Environment.entityList.add(this);
     }
 
+    public Entity(int HP, int AR, Weapon weapon, int level, int roll, String weakType, String strongType, boolean entityType, EntityClass.Classes Class, String entityName, String currentEnvironment)
+    {
+        this.THP = HP;
+        this.HP = HP;
+        this.AR = AR;
+        this.weapon = weapon;
+        this.level = level;
+        this.roll = roll;
+        this.weakType = weakType;
+        this.strongType = strongType;
+        this.entityType = entityType;
+        this.Class = Class;
+        this.entityName = entityName;
+        this.currentEnvironment = currentEnvironment;
+
+        Environment.entityList.add(this);
+    }
+
     public void playTurn()
     {
         if(entityType)

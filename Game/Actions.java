@@ -19,7 +19,9 @@ public class Actions
     {
         int targetHealth = target.getHealth();
 
-        if(FightProcesses.attackRoll(Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getRoll()) > target.getArmor())
+        int rollResult = FightProcesses.attackRoll(Environment.entityList.get(FightProcesses.getTurnIterateNumber()).getRoll());
+        System.out.println("Roll Result: " + rollResult);
+        if(rollResult > target.getArmor())
         {
             if(currentAction.getHasEffect() && currentAction.getIsHarmful())
             {
@@ -28,6 +30,7 @@ public class Actions
             else if(currentAction.getHasEffect() && (!currentAction.getIsHarmful()))
             {
                 currentAction.effectProcess(Environment.entityList.get(FightProcesses.getTurnIterateNumber()));
+                targetHealth = 0;
             }
             targetHealth -= currentAction.getActionDamage();
             
@@ -41,6 +44,7 @@ public class Actions
         else
         {
             new RollFailedEvent().event();
+            targetHealth = 0;
         }
         return targetHealth;
     }

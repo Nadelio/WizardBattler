@@ -34,7 +34,7 @@ public class FightProcesses
         FightProcesses.currentTurn = new Turn(firstPlayer, 0, firstPlayer.getName());
         turnList.add(currentTurn);
         new TurnPlayedEvent().event();
-        for(Entity e : Environment.entityList){System.out.println("| " + e.getName() + "'s health is: " + e.getHealth() + " |");}
+        for(Entity e : Environment.entityList){System.out.println("| " + e.getName() + "'s health is: " + e.getHealth() + " and armor is: " + e.getArmor() + " |");}
         firstPlayer.playTurn();
     }
 

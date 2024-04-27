@@ -1,7 +1,5 @@
 package Wizard;
 
-import java.util.HashMap;
-
 import Game.Action;
 import Game.Environment;
 
