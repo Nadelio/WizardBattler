@@ -21,7 +21,7 @@ public class FightProcesses
 
     public FightProcesses()
     {
-        System.out.println("Fight started!");
+        System.out.println("Someone got McMad!\nFight started!"); // remove in future
         fightActive = true;
         turnIterateNumber = 0;
         playerIndex = 0;
