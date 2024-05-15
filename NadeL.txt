@@ -121,8 +121,7 @@ whitespace[1]; whitespace[0]=26; whitespace[] -> whitespace[abc];
 --------------------------------------------------------------------------------------
 // simple if/else example
 x[3];
-word[6];
-word[] -> word[abc];
+word[6]; word[] -> word[abc];
 word[0]=e; word[1]=q; word[2]=u; word[3]=a; word[4]=l; word[5]=s;
 x[0]+;
 x[1]=2;
@@ -131,3 +130,4 @@ x[1]=2;
 !:x[0]+;:
 
 // behavior: outputs "equals" if the first index of x is equal to the second index of x, if it is greater, decrement the first index, if less than, increment first index
+--------------------------------------------------------------------------------------
