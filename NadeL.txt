@@ -1,0 +1,77 @@
+x[num] -> define name and size of an array
+x[num]+ -> increment index of x
+x[num]- -> decrement index of x
+x[num]+num -> increment index of x by num
+x[num]-num -> decrement index of x by num
+x[]+ -> increment the size of x
+x[]- -> decrement the size of x, will erase the last index of the array
+x[]+num -> increment the size of x by num
+x[]-num -> decrement the size of x by num
+x[num]=num -> set index of x to num
+x[]=num -> set size of x to num
+out>x[num] -> output the index of x
+out>x[] -> output the size of x
+// new line variants for out commands look like: outln>...
+in>x[num] -> input an integer into the index of x
+in>x[] -> input an integer into the size of x
+y(equation) -> for loop, y is the number of times the equation in the parenthesis will run
+?(comparison):equation: -> define an if statement, inside the colons would be the equation that would run when if statement is successful
+!:equation: -> else clause to an if statement
+!?:equation: -> else if clause to an if statement
+x[] -> x[abc] -> convert a number array to a letter array
+x[abc] -> x[] -> convert a letter array to a number array
+; -> end line character
+--------------------------------------------------------------------------------------
+// num is a stand-in for any integer
+
+// x is a stand-in for any variable name
+
+// -> defines the behavior of the symbols to the left of it 
+//    excluding lines 21 and 22, in which they are also part of the syntax for converting arrays to different types
+
+// text/characters are unavailable at the moment as I don't know how I would get them to work with the rest of the system
+
+// an equation can be one or more of the previous lines (excluding the first 4) with an endline character separating each equation
+
+// a comparison is two equations or numbers/letters with a comparison symbol (==, <=, >=, <, >, !=)
+======================================================================================
+EXAMPLE CODE
+--------------------------------------------------------------------------------------
+x[3]; // creates an array named x that is the size 3
+x[0]+; // increments the first index of x
+out>x[0]; // outputs the first index of x, which is 1
+--------------------------------------------------------------------------------------
+x[3]; // creates an array named x that is the size 3
+y[1]; // creates an array named y that is the size 1
+3( x[y[0]]+y[0]; y[0]+;); // runs a loop 3 times, the loop adds y[0] to x[y[0]], then adds 1 to y[0]
+y[0]=0; // sets the first index of y to 0
+3( out>x[y[0]]; y[0];); // runs a loop 3 times, the loop outputs the value of x[y[0]], then adds 1 to y[0] // the output should be: 012
+--------------------------------------------------------------------------------------
+// something of note, size 1 arrays can be a substitute for single variables, although it could be useful to keep an array of single
+// variables with a single array index variable that you then set as a sort of psuedo pointer
+// like:
+x[3]; // the array of variables
+y[1]; // the array you'd use for storing your index
+// an alternative is combining the two into one array:
+x[4]; // in this case, the first index, x[0], would be the variable that acts as the "pointer" for the rest of the array.
+x[0]=1; // points to the first non-index variable
+x[x[0]]=4; // sets x[1] to 4
+x[1]=0; // set x[1] to 0
+// now this may be inefficient as you could directly change any index of an array manually, but for loops, this could be a useful mechanic
+// as an example:
+3(x[x[0]]+; x[0]+;) // this should follow similar behavior to the previous example of a loop, while utilizing less arrays
+======================================================================================
+// I am thinking of a way to convert int arrays to letters, but I can't think up any decent syntax, maybe an arrow?
+// like:
+x[1]; // makes an array of size 1 called x
+x[] -> x[abc]; // converts all numbers to lettered counterparts, if over 25, loop back around to start, continue this rule as needed
+outln>x[0]; // outputs "a"
+// and to turn it back into numbers, just do:
+x[abc] -> x[]; // converts all letters to number counterparts 0 - 25
+outln>x[0]; // outputs 0
+// this functionality could be used for editing individual letters to follow a pattern
+// you can also just use the same commands for number arrays as letter arrays, excluding the increment/decrement commands:
+x[] -> x[abc]; // converts to letter array
+x[0]=b; // converts index 0 from "a" to "b"
+x[abc] -> x[]; // converts to number array
+outln>x[0]; // outputs 1
