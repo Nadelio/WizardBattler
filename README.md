@@ -14,9 +14,7 @@ Current Bugs/Dependecy Errors:
 - Finish implementing all events
 - Add NPC class
   - Add shops, items, etc.
-- Create ActionThread class and shift effectProcess() methods to be called from that thread upon an event.
-  - replace body of effectProcess() with a thrown event, which thread will detect and run the corresponding code/effectProcess
-  - make sure to initialize the ActionThread in `Main.main()`
+- Rebuild `Action` class to implement `Runnable` and then initiate a Cyclic Barrier that updates every turn to match the number of active Action threads, start the Action threads at the same time
 - Add encounters (aka NPC encounter, fight encounter, discover item, etc)
 - JButtons, JFrame, JLabel, Menu system, etc.
   <!--! ^^^^ LAST THING ^^^^ !--!>

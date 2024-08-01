@@ -108,6 +108,6 @@ public class Main
         printPlayer(player);
         System.out.println("-----------------------------------------------------");
 
-        new GenerateFight(); //! FOR TESTING ONLY REMOVE BEFORE FINAL VERSION !//
+        new GenerateFight(); //! FOR TESTING ONLY, REMOVE BEFORE FINAL VERSION !//
     }
 }
