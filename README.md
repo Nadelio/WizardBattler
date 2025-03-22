@@ -1,24 +1,31 @@
-# WizardBattler
-Something stupid I am doing, not really any purpose to this other than to practice advanced Java programming
+# Rebuild Branch
+This branch is dedicated to rebuilding and reviving this project.
 
-# 
-Current Features:
-- Player, Enemy, and Entity classes
-- Level 1 Actions
-- Level 2 Actions
-- Misc Databases
-- Fighting
-- Leveling Up
-# 
-Current Bugs/Dependecy Errors:
-- Finish implementing all events
-- Add NPC class
-  - Add shops, items, etc.
-- Rebuild `Action` class to implement `Runnable` and then initiate a Cyclic Barrier that updates every turn to match the number of active Action threads, start the Action threads at the same time
-- Add encounters (aka NPC encounter, fight encounter, discover item, etc)
-- JButtons, JFrame, JLabel, Menu system, etc.
-  <!--! ^^^^ LAST THING ^^^^ !--!>
-# 
-Contributers:
-- Nadelio (Creator)
-- PogMaster9001
+# Todo:
+- [ ] Basic Game Loop
+  - [ ] Class framework
+    - [ ] Stats
+      - Health
+      - Speed (who has first turn)
+      - Element Resistances
+      - Defense (melee damage resistance)
+      - Passives (permanent effects)
+  - [ ] Encounter framework
+    - [ ] Attack framework
+    - [ ] Enemy framework
+  - [ ] Inventory framework
+    - [ ] Equipment framework
+    - [ ] Item framework
+    - [ ] Consumable framework
+  - [ ] Ability framework
+    - [X] Effect framework 
+- [ ] Interface
+- [ ] Graphics
+- [ ] Modding Documentation
+- [ ] Modding Support
+  - Service Providers/Loaders
+- [ ] Contributor Documentation
+- [ ] Development Tooling(?)
+
+# Contributors
+- Nadelio
